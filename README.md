@@ -8,8 +8,8 @@ Web application that replicates Instagram core features such as:
 ## Team members
 - Jananee Aruboribaran 40129224
 - Noah-James Dinh 40128079 (github: eyeshield2110)
-- Marian Maksimos 40067018 (github: madeleine3341)
-- Madline Nessim 40078034
+- Marian Maksimos 40067018 
+- Madline Nessim 40078034 (github: madeleine3341)
 - Thanh Ta 40085781 (github: mth-1012)
 
 ## Technologies
