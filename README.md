@@ -1,9 +1,10 @@
 # SOEN 341 Project
 ## Project description
-Web application that replicates Instagram core features such as:
+Web application designed on GIT and GitHub that replicates Instagram as the users will be able to use it as a social media platform to connect with family, friends follow celebrities. core features are:
 - Posting images
 - Commenting on images
 - Following other users
+with other features to be added later.
 
 ## Team members
 - Jananee Aruboribaran 40129224 (github:  BunnyPrince)
