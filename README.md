@@ -4,13 +4,15 @@ Web application designed on GIT and GitHub that replicates Instagram as the user
 - Posting images
 - Commenting on images
 - Following other users
-- along features that will be added later on.
+- along other features that will be added later on.
+
+## in general the greatest potion of the potential stakeholders/users belong the age category of 18 to 35. the reason behind it that this category are more interested in connection with others through social media more than other communication types.
 
 ## Team members
 - Jananee Aruboribaran 40129224 (github:  BunnyPrince)
 - Noah-James Dinh 40128079 (github: eyeshield2110)
 - Marian Maksimos 40067018 (github: M-Maksimos)
-- Madline Nessim 40078034 (github: madeleine3341)
+- Madeleine Nessim 40078034 (github: madeleine3341)
 - Thanh Ta 40085781 (github: mth-1012)
 
 ## Technologies
