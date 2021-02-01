@@ -6,7 +6,8 @@ Web application designed on GIT and GitHub that replicates Instagram as the user
 - Following other users
 - along other features that will be added later on.
 
-## in general the greatest portion of the potential stakeholders/users belongs to the age category of 18 to 35 years old. the reason behind it, is that this category is more interested in connection with others through social media more than other communication methods.
+## Stakeholders
+in general the greatest portion of the potential stakeholders/users belongs to the age category of 18 to 35 years old. the reason behind it, is that this category is more interested in connection with others through social media more than other communication methods.
 
 ## Team members
 - Jananee Aruboribaran 40129224 (github:  BunnyPrince)
