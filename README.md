@@ -6,7 +6,7 @@ Web application designed on GIT and GitHub that replicates Instagram as the user
 - Following other users
 - along other features that will be added later on.
 
-## in general the greatest potion of the potential stakeholders/users belong the age category of 18 to 35. the reason behind it that this category are more interested in connection with others through social media more than other communication types.
+# in general the greatest potion of the potential stakeholders/users belong the age category of 18 to 35. the reason behind it that this category are more interested in connection with others through social media more than other communication types.
 
 ## Team members
 - Jananee Aruboribaran 40129224 (github:  BunnyPrince)
