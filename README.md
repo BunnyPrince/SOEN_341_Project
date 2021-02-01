@@ -4,7 +4,7 @@ Web application designed on GIT and GitHub that replicates Instagram as the user
 - Posting images
 - Commenting on images
 - Following other users
-with other features to be added later.
+- along features that will be added later on.
 
 ## Team members
 - Jananee Aruboribaran 40129224 (github:  BunnyPrince)
