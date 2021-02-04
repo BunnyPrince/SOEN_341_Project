@@ -1,0 +1,13 @@
+<%- include('../partials/header')  %>
+<h1>New page</h1>
+<form action="/images" method="POST">
+    <div>
+        <label for="image">Add Image URL</label>
+        <input type="text" id="image" name="image[image]">
+    </div>
+    <div>
+        <label for="caption">Add Caption</label>
+        <input type="text" id="caption" name="image[caption]">
+    </div>
+    <button>Add Image</button>
+</form>

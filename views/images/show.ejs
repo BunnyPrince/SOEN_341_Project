@@ -1,0 +1,16 @@
+<%- include('../partials/header')  %>
+<h1>Show page</h1>
+<img src="<%= image.image %>">
+<p><%= image.caption %></p>
+
+
+
+<p>
+    <form action="/images/<%=image._id%>?_method=DELETE" method="POST">
+        <button>Delete</button>
+    </form>
+    <form action="/images/<%= image._id %>/edit" method="GET">
+        <button>Edit</button>
+    </form>
+
+</p>

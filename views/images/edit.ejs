@@ -1,0 +1,13 @@
+<%- include('../partials/header')  %>
+<h1>Edit page</h1>
+<form action="/images/<%=image._id%>?_method=PUT" method="POST">
+        <div>
+            <label for="image">Image URL</label>
+            <input type="text" id="image" name="image[image]" value="<%=image.image %>">
+        </div>
+        <div>
+            <label for="caption">Caption</label>
+            <input type="text" id="caption" name="image[caption]" value="<%= image.caption%>">
+        </div>
+        <button>Update Image</button>
+    </form>
