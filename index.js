@@ -43,6 +43,13 @@ app.get('/images', async (req, res) => {
 app.get('/images/new', (req, res) => {
     res.render('images/new');
 })
+app.get('/profile', (req, res) => {
+    res.render('profile');
+})
+app.get('/search', (req, res) => {
+    res.render('search');
+})
+
 app.post('/images', async (req, res) => {
     const image = new Image(req.body.image);
     await image.save();
