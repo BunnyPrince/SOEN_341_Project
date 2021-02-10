@@ -43,11 +43,22 @@ app.get('/images', async (req, res) => {
 app.get('/images/new', (req, res) => {
     res.render('images/new');
 })
+
+app.get('/feed', (req, res) => {
+    res.render('feed');
+})
+
 app.get('/profile', (req, res) => {
     res.render('profile');
 })
 app.get('/search', (req, res) => {
     res.render('search');
+})
+app.get('/register', (req, res) => {
+    res.render('register');
+})
+app.get('/login', (req, res) => {
+    res.render('login');
 })
 
 app.post('/images', async (req, res) => {
