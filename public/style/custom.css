@@ -1,0 +1,7 @@
+/*the style for the navbar buttons*/
+.btn-navbar-button{
+    outline-color: #c81641;
+    outline-style: auto;
+    outline-width: 5px;
+    background-color: azure;
+}
