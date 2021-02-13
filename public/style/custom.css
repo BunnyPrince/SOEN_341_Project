@@ -12,8 +12,8 @@
     float: left;
 }
 
-.gallery image{
+.galleryimage{
 
-    max-height: 1cm;
-    max-width: 1cm;
+    max-height: 5cm;
+    max-width: 5cm;
 }
