@@ -14,6 +14,6 @@
 
 .galleryimage{
 
-    max-height: 5cm;
-    max-width: 5cm;
+    height: 150px;
+    width: 150px;
 }
