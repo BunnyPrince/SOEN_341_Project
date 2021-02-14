@@ -1,6 +1,12 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+<link href="/style/basic.css" rel="stylesheet" type="text/css">
+<link href="/style/custom.css" rel="stylesheet" type="text/css">
+
 <%- include('../partials/header')  %>
-<h1>Edit page</h1>
-<form action="/images/<%=image._id%>?_method=PUT" method="POST">
+<main>
+    <h1>Edit page</h1>
+    <form action="/images/<%=image._id%>?_method=PUT" method="POST">
         <div>
             <label for="image">Image URL</label>
             <input type="text" id="image" name="image[image]" value="<%=image.image %>">
@@ -11,3 +17,6 @@
         </div>
         <button>Update Image</button>
     </form>
+</main>
+
+<%- include('../partials/footer') %>

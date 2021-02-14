@@ -1,13 +1,45 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+<link href="/style/basic.css" rel="stylesheet" type="text/css">
+<link href="/style/custom.css" rel="stylesheet" type="text/css">
+
 <%- include('../partials/header')  %>
-<h1>New page</h1>
-<form action="/images" method="POST">
-    <div>
-        <label for="image">Add Image URL</label>
-        <input type="text" id="image" name="image[image]">
+<main>
+    <div  align="center" >
+      <div class="col-sm-6 p-5">
+           <div class="card btn-login-card">
+                <div class="card-body">
+                    <form action="/images" method="POST" class="clearfix">
+                         <img id="file" src="https://i.ibb.co/ZVFsg37/default.png">
+                         <input type="file"  name="img_one" id="file-ip-1" accept="image/*" onchange="showPreviewOne(event);">
+
+                            <label for="caption" class="card-label">Add Caption</label>
+                            <input class="card-input" type="text" id="caption" name="image[caption]">
+
+                        <div class="float-end mt-4">
+                            <button class="btn btn-button">Add Image</button>
+                        </div>
+
+                    </form>
+                </div>
+           </div>
+      </div>
     </div>
-    <div>
-        <label for="caption">Add Caption</label>
-        <input type="text" id="caption" name="image[caption]">
-    </div>
-    <button>Add Image</button>
-</form>
+
+</main>
+
+<%- include('../partials/footer') %>
+
+<script>
+     function showPreviewOne(event){
+      if(event.target.files.length > 0){
+        let src = URL.createObjectURL(event.target.files[0]);
+        let preview = document.getElementById("file");
+        preview.src = src;
+        preview.style.display = "block";
+      }
+    }
+    function myImgRemoveFunctionOne() {
+      document.getElementById("file").src = "https://i.ibb.co/ZVFsg37/default.png";
+    }
+</script>
