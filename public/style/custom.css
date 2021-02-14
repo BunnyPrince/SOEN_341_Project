@@ -6,6 +6,7 @@
     background-color: azure;
 }
 
+
 .login-input{
     margin-bottom: 10px;
 }
@@ -33,4 +34,16 @@
 .register-input {
     float: left;
     width: 60%;
+}
+
+.gallery{
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+}
+
+.galleryimage{
+
+    height: 150px;
+    width: 150px;
 }
