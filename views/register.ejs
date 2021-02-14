@@ -6,7 +6,33 @@
 <%- include('partials/header')  %>
 
 <main>
-    <h1>register</h1>
+    <div  align="center" >
+      <div class="col-sm-6 p-5">
+           <div class="card btn-login-card">
+                <div class="card-body">
+                     <form action="/login" method="get" class="clearfix">
+
+                         <label class="register-label" aria-label="left">Username</label>
+                         <input class="register-input" placeholder="Enter Username">
+
+                         <label class="register-label">Email</label>
+                         <input class="register-input" placeholder="Enter Email">
+
+                         <label class="register-label">Password</label>
+                         <input class="register-input" placeholder="Enter password">
+
+                         <label class="register-label">Reenter Password</label>
+                         <input class="register-input" placeholder="Reenter password">
+
+                         <div class="float-end mt-4">
+                             <button class="btn btn-button ">create</button>
+                         </div>
+
+                    </form>
+                </div>
+            </div>
+      </div>
+    </div>
 </main>
 
 <%- include('./partials/footer') %>
