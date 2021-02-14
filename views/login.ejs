@@ -3,10 +3,25 @@
 <link href="/style/basic.css" rel="stylesheet" type="text/css">
 <link href="/style/custom.css" rel="stylesheet" type="text/css">
 
-<%- include('partials/header')  %>
 
-<main>
-    <h1>login</h1>
+
+<main class="btn-login-background">
+    <div  align="center" >
+      <div class="col-sm-4 p-5">
+           <div class="card btn-login-card">
+                <div class="card-body">
+                     <form action="/feed" method="get">
+                        <input class="login-input" placeholder="Enter username" name="username" required>
+                         <input class="login-input" placeholder="Enter password" name="password" required>
+                        <button class="btn btn-button">Login</button>
+                         <button class="btn btn-button">create</button>
+                    </form>
+                </div>
+            </div>
+      </div>
+    </div>
+
+
 </main>
 
 <%- include('./partials/footer') %>

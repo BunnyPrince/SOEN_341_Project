@@ -15,3 +15,16 @@ main {
 .push {
   height: 50px;
 }
+
+.navbar{
+  background-color: #1F2833;
+}
+.navbar a{
+  color: #C5C6C7;
+}
+
+main{
+  background-color: #a9f5ef;
+}
+
+
