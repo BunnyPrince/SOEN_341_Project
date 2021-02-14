@@ -1,7 +1,36 @@
 /*the style for the navbar buttons*/
 .btn-navbar-button{
-    outline-color: #c81641;
+    outline-color: black;
     outline-style: auto;
     outline-width: 5px;
     background-color: azure;
+}
+
+.login-input{
+    margin-bottom: 10px;
+}
+
+.btn-login-card {
+    background-color: rgba(0,0,0,0.6);
+    padding-top: 20px;
+}
+.btn-login-background{
+    background-color: #66FCF1;
+}
+
+.btn-button{
+    background-color: #1F2833;
+    color: white;
+}
+
+
+.register-label{
+    float: left;
+    width: 40%;
+    text-align: left;
+    color: #C5C6C7;
+}
+.register-input {
+    float: left;
+    width: 60%;
 }

@@ -1,12 +1,22 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+<link href="/style/basic.css" rel="stylesheet" type="text/css">
+<link href="/style/custom.css" rel="stylesheet" type="text/css">
+
 <%- include('../partials/header')  %>
-<h1>Index page</h1>
-<a href="/images/new">Add new image</a>
+<main>
+    <h1>Index page</h1>
+    <a href="/images/new">Add new image</a>
 
 
-<% images.forEach((image) => { %>
-<div style="margin: 20px;padding: 20px">
-    <a href="/images/<%= image._id %>">
-        <img src="<%= image.image %>" alt="image post">
-    </a>
-</div>
-<% }) %>
+    <% images.forEach((image) => { %>
+    <div style="margin: 20px;padding: 20px">
+        <a href="/images/<%= image._id %>">
+            <img src="<%= image.image %>" alt="image post">
+        </a>
+    </div>
+    <% }) %>
+</main>
+
+
+<%- include('../partials/footer') %>
