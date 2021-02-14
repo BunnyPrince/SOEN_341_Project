@@ -32,7 +32,7 @@ db.once("open", () => {
 /* ==================================================== RESTFUL ROUTES & MONGOOSE CRUD  ====================================================  */
 /* landing page */
 app.get('/', (req, res) => {
-    res.render('homepage')
+    res.render('login')
 })
 /* index */
 app.get('/images', async (req, res) => {
