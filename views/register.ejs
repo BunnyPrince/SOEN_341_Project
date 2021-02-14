@@ -10,19 +10,19 @@
       <div class="col-sm-6 p-5">
            <div class="card btn-login-card">
                 <div class="card-body">
-                     <form action="/login" method="get" class="clearfix">
+                     <form action="/login" method="post" class="clearfix">
 
                          <label class="register-label" aria-label="left">Username</label>
-                         <input class="register-input" placeholder="Enter Username">
+                         <input type="text" name="username" class="register-input" placeholder="Enter Username" required autocomplete="off">
 
                          <label class="register-label">Email</label>
-                         <input class="register-input" placeholder="Enter Email">
+                         <input type="email" name="email" class="register-input" placeholder="Enter Email" required autocomplete="off chrome-off" >
 
                          <label class="register-label">Password</label>
-                         <input class="register-input" placeholder="Enter password">
+                         <input type="text" name="password" class="register-input" placeholder="Enter password" required autocomplete="off">
 
                          <label class="register-label">Reenter Password</label>
-                         <input class="register-input" placeholder="Reenter password">
+                         <input type="text" name="validate-password" class="register-input" placeholder="Reenter password" required autocomplete="off">
 
                          <div class="float-end mt-4">
                              <button class="btn btn-button ">create</button>
