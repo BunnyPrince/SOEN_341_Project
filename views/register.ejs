@@ -3,26 +3,38 @@
 <link href="/style/basic.css" rel="stylesheet" type="text/css">
 <link href="/style/custom.css" rel="stylesheet" type="text/css">
 
-<%- include('partials/header')  %>
+
 
 <main>
     <div  align="center" >
       <div class="col-sm-6 p-5">
            <div class="card btn-login-card">
                 <div class="card-body">
-                     <form action="/login" method="get" class="clearfix">
+                    <h3><%= msg %></h3>
+                     <form action="/register" method="post" class="clearfix">
 
                          <label class="register-label" aria-label="left">Username</label>
-                         <input class="register-input" placeholder="Enter Username">
+                         <input type="text" name="username" class="register-input" placeholder="Enter Username" required autocomplete="off">
 
                          <label class="register-label">Email</label>
-                         <input class="register-input" placeholder="Enter Email">
+                         <input type="email" name="email" class="register-input" placeholder="Enter Email" required autocomplete="off chrome-off" >
 
                          <label class="register-label">Password</label>
-                         <input class="register-input" placeholder="Enter password">
+                         <input id="password" type="password" name="password" class="register-input" placeholder="Enter password" required autocomplete="off">
 
                          <label class="register-label">Reenter Password</label>
-                         <input class="register-input" placeholder="Reenter password">
+                         <input type="password" name="validate_password" oninput="check(this)" class="register-input" placeholder="Reenter password" required autocomplete="off">
+
+                         <script language='javascript' type='text/javascript'>
+                             function check(input) {
+                                 if (input.value != document.getElementById('password').value) {
+                                     input.setCustomValidity('Password Must be Matching.');
+                                 } else {
+                                     // input is valid -- reset the error message
+                                     input.setCustomValidity('');
+                                 }
+                             }
+                         </script>
 
                          <div class="float-end mt-4">
                              <button class="btn btn-button ">create</button>
