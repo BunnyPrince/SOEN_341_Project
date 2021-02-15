@@ -9,6 +9,8 @@ const Image = require('./models/image')
 const Comment = require('./models/comment')
 const User = require('./models/user')
 const bcrypt = require('bcrypt')
+const multer = require('multer')
+const upload = multer({dest:'uploads/'})
 
 
 /* ----------------------- configuration of dir, templates, EJS, encoding & route overriding ------------------------- */
@@ -26,6 +28,9 @@ app.use(session({
 }))
 
 app.use(flash())
+
+// configuring multer (image processing)
+
 
 /* -------------------------------------------------- Setting up middleware -------------------------------------------------- */
 // middleware that prints logs about the session object
@@ -174,10 +179,13 @@ app.post('/logout', (req, res) => {
     res.redirect('/')
 })
 
-app.post('/images', async (req, res) => {
-    const image = new Image(req.body.image);
-    await image.save();
-    res.redirect(`/images/${image._id}`)
+app.post('/images', upload.single('image'), async (req, res) => {
+    // const image = new Image(req.body.image);
+    // await image.save();
+    // res.redirect(`/images/${image._id}`)
+    console.log(JSON.stringify(req.file))
+    // ^ object : originalname, mimetype (extension), destination (uploads/)
+    res.send("Posted an image to server!")
 })
 /* show */
 app.get('/images/:id', async (req, res) => {
