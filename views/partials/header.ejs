@@ -14,23 +14,14 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-lg-0" >
-        <li class="nav-item">
-          <a class="nav-link " id="nav-login" href="/">login</a>
-        </li>
          <li class="nav-item">
           <a class="nav-link" id="nav-image" href="/images">Images index</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="nav-feed" href="/feed">Feed</a>
+          <a class="nav-link" id="nav-feed" href="/">Feed</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="nav-profile" href="/profile">profile</a>
-        </li>
-          <li class="nav-item">
-          <a class="nav-link" id="nav-register" href="/register">register</a>
-        </li>
-          <li class="nav-item">
-          <a class="nav-link" id="nav-login" href="/login">login</a>
+          <a class="nav-link" id="nav-profile" href="/profile">Profile</a>
         </li>
           <li>
               <form class="d-flex">
@@ -39,9 +30,19 @@
               </form>
           </li>
       </ul>
-        <button  class="d-flex btn btn-navbar-button ">sign out</button>
-
+        <button type="button" onclick="proceed();" class="d-flex btn btn-navbar-button">sign out</button>
      </div>
   </div>
 </nav>
+
+<script>
+    function proceed () {
+    var form = document.createElement('form');
+    form.setAttribute('method', 'post');
+    form.setAttribute('action', '/logout');
+    form.style.display = 'hidden';
+    document.body.appendChild(form)
+    form.submit();
+}
+</script>
 
