@@ -28,7 +28,7 @@ app.use(session({
 app.use(flash())
 
 /* -------------------------------------------------- Setting up middleware -------------------------------------------------- */
-// testing middleware to get session object
+// middleware that prints logs about the session object
 app.use((req, res, next) => {
     const { user_id } = req.session
     if (user_id)
@@ -43,8 +43,17 @@ const isLogged = (req, res, next) => {
     if (user_id)
         return next() // allow user to see instagram
     else
-        return res.redirect('/test-login') // if not logged in, redirect to login
+        return res.redirect('/') // if not logged in, redirect to login
 }
+// function does not allow a logged in user to see the login or register page
+const whenLogged = (req, res, next) => {
+    const { user_id } = req.session
+    if (!user_id)
+        return next() // allow user to see registration and/or login forms
+    else
+        return res.redirect('/') // if logged in, redirect to FEED
+}
+
 
 // testing middleware to get flash object
 /* app.use((req, res, next) => {
@@ -54,13 +63,6 @@ const isLogged = (req, res, next) => {
     next()
 }) */
 
-// defining middleware that are inserted into specific paths
-const verifyPsw = (req, res, next) => {
-    const { psw } = req.query
-    if (psw)
-        return next()
-    res.send('ENTER PASSWORD TO ACCESS ROUTE')
-}
 
 
 /* ---------------------------------------------------- MongoDB connection ---------------------------------------------------- */
@@ -81,7 +83,39 @@ db.once("open", () => {
 /* ==================================================== RESTFUL ROUTES & MONGOOSE CRUD  ====================================================  */
 /* landing page */
 app.get('/', (req, res) => {
-    res.render('login')
+    if (req.session.user_id)
+        return res.render('feed');
+    else {
+        res.render('login', {msg:req.flash('failedLogin')})
+    }
+})
+app.post('/login', async (req, res) => {
+    const { username, password } = req.body
+
+    // search username
+    const searchUser = await User.findOne({ username })
+    if (!searchUser) {
+        console.log('Failed login')
+        req.flash('failedLogin', "Wrong username and/or password.")
+        return res.redirect('/') // implement wrong username/pw message
+    }
+    // match to password
+    const validPw = await bcrypt.compare(password, searchUser.password)
+
+    if (validPw) {
+        // if success login, store user._id in session
+        req.session.user_id = searchUser._id
+        console.log("success login") // TO-DO: implement success login message
+        res.redirect('/')
+    }
+
+    else {
+        console.log('Failed login')
+        req.flash('failedLogin', "Wrong username and/or password.")
+        res.redirect('/')
+    }
+
+    // res.send('POST METHOD /login - Error route')
 })
 /* index */
 app.get('/images', isLogged, async (req, res) => {
@@ -93,21 +127,43 @@ app.get('/images/new', isLogged,(req, res) => {
     res.render('images/new');
 })
 
-app.get('/feed', isLogged,(req, res) => {
+/* app.get('/feed', isLogged,(req, res) => {
     res.render('feed');
-})
+}) */
 
-app.get('/profile', (req, res) => {
+app.get('/profile', isLogged, (req, res) => {
     res.render('profile');
 })
 app.get('/search', (req, res) => {
     res.render('search');
 })
-app.get('/register', (req, res) => {
-    res.render('register');
+app.get('/register', whenLogged,(req, res) => {
+    res.render('register', {msg:req.flash('taken')});
 })
-app.get('/login', (req, res) => {
-    res.render('login');
+app.post('/register', async (req, res) => {
+    const {username, email, password} = req.body
+    const db_user = await User.findOne({username})
+    const db_email = await User.findOne({email})
+    if (db_user || db_email) {
+        req.flash('taken', 'This username/email have already been used.')
+        return res.redirect('/register')
+    }
+    // hash password before storing
+    const hash = await bcrypt.hash(password, 12)
+
+    // create user if data valid
+    const newUser = new User({username, email, password:hash})
+    await newUser.save()
+    console.log(newUser)
+    req.flash('successRegister', 'Registration successful!')
+    res.redirect('/')
+
+})
+
+app.post('/logout', (req, res) => {
+    req.session.user_id = null
+    req.session.destroy() // completely any information stored in session
+    res.redirect('/')
 })
 
 app.post('/images', async (req, res) => {
@@ -145,7 +201,7 @@ app.put('/images/:id', async (req, res) => {
     const { id } = req.params;
     const image = await Image.findByIdAndUpdate(id, { ...req.body.image });
     res.redirect(`/images/${image._id}`)
-});
+})
 /* to do */
 app.delete('/images/:id', async (req, res) => {
     const { id } = req.params;
@@ -154,72 +210,9 @@ app.delete('/images/:id', async (req, res) => {
 })
 
 /* ------------------------------------------------ Testing ------------------------------------------------ */
-// Testing user registration and login
-app.get('/test-register', (req, res) => {
-
-    res.send(`
-        <h2>${req.flash('taken')}</h2>
-        <form action="/test-register" method="post">
-        <input type="text" name="user[username]" placeholder="username">
-        <input type="email" name="user[email]" placeholder="email">
-        <input type="text" name="user[password]" placeholder="password">
-        <button type="submit">Join</button>
-        </form>
-    `)
-})
-app.post('/test-register', async (req, res) => {
-    const {username, email, password} = req.body.user
-    const db_user = await User.findOne({username})
-    const db_email = await User.findOne({email})
-    if (db_user || db_email) {
-        req.flash('taken', 'This username/email have already been used.')
-        return res.redirect('/test-register')
-    }
-    // hash password before storing
-    const hash = await bcrypt.hash(password, 12)
-
-    // create user if data valid
-    const newUser = new User({username, email, password:hash})
-    await newUser.save()
-    console.log(newUser)
-    res.send('POSTED USER REGISTRATION TEST!')
-})
-app.get('/test-login', (req, res) => {
-
-    res.send(`
-        ${req.flash('failedLogin')}
-        <form action="/test-login" method="post">
-            <input type="text" name="username" required>
-            <input type="text" name="password" required>
-            <button type="submit">Login</button>
-        </form>
-    `)
-})
-app.post('/test-login', async (req, res) => {
-    const { username, password } = req.body
-
-    // search username
-    const searchUser = await User.findOne({ username })
-    if (!searchUser) {
-        console.log('Failed login')
-        req.flash('failedLogin', "Wrong username and/or password.")
-        return res.redirect('/test-login') // implement wrong username/pw message
-    }
-    // match to password
-    const validPw = await bcrypt.compare(password, searchUser.password)
-
-    if (validPw) {
-        // if success login, store user._id in session
-        req.session.user_id = searchUser._id
-        console.log("success login") // implement success login message
-        res.redirect('/')
-    }
-
-    else {
-        console.log('Failed login')
-        req.flash('failedLogin', "Wrong username and/or password.")
-        res.redirect('/test-login') // implement wrong username/pw message
-    }
+// Testing the error route
+app.get('*', (req, res) => {
+    res.send('404: page not found.')
 })
 
 

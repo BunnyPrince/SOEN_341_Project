@@ -3,14 +3,15 @@
 <link href="/style/basic.css" rel="stylesheet" type="text/css">
 <link href="/style/custom.css" rel="stylesheet" type="text/css">
 
-<%- include('partials/header')  %>
+
 
 <main>
     <div  align="center" >
       <div class="col-sm-6 p-5">
            <div class="card btn-login-card">
                 <div class="card-body">
-                     <form action="/login" method="post" class="clearfix">
+                    <h3><%= msg %></h3>
+                     <form action="/register" method="post" class="clearfix">
 
                          <label class="register-label" aria-label="left">Username</label>
                          <input type="text" name="username" class="register-input" placeholder="Enter Username" required autocomplete="off">

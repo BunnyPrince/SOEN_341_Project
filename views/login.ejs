@@ -10,12 +10,13 @@
       <div class="col-sm-4 p-5">
            <div class="card btn-login-card">
                 <div class="card-body">
-                     <form action="/feed" method="get">
+                    <h4><%= msg %></h4>
+                     <form action="/login" method="post">
                         <input class="login-input" placeholder="Enter username" name="username" required>
                          <input class="login-input" placeholder="Enter password" name="password" required>
                         <button class="btn btn-button">Login</button>
-                         <button class="btn btn-button">create</button>
                     </form>
+                    <button class="btn btn-button" onclick="location.href ='/register';">Don't have an account yet? Register</button>
                 </div>
             </div>
       </div>
