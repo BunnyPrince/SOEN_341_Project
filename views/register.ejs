@@ -20,10 +20,21 @@
                          <input type="email" name="email" class="register-input" placeholder="Enter Email" required autocomplete="off chrome-off" >
 
                          <label class="register-label">Password</label>
-                         <input type="text" name="password" class="register-input" placeholder="Enter password" required autocomplete="off">
+                         <input id="password" type="password" name="password" class="register-input" placeholder="Enter password" required autocomplete="off">
 
                          <label class="register-label">Reenter Password</label>
-                         <input type="text" name="validate-password" class="register-input" placeholder="Reenter password" required autocomplete="off">
+                         <input type="password" name="validate_password" oninput="check(this)" class="register-input" placeholder="Reenter password" required autocomplete="off">
+
+                         <script language='javascript' type='text/javascript'>
+                             function check(input) {
+                                 if (input.value != document.getElementById('password').value) {
+                                     input.setCustomValidity('Password Must be Matching.');
+                                 } else {
+                                     // input is valid -- reset the error message
+                                     input.setCustomValidity('');
+                                 }
+                             }
+                         </script>
 
                          <div class="float-end mt-4">
                              <button class="btn btn-button ">create</button>

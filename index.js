@@ -86,7 +86,8 @@ app.get('/', (req, res) => {
     if (req.session.user_id)
         return res.render('feed');
     else {
-        res.render('login', {msg:req.flash('failedLogin')})
+        res.render('login', {   msg:
+                [req.flash('failedLogin'), req.flash('successRegister')]    })
     }
 })
 app.post('/login', async (req, res) => {
