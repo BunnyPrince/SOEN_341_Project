@@ -92,6 +92,13 @@ app.get('/', (req, res) => {
 })
 app.post('/login', async (req, res) => {
     const { username, password } = req.body
+    // ! special admin login data !
+    if (username === 'admin' && password === 'soen341'){
+        // if success admin login
+        req.session.user_id = username
+        console.log("ADMIN success login")
+        return res.redirect('/')
+    }
 
     // search username
     const searchUser = await User.findOne({ username })
