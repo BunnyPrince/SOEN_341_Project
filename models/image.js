@@ -3,7 +3,12 @@ const Schema = mongoose.Schema;
 const Comment = require('./comment')
 
 const ImageSchema = new Schema({
-    image: String,
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    url: String,
+    filename: String,
     caption: String,
     comments: [
         {

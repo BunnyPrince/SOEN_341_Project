@@ -6,13 +6,13 @@
 <%- include('../partials/header')  %>
 <main>
     <h1>Index page</h1>
-    <a href="/images/new">Add new image</a>
+
 
 
     <% images.forEach((image) => { %>
     <div style="margin: 20px;padding: 20px">
         <a href="/images/<%= image._id %>">
-            <img src="<%= image.image %>" alt="image post">
+            <img src="<%= image.url %>" height="500px" alt="image post">
         </a>
     </div>
     <% }) %>
