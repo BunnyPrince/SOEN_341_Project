@@ -6,17 +6,48 @@
 <%- include('../partials/header')  %>
 <main>
     <h1>Edit page</h1>
-    <form action="/images/<%=image._id%>?_method=PUT" method="POST">
+
+    <!--<form action="/images/<%=image._id%>?_method=PUT" method="POST">
         <div>
             <label for="image">Image URL</label>
-            <input type="text" id="image" name="image[image]" value="<%=image.image %>">
+            <input type="text" id="image" name="image[image]" value="<%=image.url %>">
         </div>
         <div>
             <label for="caption">Caption</label>
             <input type="text" id="caption" name="image[caption]" value="<%= image.caption%>">
         </div>
         <button>Update Image</button>
+    </form>-->
+    <form action="/images/<%=image._id%>?_method=PUT" method="POST" enctype="multipart/form-data" class="clearfix">
+        <img id="file" src="<%=image.url %>" height="200px">
+        <br>
+        <input type="file" name="image" id="file-ip-1" accept="image/*" onchange="showPreviewOne(event);" required>
+
+        <label for="caption" class="card-label">Add Caption</label>
+        <input class="card-input" type="text" value="<%= image.caption%>" id="caption" name="caption">
+
+        <div>
+            <button class="btn btn-button">Add Image</button>
+        </div>
     </form>
+    <button onclick="location.href ='/images';" class="btn btn-button">Cancel</button>
+
 </main>
 
 <%- include('../partials/footer') %>
+
+
+<script>
+     function showPreviewOne(event){
+      if(event.target.files.length > 0){
+        let src = URL.createObjectURL(event.target.files[0]);
+        let preview = document.getElementById("file");
+        preview.src = src;
+        preview.style.display = "block";
+        preview.style.height = '200px'
+      }
+    }
+    function myImgRemoveFunctionOne() {
+      document.getElementById("file").src = "https://i.ibb.co/ZVFsg37/default.png";
+    }
+</script>

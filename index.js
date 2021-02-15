@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== "production") {
+    require('dotenv').config()
+} // current env: "development"
+
 const session = require('express-session')
 const flash = require('connect-flash')
 const express = require('express')
@@ -10,7 +14,8 @@ const Comment = require('./models/comment')
 const User = require('./models/user')
 const bcrypt = require('bcrypt')
 const multer = require('multer')
-const upload = multer({dest:'uploads/'})
+const cloudinary = require('cloudinary').v2
+const { CloudinaryStorage } = require('multer-storage-cloudinary')
 
 
 /* ----------------------- configuration of dir, templates, EJS, encoding & route overriding ------------------------- */
@@ -29,8 +34,21 @@ app.use(session({
 
 app.use(flash())
 
-// configuring multer (image processing)
+// configuring multer, cloudiary (image processing & storage)
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_KEY,
+    api_secret: process.env.CLOUDINARY_SECRET
+})
+const storage = new CloudinaryStorage({
+    cloudinary,
+    params: {
+        folder: 'ig_photos',
+        allowedFormats: ['jpeg', 'png', 'jpg']
+    }
+})
 
+const upload = multer({storage})
 
 /* -------------------------------------------------- Setting up middleware -------------------------------------------------- */
 // middleware that prints logs about the session object
@@ -179,13 +197,17 @@ app.post('/logout', (req, res) => {
     res.redirect('/')
 })
 
-app.post('/images', upload.single('image'), async (req, res) => {
-    // const image = new Image(req.body.image);
-    // await image.save();
-    // res.redirect(`/images/${image._id}`)
-    console.log(JSON.stringify(req.file))
-    // ^ object : originalname, mimetype (extension), destination (uploads/)
-    res.send("Posted an image to server!")
+app.post('/images', upload.array('image'), async (req, res) => {
+   // console.log(req.files)
+   // console.log(req.body.caption)
+    const caption = req.body.caption
+    // get url and filename from image stored in request (map creates an array; get first/only img)
+    const newImg = req.files.map(f => ({ url: f.path, filename:f.filename, caption }))[0]
+    const image = new Image(newImg)
+    await image.save()
+
+    res.redirect(`/images/${image._id}`)
+
 })
 /* show */
 app.get('/images/:id', async (req, res) => {
@@ -213,15 +235,20 @@ app.get('/images/:id/edit', async (req, res) => {
     const image = await Image.findById(req.params.id)
     res.render('images/edit', { image });
 })
-app.put('/images/:id', async (req, res) => {
-    const { id } = req.params;
-    const image = await Image.findByIdAndUpdate(id, { ...req.body.image });
-    res.redirect(`/images/${image._id}`)
+app.put('/images/:id', upload.array('image'), async (req, res) => {
+    const { id } = req.params
+    const caption = req.body.caption
+    const updatedImg = req.files.map(f => ({ url: f.path, filename:f.filename, caption }))[0]
+    await Image.findByIdAndUpdate(id, { ...updatedImg })
+    res.redirect(`/images/${id}`)
 })
-/* to do */
+/* to-do: add user permission */
 app.delete('/images/:id', async (req, res) => {
     const { id } = req.params;
-    await Image.findByIdAndDelete(id);
+    const { filename } = await Image.findById(id)
+    if (filename)
+        await cloudinary.uploader.destroy(filename) // delete image from cloud storage with filename
+    await Image.findByIdAndDelete(id); // delete image from db
     res.redirect('/images');
 })
 
