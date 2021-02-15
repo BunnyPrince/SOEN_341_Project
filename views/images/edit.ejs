@@ -21,13 +21,13 @@
     <form action="/images/<%=image._id%>?_method=PUT" method="POST" enctype="multipart/form-data" class="clearfix">
         <img id="file" src="<%=image.url %>" height="200px">
         <br>
-        <input type="file" name="image" id="file-ip-1" accept="image/*" onchange="showPreviewOne(event);" required>
+        <input type="file" name="image" id="file-ip-1" accept="image/*" onchange="showPreviewOne(event);">
 
         <label for="caption" class="card-label">Add Caption</label>
         <input class="card-input" type="text" value="<%= image.caption%>" id="caption" name="caption">
 
         <div>
-            <button class="btn btn-button">Add Image</button>
+            <button class="btn btn-button">Edit post</button>
         </div>
     </form>
     <button onclick="location.href ='/images';" class="btn btn-button">Cancel</button>

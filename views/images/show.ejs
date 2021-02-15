@@ -11,15 +11,16 @@
     <p><%= image.caption %></p>
 
     <!-- Delete/Edit buttons -->
-    <p>
-        <form action="/images/<%=image._id%>?_method=DELETE" method="POST">
-            <button>Delete</button>
-        </form>
-        <form action="/images/<%= image._id %>/edit" method="GET">
-            <button>Edit</button>
-        </form>
-    </p>
-
+    <% if (permission) { %>
+        <p>
+            <form action="/images/<%=image._id%>?_method=DELETE" method="POST">
+                <button>Delete</button>
+            </form>
+            <form action="/images/<%= image._id %>/edit" method="GET">
+                <button>Edit</button>
+            </form>
+        </p>
+    <% } %>
     <!-- Show comments -->
     <% for (const comment of image.comments) {%>
         <div style="margin: 30px; padding: 40px; border: solid 1px black">

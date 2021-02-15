@@ -77,7 +77,6 @@ const whenLogged = (req, res, next) => {
         return res.redirect('/') // if logged in, redirect to FEED
 }
 
-
 // testing middleware to get flash object
 /* app.use((req, res, next) => {
     const msg = req.flash('success') || ''
@@ -104,7 +103,7 @@ db.once("open", () => {
 })
 
 /* ==================================================== RESTFUL ROUTES & MONGOOSE CRUD  ====================================================  */
-/* landing page */
+/* TO-DO: PERSONALIZED FEED */
 app.get('/', (req, res) => {
     if (req.session.user_id)
         return res.render('feed');
@@ -158,12 +157,11 @@ app.get('/images/new', isLogged,(req, res) => {
     res.render('images/new');
 })
 
-/* app.get('/feed', isLogged,(req, res) => {
-    res.render('feed');
-}) */
-
+/* TO-DO: redirect to the current user's profile (see route at the bottom) */
 app.get('/profile', isLogged, (req, res) => {
-    res.render('profile');
+    // retrieve user from session
+    const { user_id } = req.session
+    res.render('profile'); // redirect to '/<username>'
 })
 app.get('/search', (req, res) => {
     res.render('search');
@@ -198,23 +196,35 @@ app.post('/logout', (req, res) => {
 })
 
 app.post('/images', upload.array('image'), async (req, res) => {
-   // console.log(req.files)
-   // console.log(req.body.caption)
+    const {user_id} = req.session
+    if (!user_id)
+        return res.send('Error: trying to post image when not logged in')
+    const user = await User.findById(user_id)
     const caption = req.body.caption
     // get url and filename from image stored in request (map creates an array; get first/only img)
-    const newImg = req.files.map(f => ({ url: f.path, filename:f.filename, caption }))[0]
+    const newImg = req.files.map(f => ({ url: f.path, filename:f.filename, caption, user }))[0]
     const image = new Image(newImg)
+    user.images.push(image)
     await image.save()
-
+    await user.save()
     res.redirect(`/images/${image._id}`)
 
 })
-/* show */
-app.get('/images/:id', async (req, res) => {
+/* show : in template => TO-DO! add permission to be able to delete comments */
+app.get('/images/:id', isLogged, async (req, res) => {
     const image = await Image.findById(req.params.id).populate('comments')
-    res.render('images/show', {image})
+    // check if image belongs to current user
+    let permission = false
+    if (image.user == req.session.user_id)
+        permission = true
+
+    // console.log('image.user =>', image.user)
+    // console.log('req.session.user_id =>', req.session.user_id)
+    // console.log(permission)
+
+    res.render('images/show', {image, permission})
 })
-/* new review post route */
+/* new comment post route */
 app.post('/images/:id/comments', async (req, res) => {
     const image = await Image.findById(req.params.id)
     const comment = new Comment(req.body.comment)
@@ -230,26 +240,47 @@ app.delete('/images/:imageId/comments/:commentId', async (req, res) => {
     await Comment.findByIdAndDelete(req.params.commentId)
     res.redirect(`/images/${image._id}`)
 })
-/* update */
-app.get('/images/:id/edit', async (req, res) => {
+/* update image */
+app.get('/images/:id/edit', isLogged, async (req, res) => {
+    const { user_id: user } = req.session
     const image = await Image.findById(req.params.id)
-    res.render('images/edit', { image });
+    // check if current user has permission to edit image
+    if (user == image.user)
+        return res.render('images/edit', { image });
+    res.redirect('/') // redirect to homepage or login if user does not have permission
 })
 app.put('/images/:id', upload.array('image'), async (req, res) => {
     const { id } = req.params
     const caption = req.body.caption
+    // if only the caption is edited
+    if (!req.files[0]) {
+        await Image.findByIdAndUpdate(id, {caption: req.body.caption})
+        return res.redirect(`/images/${id}`)
+    }
+    // delete previous image
+    const prevImg = await Image.findById(id)
+    await cloudinary.uploader.destroy(prevImg.filename)
+    // update with new image and new caption
     const updatedImg = req.files.map(f => ({ url: f.path, filename:f.filename, caption }))[0]
     await Image.findByIdAndUpdate(id, { ...updatedImg })
     res.redirect(`/images/${id}`)
 })
-/* to-do: add user permission */
+/* delete image */
 app.delete('/images/:id', async (req, res) => {
-    const { id } = req.params;
+    const {user_id} = req.session
+    if (!user_id)
+        return res.send('Error: trying to delete image when not logged in')
+    const { id } = req.params
     const { filename } = await Image.findById(id)
+    await User.findByIdAndUpdate(user_id, {  $pull: {images: id} })/* delete reference to image */
     if (filename)
         await cloudinary.uploader.destroy(filename) // delete image from cloud storage with filename
-    await Image.findByIdAndDelete(id); // delete image from db
-    res.redirect('/images');
+    await Image.findByIdAndDelete(id) // delete image from db
+    res.redirect('/images')
+})
+/* to-do: user profile */
+app.get('/:username', async (req, res) => {
+    res.send('user profile')
 })
 
 /* ------------------------------------------------ Testing ------------------------------------------------ */
