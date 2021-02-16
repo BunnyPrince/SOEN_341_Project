@@ -7,19 +7,24 @@
 <main>
     <h1>Show page</h1>
     <!-- Image -->
-    <img src="<%= image.url %>" height="500px">
-    <p><%= image.caption %></p>
+    <div style="padding:30px;margin:30px">
+        <img src="<%= image.url %>" height="500px">
+        <div>
+            <a href="/<%= imgUser.username %>"> <%= imgUser.username %> </a>
+        </div>
+        <p><%= image.caption %></p>
+    </div>
 
     <!-- Delete/Edit buttons -->
     <% if (permission) { %>
-        <p>
+        <div>
             <form action="/images/<%=image._id%>?_method=DELETE" method="POST">
                 <button>Delete</button>
             </form>
             <form action="/images/<%= image._id %>/edit" method="GET">
                 <button>Edit</button>
             </form>
-        </p>
+        </div>
     <% } %>
     <!-- Show comments -->
     <% for (const comment of image.comments) {%>
@@ -36,12 +41,14 @@
         </div>
     <% } %>
     <!-- Add comment -->
-    <form action="/images/<%=image._id%>/comments" method="POST">
-        <input type="text" name="comment[username]" placeholder="Commenter name">
-        <br>
-        <textarea rows="10" cols="50" id="textbox" placeholder="Add comment" name="comment[comment]"></textarea>
-        <button>Comment!</button>
-    </form>
+    <div style="padding:30px;margin:30px">
+        <form action="/images/<%= image._id %>/comments" method="POST">
+            <input type="text" name="comment[username]" placeholder="Commenter name">
+            <br>
+            <textarea rows="10" cols="50" id="textbox" placeholder="Add comment" name="comment[comment]"></textarea>
+            <button>Comment!</button>
+        </form>
+    </div>
 </main>
 
 <%- include('../partials/footer') %>
