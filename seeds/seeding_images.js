@@ -34,3 +34,5 @@ seedDB().then(() => {
     mongoose.connection.close()
         .then(() => { console.log("Seeding done.") });
 })
+
+/* Do not use this seeding file anymore */

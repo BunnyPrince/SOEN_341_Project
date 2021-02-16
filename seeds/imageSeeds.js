@@ -1,5 +1,29 @@
 module.exports = [
-    {
+    // User "Rihanna" images
+    [
+        {
+            url: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/rihanna1-1525756866.jpg?resize=480:*",
+            caption: ''
+        },
+        {
+            url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjBxZURopzpB6AMcmpjQiJv8Bv9GquDCrDDw&usqp=CAU",
+            caption: ''
+        },
+        {
+            url: "https://upload.wikimedia.org/wikipedia/commons/c/c2/Rihanna_Fenty_2018.png",
+            caption: ''
+        },
+        {
+            url: "https://data.whicdn.com/images/312031597/original.jpg",
+            caption: ''
+        },
+        {
+            url: "https://estaticos.elperiodico.com/resources/jpg/3/2/1504886858323.jpg",
+            caption: ''
+        }
+    ],
+   // User "John Smith" images
+    [{
         url: "https://randomwordgenerator.com/img/picture-generator/55e5d24b4953ac14f1dc8460962e33791c3ad6e04e50744172277fd79e4ac4_640.jpg",
         caption: "scary!"
     },
@@ -46,5 +70,5 @@ module.exports = [
     {
         url: "https://randomwordgenerator.com/img/picture-generator/52e8d5434d56af14f1dc8460962e33791c3ad6e04e5074417d2d73dc924cc4_640.jpg",
         caption: "Owls are cute <3"
-    }
+    }]
 ]

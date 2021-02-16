@@ -101,7 +101,7 @@ db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", () => {
     console.log("Database connected");
 })
-
+/* FOR TESTING: DELETE LATER */ // app.use((req, res, next) => {req.session.user_id = 'admin'; next();})
 /* ==================================================== RESTFUL ROUTES & MONGOOSE CRUD  ====================================================  */
 /* TO-DO: PERSONALIZED FEED */
 app.get('/', (req, res) => {
@@ -158,10 +158,13 @@ app.get('/images/new', isLogged,(req, res) => {
 })
 
 /* TO-DO: redirect to the current user's profile (see route at the bottom) */
-app.get('/profile', isLogged, (req, res) => {
+app.get('/profile', isLogged, async (req, res) => {
     // retrieve user from session
+    if (req.session.user_id === 'admin')
+        return res.redirect(`/admin`)
     const { user_id } = req.session
-    res.render('profile'); // redirect to '/<username>'
+    const user = await User.findById(user_id)
+    res.redirect(`/${user.username}`); // redirect to '/<username>'
 })
 app.get('/search', (req, res) => {
     res.render('search');
@@ -279,8 +282,15 @@ app.delete('/images/:id', async (req, res) => {
     res.redirect('/images')
 })
 /* to-do: user profile */
-app.get('/:username', async (req, res) => {
-    res.send('user profile')
+app.get('/:username', isLogged, async (req, res, next) => {
+    if (req.params.username === 'admin')
+        return res.send('user profile')
+    const { username } = req.params
+    const user = await User.findOne({username}).populate('images')
+    if (user)
+        return res.render('profile', { user })
+    // if no users found, send to error page
+    next()
 })
 
 /* ------------------------------------------------ Testing ------------------------------------------------ */
