@@ -26,7 +26,11 @@ const UserSchema = new Schema({
     followers: [{
         type: Schema.Types.ObjectId,
         ref: 'User'
-    }]
+    }],
+    pfp: {
+        url: String,
+        filename: String
+    }
 })
 
 // middleware: verify user login
