@@ -292,7 +292,19 @@ app.get('/:username', isLogged, async (req, res, next) => {
     // if no users found, send to error page
     next()
 })
-
+/* follow someone */
+app.put('/follow', async (req, res) => {
+    const userid = req.body.userid
+    const userToFollow = await User.findById(userid)
+    const userFollowing = await User.findById(req.session.user_id)
+    userToFollow.followers.push(userFollowing)
+    userFollowing.follows.push(userToFollow)
+    await userToFollow.save()
+    await userFollowing.save()
+    // res.send('Follow!')
+    console.log(userFollowing.username + ' is now following ' + userToFollow.username)
+    res.redirect('/' + userToFollow.username)
+})
 /* ------------------------------------------------ Testing ------------------------------------------------ */
 // Testing the error route
 app.get('*', (req, res) => {

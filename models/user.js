@@ -21,11 +21,13 @@ const UserSchema = new Schema({
     }],
     follows: [{
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        default: []
     }],
     followers: [{
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        default: []
     }],
     pfp: {
         url: String,
