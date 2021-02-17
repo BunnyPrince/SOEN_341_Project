@@ -218,14 +218,12 @@ app.get('/images/:id', isLogged, async (req, res) => {
     const image = await Image.findById(req.params.id).populate('comments')
     // check if image belongs to current user
     let permission = false
-    if (image.user == req.session.user_id)
+    const imageUserId = image.user.toString()
+    if (imageUserId === req.session.user_id)
         permission = true
-
-    // console.log('image.user =>', image.user)
-    // console.log('req.session.user_id =>', req.session.user_id)
-    // console.log(permission)
-
-    res.render('images/show', {image, permission})
+    // get image username
+    const imgUser = await User.findById(imageUserId)
+    res.render('images/show', {image, permission, imgUser})
 })
 /* new comment post route */
 app.post('/images/:id/comments', async (req, res) => {
@@ -248,7 +246,8 @@ app.get('/images/:id/edit', isLogged, async (req, res) => {
     const { user_id: user } = req.session
     const image = await Image.findById(req.params.id)
     // check if current user has permission to edit image
-    if (user == image.user)
+    const imgUser = image.user.toString()
+    if (user === imgUser)
         return res.render('images/edit', { image });
     res.redirect('/') // redirect to homepage or login if user does not have permission
 })
