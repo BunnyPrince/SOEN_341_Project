@@ -247,7 +247,7 @@ app.get('/images/:id/edit', isLogged, async (req, res) => {
     // check if current user has permission to edit image
     const imgUser = image.user.toString()
     if (user === imgUser)
-        return res.render('images/edit', { image });
+        return res.render('images/edit', {image});
     res.redirect('/') // redirect to homepage or login if user does not have permission
 })
 app.put('/images/:id', upload.array('image'), async (req, res) => {
@@ -285,8 +285,18 @@ app.get('/:username', isLogged, async (req, res, next) => {
         return res.send('user profile')
     const {username} = req.params
     const user = await User.findOne({username}).populate('images')
-    if (user)
-        return res.render('profile', {user})
+    if (user) {
+        const userSession = await User.findById(req.session.user_id)
+        let duplicateUser = false;
+        if (userSession.username === user.username)
+            duplicateUser = true
+        let isBeingFollowed;
+        isBeingFollowed = !!(await userSession.follows.find(async function (u) {
+            return u.username === user.username
+        }));
+        console.log(isBeingFollowed);
+        return res.render('profile', {user, isBeingFollowed, duplicateUser})
+    }
     // if no users found, send to error page
     next()
 })
