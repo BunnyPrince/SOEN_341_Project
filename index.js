@@ -15,14 +15,14 @@ const User = require('./models/user')
 const bcrypt = require('bcrypt')
 const multer = require('multer')
 const cloudinary = require('cloudinary').v2
-const { CloudinaryStorage } = require('multer-storage-cloudinary')
+const {CloudinaryStorage} = require('multer-storage-cloudinary')
 
 
 /* ----------------------- configuration of dir, templates, EJS, encoding & route overriding ------------------------- */
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, '/views'))
 app.use(express.static(path.join(__dirname, './public')));
-app.use(express.urlencoded({ extended:true }))
+app.use(express.urlencoded({extended: true}))
 app.use(methodOverride('_method'))
 
 const secret = 'badly_kept_secret' || process.env.SECRET
@@ -53,7 +53,7 @@ const upload = multer({storage})
 /* -------------------------------------------------- Setting up middleware -------------------------------------------------- */
 // middleware that prints logs about the session object
 app.use((req, res, next) => {
-    const { user_id } = req.session
+    const {user_id} = req.session
     if (user_id)
         console.log(user_id, 'is logged in!')
     else
@@ -62,7 +62,7 @@ app.use((req, res, next) => {
 })
 // function to check if user is logged in
 const isLogged = (req, res, next) => {
-    const { user_id } = req.session
+    const {user_id} = req.session
     if (user_id)
         return next() // allow user to see instagram
     else
@@ -70,7 +70,7 @@ const isLogged = (req, res, next) => {
 }
 // function does not allow a logged in user to see the login or register page
 const whenLogged = (req, res, next) => {
-    const { user_id } = req.session
+    const {user_id} = req.session
     if (!user_id)
         return next() // allow user to see registration and/or login forms
     else
@@ -84,7 +84,6 @@ const whenLogged = (req, res, next) => {
     console.log('message', msg)
     next()
 }) */
-
 
 
 /* ---------------------------------------------------- MongoDB connection ---------------------------------------------------- */
@@ -108,14 +107,16 @@ app.get('/', (req, res) => {
     if (req.session.user_id)
         return res.render('feed');
     else {
-        res.render('login', {   msg:
-                [req.flash('failedLogin'), req.flash('successRegister')]    })
+        res.render('login', {
+            msg:
+                [req.flash('failedLogin'), req.flash('successRegister')]
+        })
     }
 })
 app.post('/login', async (req, res) => {
-    const { username, password } = req.body
+    const {username, password} = req.body
     // ! special admin login data !
-    if (username === 'admin' && password === 'soen341'){
+    if (username === 'admin' && password === 'soen341') {
         // if success admin login
         req.session.user_id = username
         console.log("ADMIN success login")
@@ -123,7 +124,7 @@ app.post('/login', async (req, res) => {
     }
 
     // search username
-    const searchUser = await User.findOne({ username })
+    const searchUser = await User.findOne({username})
     if (!searchUser) {
         console.log('Failed login')
         req.flash('failedLogin', "Wrong username and/or password.")
@@ -137,9 +138,7 @@ app.post('/login', async (req, res) => {
         req.session.user_id = searchUser._id
         console.log("success login") // TO-DO: implement success login message
         res.redirect('/')
-    }
-
-    else {
+    } else {
         console.log('Failed login')
         req.flash('failedLogin', "Wrong username and/or password.")
         res.redirect('/')
@@ -150,10 +149,10 @@ app.post('/login', async (req, res) => {
 /* index */
 app.get('/images', isLogged, async (req, res) => {
     const images = await Image.find({});
-    res.render('images/index', { images })
+    res.render('images/index', {images})
 })
 /* create */
-app.get('/images/new', isLogged,(req, res) => {
+app.get('/images/new', isLogged, (req, res) => {
     res.render('images/new');
 })
 
@@ -162,15 +161,15 @@ app.get('/profile', isLogged, async (req, res) => {
     // retrieve user from session
     if (req.session.user_id === 'admin')
         return res.redirect(`/admin`)
-    const { user_id } = req.session
+    const {user_id} = req.session
     const user = await User.findById(user_id)
     res.redirect(`/${user.username}`); // redirect to '/<username>'
 })
 app.get('/search', (req, res) => {
     res.render('search');
 })
-app.get('/register', whenLogged,(req, res) => {
-    res.render('register', {msg:req.flash('taken')});
+app.get('/register', whenLogged, (req, res) => {
+    res.render('register', {msg: req.flash('taken')});
 })
 app.post('/register', async (req, res) => {
     const {username, email, password} = req.body
@@ -184,7 +183,7 @@ app.post('/register', async (req, res) => {
     const hash = await bcrypt.hash(password, 12)
 
     // create user if data valid
-    const newUser = new User({username, email, password:hash})
+    const newUser = new User({username, email, password: hash})
     await newUser.save()
     console.log(newUser)
     req.flash('successRegister', 'Registration successful!')
@@ -205,7 +204,7 @@ app.post('/images', upload.array('image'), async (req, res) => {
     const user = await User.findById(user_id)
     const caption = req.body.caption
     // get url and filename from image stored in request (map creates an array; get first/only img)
-    const newImg = req.files.map(f => ({ url: f.path, filename:f.filename, caption, user }))[0]
+    const newImg = req.files.map(f => ({url: f.path, filename: f.filename, caption, user}))[0]
     const image = new Image(newImg)
     user.images.push(image)
     await image.save()
@@ -236,14 +235,14 @@ app.post('/images/:id/comments', async (req, res) => {
 })
 /* delete comment */
 app.delete('/images/:imageId/comments/:commentId', async (req, res) => {
-    const { imageId, commentId } = req.params
-    const image = await Image.findByIdAndUpdate(imageId, {  $pull: {comments: commentId} })/* delete reference to comment */
+    const {imageId, commentId} = req.params
+    const image = await Image.findByIdAndUpdate(imageId, {$pull: {comments: commentId}})/* delete reference to comment */
     await Comment.findByIdAndDelete(req.params.commentId)
     res.redirect(`/images/${image._id}`)
 })
 /* update image */
 app.get('/images/:id/edit', isLogged, async (req, res) => {
-    const { user_id: user } = req.session
+    const {user_id: user} = req.session
     const image = await Image.findById(req.params.id)
     // check if current user has permission to edit image
     const imgUser = image.user.toString()
@@ -252,7 +251,7 @@ app.get('/images/:id/edit', isLogged, async (req, res) => {
     res.redirect('/') // redirect to homepage or login if user does not have permission
 })
 app.put('/images/:id', upload.array('image'), async (req, res) => {
-    const { id } = req.params
+    const {id} = req.params
     const caption = req.body.caption
     // if only the caption is edited
     if (!req.files[0]) {
@@ -263,8 +262,8 @@ app.put('/images/:id', upload.array('image'), async (req, res) => {
     const prevImg = await Image.findById(id)
     await cloudinary.uploader.destroy(prevImg.filename)
     // update with new image and new caption
-    const updatedImg = req.files.map(f => ({ url: f.path, filename:f.filename, caption }))[0]
-    await Image.findByIdAndUpdate(id, { ...updatedImg })
+    const updatedImg = req.files.map(f => ({url: f.path, filename: f.filename, caption}))[0]
+    await Image.findByIdAndUpdate(id, {...updatedImg})
     res.redirect(`/images/${id}`)
 })
 /* delete image */
@@ -272,9 +271,9 @@ app.delete('/images/:id', async (req, res) => {
     const {user_id} = req.session
     if (!user_id)
         return res.send('Error: trying to delete image when not logged in')
-    const { id } = req.params
-    const { filename } = await Image.findById(id)
-    await User.findByIdAndUpdate(user_id, {  $pull: {images: id} })/* delete reference to image */
+    const {id} = req.params
+    const {filename} = await Image.findById(id)
+    await User.findByIdAndUpdate(user_id, {$pull: {images: id}})/* delete reference to image */
     if (filename)
         await cloudinary.uploader.destroy(filename) // delete image from cloud storage with filename
     await Image.findByIdAndDelete(id) // delete image from db
@@ -284,14 +283,57 @@ app.delete('/images/:id', async (req, res) => {
 app.get('/:username', isLogged, async (req, res, next) => {
     if (req.params.username === 'admin')
         return res.send('user profile')
-    const { username } = req.params
+    const {username} = req.params
     const user = await User.findOne({username}).populate('images')
     if (user)
-        return res.render('profile', { user })
+        return res.render('profile', {user})
     // if no users found, send to error page
     next()
 })
-
+/* follow someone */
+app.put('/follow', async (req, res) => {
+    const userToFollow = await User.findById(req.body.userid)
+    const userFollowing = await User.findById(req.session.user_id)
+    if (userToFollow.username === userFollowing.username) {
+        console.log('same person')
+        res.redirect('/' + userFollowing.username)
+    } else {
+        if (!await userFollowing.follows.find(async function (u) {
+            return u.username === userToFollow.username
+        })) {
+            userToFollow.followers.push(userFollowing)
+            userFollowing.follows.push(userToFollow)
+            await userToFollow.save()
+            await userFollowing.save()
+            console.log(userFollowing.username + ' is now following ' + userToFollow.username)
+        } else {
+            console.log('duplicate follow')
+        }
+        res.redirect('/' + userToFollow.username)
+    }
+    // res.send('Follow!')
+})
+/* unfollow someone */
+app.put('/unfollow', async (req, res) => {
+    const userToUnFollow = await User.findById(req.body.userid)
+    const userUnFollowing = await User.findById(req.session.user_id)
+    if (userToUnFollow.username === userUnFollowing.username) {
+        console.log('same person')
+        res.redirect('/' + userUnFollowing.username)
+    } else {
+        if (userUnFollowing.follows.find(async function (u) {
+            return u.username === userToUnFollow.username
+        })) {
+            await User.findByIdAndUpdate(userUnFollowing._id, {$pull: {follows: userToUnFollow._id}})
+            await User.findByIdAndUpdate(userToUnFollow._id, {$pull: {followers: userUnFollowing._id}})
+            console.log(userUnFollowing.username + ' has unfollowed ' + userToUnFollow.username)
+        } else {
+            console.log('has not followed yet')
+        }
+        res.redirect('/' + userToUnFollow.username)
+    }
+    // res.send('Follow!')
+})
 /* ------------------------------------------------ Testing ------------------------------------------------ */
 // Testing the error route
 app.get('*', (req, res) => {
