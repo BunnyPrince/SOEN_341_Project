@@ -40,9 +40,7 @@
                 style="display: none"
                 <% } %> >
         <input type="hidden" id="userid" name="userid" value="<%= user._id %>">
-        <button type="submit"
-
-        >Follow
+        <button type="submit">Follow
         </button>
     </form>
     <form action="/unfollow?_method=PUT" method="post"
@@ -50,8 +48,7 @@
           style="display: none"
             <% } %> >
         <input type="hidden" id="userid" name="userid" value="<%= user._id %>">
-        <button type="submit">Unfollow
-        </button>
+        <button type="submit">Unfollow</button>
     </form>
 </main>
 
