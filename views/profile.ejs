@@ -35,13 +35,23 @@
 
         </div>
     </div>
-    <form action="/follow?_method=PUT" method="post">
+    <form action="/follow?_method=PUT" method="post"
+    <% if (isBeingFollowed || duplicateUser) { %>
+                style="display: none"
+                <% } %> >
         <input type="hidden" id="userid" name="userid" value="<%= user._id %>">
-        <button type="submit">Follow</button>
+        <button type="submit"
+
+        >Follow
+        </button>
     </form>
-    <form action="/unfollow?_method=PUT" method="post">
+    <form action="/unfollow?_method=PUT" method="post"
+    <% if (!isBeingFollowed || duplicateUser) { %>
+          style="display: none"
+            <% } %> >
         <input type="hidden" id="userid" name="userid" value="<%= user._id %>">
-        <button type="submit">Unfollow</button>
+        <button type="submit">Unfollow
+        </button>
     </form>
 </main>
 
