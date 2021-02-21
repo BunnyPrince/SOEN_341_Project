@@ -220,9 +220,11 @@ app.get('/images/:id', isLogged, async (req, res) => {
     const imageUserId = image.user.toString()
     if (imageUserId === req.session.user_id)
         permission = true
-    // get image username
+    // get image user
     const imgUser = await User.findById(imageUserId)
-    res.render('images/show', {image, permission, imgUser})
+    // get current user
+    const currentUser = await User.findById(req.session.user_id)
+    res.render('images/show', {image, permission, imgUser, currentUser})
 })
 /* new comment post route */
 app.post('/images/:id/comments', async (req, res) => {

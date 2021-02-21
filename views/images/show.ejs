@@ -30,20 +30,25 @@
     <% for (const comment of image.comments) {%>
         <div style="margin: 30px; padding: 40px; border: solid 1px black">
             <b>
-                <%= comment.username %>
+                <a href="/<%= comment.username %>"><%= comment.username %></a>
             </b>
             <br>
             <%= comment.comment %>
             <!-- Delete comment -->
             <form action="/images/<%=image._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST" >
-                <button>Delete comment</button>
+                <!-- Comment delete - with permission -->
+                <% if (currentUser.username === comment.username) { %>
+                    <button>Delete comment</button>
+                <% } %>
             </form>
         </div>
     <% } %>
     <!-- Add comment -->
     <div style="padding:30px;margin:30px">
         <form action="/images/<%= image._id %>/comments" method="POST">
-            <input type="text" name="comment[username]" placeholder="Commenter name">
+            <!-- <input type="text" name="comment[username]" placeholder="Commenter name"> -->
+            <b> <%= currentUser.username %> </b>
+            <input type="hidden" name="comment[username]" value="<%= currentUser.username %>"  >
             <br>
             <textarea rows="10" cols="50" id="textbox" placeholder="Add comment" name="comment[comment]"></textarea>
             <button>Comment!</button>
