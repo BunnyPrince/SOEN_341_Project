@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const Image = require('./image')
+const Image = require('./image');
 
 const UserSchema = new Schema({
     username: {
@@ -32,7 +32,8 @@ const UserSchema = new Schema({
     pfp: {
         url: String,
         filename: String
-    }
+    },
+
 })
 
 // middleware: verify user login
