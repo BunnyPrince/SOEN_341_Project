@@ -76,7 +76,6 @@ const whenLogged = (req, res, next) => {
     else
         return res.redirect('/') // if logged in, redirect to FEED
 }
-
 // testing middleware to get flash object
 /* app.use((req, res, next) => {
     const msg = req.flash('success') || ''
@@ -249,7 +248,7 @@ app.get('/images/:id/edit', isLogged, async (req, res) => {
     // check if current user has permission to edit image
     const imgUser = image.user.toString()
     if (user === imgUser)
-        return res.render('images/edit', { image });
+        return res.render('images/edit', {image});
     res.redirect('/') // redirect to homepage or login if user does not have permission
 })
 app.put('/images/:id', upload.array('image'), async (req, res) => {
@@ -287,8 +286,25 @@ app.get('/:username', isLogged, async (req, res, next) => {
         return res.send('user profile')
     const {username} = req.params
     const user = await User.findOne({username}).populate('images')
-    if (user)
-        return res.render('profile', {user})
+    if (user) {
+        const userSession = await User.findById(req.session.user_id)
+        let duplicateUser = false;
+        if (userSession.username === user.username)
+            duplicateUser = true
+        let isBeingFollowed = false
+        const users = await User.find({follows: {$in: [user._id]}})
+        for (const u of users) {
+            if (u.username === userSession.username) {
+                isBeingFollowed = true;
+                console.log(u.username);
+                break;
+            }
+        }
+        console.log(isBeingFollowed);
+        console.log(userSession.username + userSession._id + ' follows ' + user.username + user._id + '? ' + isBeingFollowed)
+        console.log(userSession.username + userSession._id + ' same as ' + user.username + user._id + '? ' + duplicateUser)
+        return res.render('profile', {user, isBeingFollowed, duplicateUser})
+    }
     // if no users found, send to error page
     next()
 })
@@ -300,13 +316,18 @@ app.put('/follow', async (req, res) => {
         console.log('same person')
         res.redirect('/' + userFollowing.username)
     } else {
-        if (!await userFollowing.follows.find(async function (u) {
-            return u.username === userToFollow.username
-        })) {
-            userToFollow.followers.push(userFollowing)
-            userFollowing.follows.push(userToFollow)
-            await userToFollow.save()
-            await userFollowing.save()
+        let isBeingFollowed = false
+        const users = await User.find({follows: {$in: [userToFollow._id]}})
+        for (const u of users) {
+            if (u.username === userFollowing.username) {
+                isBeingFollowed = true;
+                console.log(u);
+                break;
+            }
+        }
+        if (!isBeingFollowed) {
+            await User.findByIdAndUpdate(userFollowing._id, {$push: {follows: userToFollow._id}})
+            await User.findByIdAndUpdate(userToFollow._id, {$push: {followers: userFollowing._id}})
             console.log(userFollowing.username + ' is now following ' + userToFollow.username)
         } else {
             console.log('duplicate follow')
@@ -323,9 +344,16 @@ app.put('/unfollow', async (req, res) => {
         console.log('same person')
         res.redirect('/' + userUnFollowing.username)
     } else {
-        if (userUnFollowing.follows.find(async function (u) {
-            return u.username === userToUnFollow.username
-        })) {
+        let isBeingFollowed = false
+        const users = await User.find({follows: {$in: [userToUnFollow._id]}})
+        for (const u of users) {
+            if (u.username === userUnFollowing.username) {
+                isBeingFollowed = true;
+                console.log(u);
+                break;
+            }
+        }
+        if (isBeingFollowed) {
             await User.findByIdAndUpdate(userUnFollowing._id, {$pull: {follows: userToUnFollow._id}})
             await User.findByIdAndUpdate(userToUnFollow._id, {$pull: {followers: userUnFollowing._id}})
             console.log(userUnFollowing.username + ' has unfollowed ' + userToUnFollow.username)
