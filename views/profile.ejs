@@ -3,19 +3,19 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
         crossorigin="anonymous"></script>
-<link href="/style/basic.css" rel="stylesheet" type="text/css">
-<link href="/style/custom.css" rel="stylesheet" type="text/css">
+
+
 <link href="/style/Profile.css" rel="stylesheet" type="text/css">
 
 <%- include('partials/header') %>
 
 <main>
-
+<div class="center">
     <br>
-    <div class="card">
-        <div class="card-body">
+    <div class="cardd">
+        <div class="card-body-p">
 
-            <img src="<%= user.pfp.url %>" width="90" alt="">
+            <img src="<%= user.pfp.url %>" width="150"  alt="">
             <p4> <%= user.username %></p4>
             <button type="button">followers</button>
             <var1> <%= user.followers.length %> </var1>
@@ -51,6 +51,7 @@
         <input type="hidden" id="userid" name="userid" value="<%= user._id %>">
         <button type="submit">Unfollow</button>
     </form>
+     </div>
 </main>
 
 
