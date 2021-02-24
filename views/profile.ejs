@@ -15,14 +15,21 @@
     <div class="cardd">
 
         <div class="card-body-p">
-            <img src="<%= user.pfp.url %>" width="150"  alt="">
-            <p4> <%= user.username %></p4>
-            <button type="button">followers</button>
-            <var1> <%= user.followers.length %> </var1>
-            <button type="button">following</button>
-            <var2> <%= user.follows.length %> </var2>
-        </div>
-
+            <div class ="boxes">
+                <div class="Bio">
+                    <img src="<%= user.pfp.url %>" width="150"  alt="">
+                    <p4> <%= user.username %></p4>
+                    <button type="button">followers</button>
+                    <var1> <%= user.followers.length %> </var1>
+                    <button type="button">following</button>
+                     <var2> <%= user.follows.length %> </var2>
+                </div>
+                    <div class="Bio">
+                        <p>I'm a Barbadian singer, actress, and businesswoman. </p>
+                        <p>Born in Saint Michael and raised in Bridgetown, Barbados,</p>
+                        <p>Discovered by American record producer Evan Rogers</p>
+                    </div>
+            </div>
             <div class="container">
                 <div class="gallery">
                     <% for (const image of user.images) { %>
@@ -50,6 +57,7 @@
         <input type="hidden" id="userid" name="userid" value="<%= user._id %>">
         <button type="submit">Unfollow</button>
     </form>
+    </div>
 </main>
 
 

@@ -1,14 +1,16 @@
 /*the style for the Profile */
 
 .cardd {
-    max-width: 1100px;
     margin: 0 0;
     overflow: auto;
     padding: 0 0;
+    width: 100%;
 }
 .card-body-p{
-     border-radius: 20%;
-       margin: 10px 10px;
+    border-radius: 20%;
+    margin: 10px 10px;
+    width: 100%;
+
 }
 .gallery{
     float: left;
@@ -24,7 +26,6 @@
     margin-bottom: 20px;
 }
 .container {
-    max-width: 1100px;
     overflow: auto;
     padding: 40px 0;
     align-self: flex-end;
@@ -40,5 +41,17 @@
     text-decoration:none;
 }
 
+.Bio{
+    width: 50%;
+    display: inline-block;
+    background-color: papayawhip;
+    backface-visibility: visible;
 
+}
+.boxes{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    alignment: left;
 
+}
