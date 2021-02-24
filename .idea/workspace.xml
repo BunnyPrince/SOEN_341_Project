@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0171186b-a5ea-4347-9235-e8903c887734" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/public/style/Profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/style/Profile.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/profile.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/profile.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -137,7 +138,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614198158373</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="#47 #49 add the footer">
+      <created>1614198633800</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1614198633800</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -163,6 +171,7 @@
     <MESSAGE value="#50 Add a Bio" />
     <MESSAGE value="#47 #49 remove scroll bar" />
     <MESSAGE value="#47 #49 remove captions from the loop" />
-    <option name="LAST_COMMIT_MESSAGE" value="#47 #49 remove captions from the loop" />
+    <MESSAGE value="#47 #49 add the footer" />
+    <option name="LAST_COMMIT_MESSAGE" value="#47 #49 add the footer" />
   </component>
 </project>
