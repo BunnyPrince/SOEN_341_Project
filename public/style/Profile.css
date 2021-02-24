@@ -1,40 +1,41 @@
 /*the style for the Profile */
 
-.center {
-  display: block;
-  margin-left: 100px;
-  margin-right: auto;
-  width: 50%;
-}
 .cardd {
     max-width: 1100px;
     margin: 0 0px;
     overflow: auto;
     padding:40px 0;
-    align-self: flex-end;
 }
 .card-body-p{
      border-radius: 20%;
+       margin: 10px 10px;
 }
 .gallery{
-    margin: 5px;
-    border: 1px solid #ccc;
     float: left;
+    margin-outside: 20px;
+    border-color: #a9f5ef ;
 }
 
 .galleryimage{
-    height: 200px;
-    width: 250px;
+    height: 140px;
+    width: 170px;
     border-radius: 20%;
+    margin-left: 20px;
+    margin-bottom: 20px;
 }
 .container {
     max-width: 1100px;
-    margin: 0 0px;
     overflow: auto;
     padding: 40px 0;
     align-self: flex-end;
     background: #a9f5ef;
-    border-inline-color: #a9f5ef;
+    margin-left: 100px;
+    margin-right: auto;
+    width: 50%;
+}
+.figcaption{
+    display: inline-table;
+    text-align:center;
 }
 
 
