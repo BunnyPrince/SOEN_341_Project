@@ -22,9 +22,9 @@
     border-radius: 20%;
     margin-left: 20px;
     margin-bottom: 20px;
+
 }
 .container {
-    overflow: auto;
     padding: 40px 0;
     align-self: flex-end;
     background: #a9f5ef;
@@ -32,11 +32,7 @@
     margin-right: auto;
     width: 50%;
     text-decoration-line: none;
-}
-.figcaption{
-    display: inline-table;
-    text-align:center;
-    text-decoration:none;
+    overflow-style: marquee-line;
 }
 
 .Bio{
