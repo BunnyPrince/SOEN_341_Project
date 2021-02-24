@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0171186b-a5ea-4347-9235-e8903c887734" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/style/Profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/style/Profile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/profile.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/profile.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +102,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614153630664</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="#50 Add a Bio">
+      <created>1614157999189</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1614157999189</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -127,6 +132,7 @@
     <MESSAGE value="#47 remove a footer that added unnecessary boxes." />
     <MESSAGE value="#47 add cation to the images" />
     <MESSAGE value="#47 update the Profile.css" />
-    <option name="LAST_COMMIT_MESSAGE" value="#47 update the Profile.css" />
+    <MESSAGE value="#50 Add a Bio" />
+    <option name="LAST_COMMIT_MESSAGE" value="#50 Add a Bio" />
   </component>
 </project>
