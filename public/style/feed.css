@@ -1,0 +1,30 @@
+
+.username{
+font-size: 35px;
+    font-family: 'Brush Script MT', cursive;
+
+}
+
+.user-friends{
+font-size: 20px;
+}
+
+.comments{
+font-size: 20px;
+  font-family: Georgia;
+
+}
+
+.description{
+font-size: 25px;
+  font-family: Georgia;
+
+}
+
+.feed-btn{
+    outline-color: black;
+    outline-style: auto;
+    outline-width: 5px;
+    background-color: azure;
+}
+
