@@ -38,14 +38,11 @@
 .Bio{
     width: 50%;
     display: inline-block;
-    background-color: papayawhip;
     backface-visibility: visible;
-
 }
 .boxes{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     alignment: left;
-
 }

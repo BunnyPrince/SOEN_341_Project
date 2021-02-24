@@ -4,7 +4,6 @@
     <list default="true" id="0171186b-a5ea-4347-9235-e8903c887734" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/style/Profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/style/Profile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/profile.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/profile.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +124,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614196272960</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="#47 #49 remove captions from the loop">
+      <created>1614196707073</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1614196707073</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -150,6 +156,7 @@
     <MESSAGE value="#47 update the Profile.css" />
     <MESSAGE value="#50 Add a Bio" />
     <MESSAGE value="#47 #49 remove scroll bar" />
-    <option name="LAST_COMMIT_MESSAGE" value="#47 #49 remove scroll bar" />
+    <MESSAGE value="#47 #49 remove captions from the loop" />
+    <option name="LAST_COMMIT_MESSAGE" value="#47 #49 remove captions from the loop" />
   </component>
 </project>
