@@ -2,23 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0171186b-a5ea-4347-9235-e8903c887734" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/style/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/style/custom.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/style/Profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/style/Profile.css" afterDir="false" />
+      
+      <change beforePath="$PROJECT_DIR$/views/profile.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/profile.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Caption#47" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1oAwax0mJIZYzqwCxT3DXc6iZ6N" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -28,8 +36,9 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="javascript.nodejs.core.library.configured.version" value="15.6.0" />
-    <property name="javascript.nodejs.core.library.typings.version" value="14.14.25" />
+    <property name="javascript.nodejs.core.library.configured.version" value="14.15.4" />
+    <property name="javascript.nodejs.core.library.typings.version" value="14.14.31" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -61,7 +70,80 @@
       <workItem from="1613485816086" duration="6541000" />
       <workItem from="1613502800033" duration="5855000" />
       <workItem from="1613882768453" duration="1870000" />
+      <workItem from="1614044204732" duration="578000" />
+      <workItem from="1614141810633" duration="3071000" />
     </task>
+    <task id="LOCAL-00001" summary="#47 create profile.css to improve the code clarity and readability">
+      <created>1614142446667</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1614142446667</updated>
+    </task>
+    <task id="LOCAL-00002" summary="#47 remove a footer that added unnecessary boxes.">
+      <created>1614147635733</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1614147635733</updated>
+    </task>
+    <task id="LOCAL-00003" summary="#47 add cation to the images">
+      <created>1614150654140</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1614150654140</updated>
+    </task>
+    <task id="LOCAL-00004" summary="#47 update the Profile.css">
+      <created>1614153630664</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1614153630664</updated>
+    </task>
+    <task id="LOCAL-00005" summary="#50 Add a Bio">
+      <created>1614157999189</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1614157999189</updated>
+    </task>
+    <task id="LOCAL-00006" summary="#50 Add a Bio">
+      <created>1614158336573</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1614158336573</updated>
+    </task>
+    <task id="LOCAL-00007" summary="#47 #49 remove scroll bar">
+      <created>1614196272960</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1614196272960</updated>
+    </task>
+    <task id="LOCAL-00008" summary="#47 #49 remove captions from the loop">
+      <created>1614196707073</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1614196707073</updated>
+    </task>
+    <task id="LOCAL-00009" summary="#47 #49 remove captions from the loop">
+      <created>1614198158373</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1614198158373</updated>
+    </task>
+    <task id="LOCAL-00010" summary="#47 #49 add the footer">
+      <created>1614198633800</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1614198633800</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -78,5 +160,16 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="#47 create profile.css to improve the code clarity and readability" />
+    <MESSAGE value="#47 remove a footer that added unnecessary boxes." />
+    <MESSAGE value="#47 add cation to the images" />
+    <MESSAGE value="#47 update the Profile.css" />
+    <MESSAGE value="#50 Add a Bio" />
+    <MESSAGE value="#47 #49 remove scroll bar" />
+    <MESSAGE value="#47 #49 remove captions from the loop" />
+    <MESSAGE value="#47 #49 add the footer" />
+    <option name="LAST_COMMIT_MESSAGE" value="#47 #49 add the footer" />
   </component>
 </project>
