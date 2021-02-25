@@ -21,7 +21,11 @@ const ImageSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: 'User'
         }
-    ]
+    ],
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
 });
 
 // Middleware (delete cascade - deleting an image/post will delete all the comments)

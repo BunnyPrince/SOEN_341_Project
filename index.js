@@ -147,8 +147,8 @@ app.post('/login', async (req, res) => {
 })
 /* index */
 app.get('/images', isLogged, async (req, res) => {
-    const images = await Image.find({});
-    res.render('images/index', {images})
+    const images = await Image.find({}).sort({createdAt: 'desc'});
+    res.render('images/explore', {images})
 })
 /* create */
 app.get('/images/new', isLogged, (req, res) => {
