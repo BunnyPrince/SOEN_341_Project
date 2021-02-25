@@ -16,8 +16,8 @@ font-size: 20px;
 }
 
 .description{
-font-size: 25px;
-  font-family: Georgia;
+font-size: 18px;
+    font-family: Georgia;
 
 }
 
@@ -27,4 +27,39 @@ font-size: 25px;
     outline-width: 5px;
     background-color: azure;
 }
+.feed-content {
+    padding:10px;
+    border: 2px solid #dbdbdb;
+    background-color: #ffffff;
 
+
+}
+.feed-container{
+        display: flex;
+        background-color: #fafafa;
+
+    justify-content: center;
+
+/*
+    background-color: pink;
+    border: 5px solid black;
+    display: flex;
+    padding:10px;*/
+}
+.line1{
+    display: inline-block;
+}
+
+.input-comment{
+    border:0;
+}
+.submit-btn{
+position: absolute;
+    right:0;
+}
+.new-comment{
+    position: relative;
+}
+.line1{
+
+}

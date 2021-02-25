@@ -17,14 +17,16 @@ main {
 }
 
 .navbar{
-  background-color: #1F2833;
+  background-color: white;
 }
 .navbar a{
-  color: #C5C6C7;
+  color: black;
 }
-
+.nav-div{
+    border: #dbdbdb;
+}
 main{
-  background-color: #a9f5ef;
+background-color: #f9f9f9;
 }
 
 

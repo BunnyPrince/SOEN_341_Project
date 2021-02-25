@@ -16,7 +16,7 @@
     padding-top: 20px;
 }
 .btn-login-background{
-    background-color: #66FCF1;
+    background-color: #fafafa;
 }
 
 .btn-button{
@@ -45,23 +45,4 @@
 .galleryimage{
     height: 170px;
     width: 200px;
-}
-.container {
-    max-width: 1100px;
-    margin: 0 0px;
-    overflow: auto;
-    padding:40px 0;
-    align-self: flex-end;
-    background: #a9f5ef;
-    border-inline-color:#a9f5ef ;
-}
-.card {
-    max-width: 1100px;
-    margin: 0 0px;
-    overflow: auto;
-    padding:40px 0;
-    align-self: flex-end;
-    background: #a9f5ef;
-    border-inline-color:#a9f5ef;
-    border-color:#a9f5ef ;
 }
