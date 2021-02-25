@@ -11,21 +11,19 @@ font-size: 20px;
 
 .comments{
 font-size: 20px;
-  font-family: Georgia;
+    font-family: Georgia, serif;
 
 }
 
 .description{
 font-size: 18px;
-    font-family: Georgia;
+    font-family: Georgia, serif;
 
 }
 
 .feed-btn{
-    outline-color: black;
-    outline-style: auto;
-    outline-width: 5px;
-    background-color: azure;
+    /* outline: black auto 5px; */
+    background-color: #ffffff;
 }
 .feed-content {
     padding:10px;
@@ -40,11 +38,6 @@ font-size: 18px;
 
     justify-content: center;
 
-/*
-    background-color: pink;
-    border: 5px solid black;
-    display: flex;
-    padding:10px;*/
 }
 .line1{
     display: inline-block;
@@ -59,7 +52,4 @@ position: absolute;
 }
 .new-comment{
     position: relative;
-}
-.line1{
-
 }
