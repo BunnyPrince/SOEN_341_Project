@@ -1,13 +1,16 @@
 
 /*make the footer in too a sticky footer*/
 html, body {
+  /*
   height: 100%;
-  margin: 0;
+  margin: 0; */
 }
 main {
+
   min-height: 100%;
   margin: 0 auto -50px;
     padding-bottom: 80px;
+
 }
 
 /*putting the height of the footer*/

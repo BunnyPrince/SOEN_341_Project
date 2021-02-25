@@ -1,58 +1,102 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
 <link href="/style/basic.css" rel="stylesheet" type="text/css">
 <link href="/style/custom.css" rel="stylesheet" type="text/css">
+<link href="/style/show.css" rel="stylesheet" type="text/css">
 
-<%- include('../partials/header')  %>
+<%- include('../partials/header') %>
 <main>
     <h1>Show page</h1>
-    <!-- Image -->
-    <div style="padding:30px;margin:30px">
-        <img src="<%= image.url %>" height="500px">
-        <div>
-            <a href="/<%= imgUser.username %>"> <%= imgUser.username %> </a>
-        </div>
-        <p><%= image.caption %></p>
-    </div>
+    <div class="post-card">
+        <div class="post-body">
 
-    <!-- Delete/Edit buttons -->
-    <% if (permission) { %>
-        <div>
-            <form action="/images/<%=image._id%>?_method=DELETE" method="POST">
-                <button>Delete</button>
-            </form>
-            <form action="/images/<%= image._id %>/edit" method="GET">
-                <button>Edit</button>
-            </form>
+            <!-- Align Left -->
+            <div class="post-column">
+                <div class="post-container">
+                    <!-- Image -->
+                    <div class="post">
+                        <img class="post" src="<%= image.url %>">
+                    </div>
+                </div>
+
+            </div> <!-- END of Align Left -->
+
+            <!-- Align Right -->
+            <div class="right-side post-column">
+                <!-- Show poster caption + comments -->
+                <div class="comment-section">
+                    <!-- username and caption of the poster  -->
+                    <div class="caption-box">
+                        <b>
+                            <a class="text-decoration-none text-reset"
+                               href="/<%= imgUser.username %>"> <%= imgUser.username %> </a>
+                        </b>
+                        <div class="caption oneline">
+                            <p class="oneline">
+                                <%= image.caption %>
+                            </p>
+                        </div>
+
+                        <!-- Edit/Delete the post -->
+                        <% if (permission) { %>
+                            <div class="show-btn-with-permission oneline">
+                                <div class="oneline">
+                                    <form action="/images/<%= image._id %>?_method=DELETE" method="POST">
+                                        <button class="btn btn-primary">Delete my post</button>
+                                    </form>
+                                </div>
+                                <div class="oneline">
+                                    <form action="/images/<%= image._id %>/edit" method="GET">
+                                        <button class="btn btn-primary">Edit my post</button>
+                                    </form>
+                                </div>
+                            </div>
+                        <% } %>
+                    </div>
+                    <% for (const comment of image.comments) { %>
+                        <div class="comment">
+                            <b>
+                                <a class="text-decoration-none text-reset"
+                                   href="/<%= comment.username %>"><%= comment.username %></a>
+                            </b>
+                            <p class="oneline">
+                                <%= comment.comment %>
+                            </p>
+
+                            <!-- Comment delete - with permission -->
+                            <% if (currentUser.username === comment.username) { %>
+                                <!-- div necessary else btn hide under new-comment  -->
+                                <div class="oneline">
+                                    <form action="/images/<%= image._id %>/comments/<%= comment._id %>?_method=DELETE"
+                                          method="POST">
+                                        <button class="button btn text-decoration-none btn-link btn-sm">Delete</button>
+                                    </form>
+                                </div>
+                            <% } %>
+                        </div>
+                    <% } %>
+
+                    <!-- Add comment -->
+                    <div class="new-comment">
+                        <form action="/images/<%= image._id %>/comments" method="POST">
+                            <!-- <input type="text" name="comment[username]" placeholder="Commenter name"> -->
+                            <input type="hidden" name="comment[username]" value="<%= currentUser.username %>">
+
+                            <input style="border:0;" id="textbox" placeholder="Add comment"
+                                   name="comment[comment]">
+                            <button class="button btn-primary btn">Post</button>
+                        </form>
+                    </div>
+                </div>
+
+
+            </div> <!-- END of Align Right -->
+
+            <!-- Outer divs -->
         </div>
-    <% } %>
-    <!-- Show comments -->
-    <% for (const comment of image.comments) {%>
-        <div style="margin: 30px; padding: 40px; border: solid 1px black">
-            <b>
-                <a href="/<%= comment.username %>"><%= comment.username %></a>
-            </b>
-            <br>
-            <%= comment.comment %>
-            <!-- Delete comment -->
-            <form action="/images/<%=image._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST" >
-                <!-- Comment delete - with permission -->
-                <% if (currentUser.username === comment.username) { %>
-                    <button>Delete comment</button>
-                <% } %>
-            </form>
-        </div>
-    <% } %>
-    <!-- Add comment -->
-    <div style="padding:30px;margin:30px">
-        <form action="/images/<%= image._id %>/comments" method="POST">
-            <!-- <input type="text" name="comment[username]" placeholder="Commenter name"> -->
-            <b> <%= currentUser.username %> </b>
-            <input type="hidden" name="comment[username]" value="<%= currentUser.username %>"  >
-            <br>
-            <textarea rows="10" cols="50" id="textbox" placeholder="Add comment" name="comment[comment]"></textarea>
-            <button>Comment!</button>
-        </form>
     </div>
 </main>
 
