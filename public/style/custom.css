@@ -45,4 +45,16 @@
     background: #a9f5ef;
     border-inline-color:#a9f5ef;
     border-color:#a9f5ef ;
+
+.gallery{
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+}
+
+.galleryimage{
+
+    height: 150px;
+    width: 150px;
+
 }
