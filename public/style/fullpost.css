@@ -1,4 +1,5 @@
 .post-card {
+    padding:80px;
     display:flex;
     align-items: center; /* center the content (post-body) */
     justify-content: center;
@@ -8,7 +9,7 @@
     padding: 0;
     display:flex;
     background-color:white;
-    border: #dbdbdb solid 1px;
+    /* border: #dbdbdb solid 1px; */
 }
 .post-column {
     display: inline-block;
@@ -41,7 +42,7 @@ img.post {
     /*
     height: 100px;*/
     height: auto; /* !makes this parent div fit content (caption, delete/edit btns) */
-    border: #dbdbdb solid 1px;
+    border-bottom: #dbdbdb solid 1px;
     z-index: 15; /* buttons are "behind" sticky .caption and .new-comment */
 }
 .caption {
@@ -72,7 +73,7 @@ p.oneline {
 }
 .button {
     position:absolute;
-    right:0;
+    right:5;
     color: #3e83f6;
     z-index: 5; /* buttons are "behind" sticky .caption and .new-comment */
 }
