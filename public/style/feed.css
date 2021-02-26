@@ -26,19 +26,37 @@ font-size: 18px;
     background-color: #ffffff;
 }
 .feed-content {
-    padding:10px;
-    border: 2px solid #dbdbdb;
+    display: flex;
+    margin: 50px;
+    padding: 10px;
+     border: 1px solid #dbdbdb;
+    width: 400px;
+    align-items: center;
+        justify-content: center;
     background-color: #ffffff;
 
 
 }
 .feed-container{
-        display: flex;
+       /*  display: flex;*/
+        padding: 0 30% 100px;
         background-color: #fafafa;
-
-    justify-content: center;
+        align-items: center;
+        justify-content: center;
 
 }
+div.post {
+    width: 300px;
+    object-fit: cover; /* makes img match the width by cropping */
+    overflow-x: hidden;
+}
+img.post {
+    width: 300px;
+    object-position: 50% 50%;
+    margin: 0 auto; /* center img in div */
+    display: block; /* center img in div */
+}
+
 .line1{
     display: inline-block;
 }
@@ -48,8 +66,9 @@ font-size: 18px;
 }
 .submit-btn{
 position: absolute;
-    right:0;
+    right:10px;
 }
 .new-comment{
+    width: inherit;
     position: relative;
 }
