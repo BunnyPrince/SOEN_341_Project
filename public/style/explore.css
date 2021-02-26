@@ -1,0 +1,22 @@
+.explore-container {
+    padding: 15px;
+}
+.posts {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+.thumbnail {
+    width: 350px;
+    object-fit: cover; /* makes img match the width by cropping */
+    overflow-x: hidden;
+    padding: 10px;
+
+}
+img {
+    height: 350px; /* fix img height */
+    object-position: 50% 50%;
+    margin: 0 auto; /* center img in div */
+    display: block; /* center img in div */
+}
