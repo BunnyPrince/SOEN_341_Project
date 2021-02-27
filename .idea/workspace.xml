@@ -68,7 +68,7 @@
       <workItem from="1614233245432" duration="1632000" />
       <workItem from="1614298258863" duration="720000" />
       <workItem from="1614365008204" duration="1402000" />
-      <workItem from="1614406763191" duration="13506000" />
+      <workItem from="1614406763191" duration="14726000" />
     </task>
     <task id="LOCAL-00001" summary="#61 make the profile page look like the real instagram.">
       <created>1614417789061</created>
@@ -84,7 +84,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614418445699</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="#61 make boxes of 3 for posts">
+      <created>1614421555900</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1614421555900</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -105,6 +112,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="#61 make the profile page look like the real instagram." />
     <MESSAGE value="#61 change fonts and font family" />
-    <option name="LAST_COMMIT_MESSAGE" value="#61 change fonts and font family" />
+    <MESSAGE value="#61 make boxes of 3 for posts" />
+    <option name="LAST_COMMIT_MESSAGE" value="#61 make boxes of 3 for posts" />
   </component>
 </project>

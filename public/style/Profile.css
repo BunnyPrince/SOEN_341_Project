@@ -30,7 +30,7 @@
     padding:5px;
     margin: 30px;
     border-top: 44px;
-      border-color: grey;
+    border-color: grey;
 }
 #user-pic{
     display: inline-block;
@@ -68,4 +68,30 @@
     border-radius: 20%;
     margin-left: 20px;
     margin-bottom: 20px;
+}
+.posts{
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    align-items: stretch;
+    display: flex;
+    margin: 935px 935px;
+}
+.row{
+    margin-bottom: 20px;
+    max-width: 900px;
+    max-height: 350px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    align-items: stretch;
+    display: flex;
+}
+.column{
+    margin-left: 20px;
+    max-width: 300px;
+    max-height: 350px;
+    display: inline-block;
+    border-color: black;
+    width: 30%;
 }
