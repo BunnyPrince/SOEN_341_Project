@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0171186b-a5ea-4347-9235-e8903c887734" name="Default Changelist" comment="#47 #49 fix a bug due to name duplication between backend and frontend">
+    <list default="true" id="0171186b-a5ea-4347-9235-e8903c887734" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/style/Profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/style/Profile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/profile.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/profile.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,8 +67,16 @@
       <workItem from="1614233245432" duration="1632000" />
       <workItem from="1614298258863" duration="720000" />
       <workItem from="1614365008204" duration="1402000" />
-      <workItem from="1614406763191" duration="10030000" />
+      <workItem from="1614406763191" duration="10700000" />
     </task>
+    <task id="LOCAL-00001" summary="#61 make the profile page look like the real instagram.">
+      <created>1614417789061</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1614417789061</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -86,5 +93,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="#61 make the profile page look like the real instagram." />
+    <option name="LAST_COMMIT_MESSAGE" value="#61 make the profile page look like the real instagram." />
   </component>
 </project>

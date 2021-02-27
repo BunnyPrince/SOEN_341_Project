@@ -49,8 +49,8 @@
 }
 .name{
     margin-bottom: 20px;
-    font-size: 35px;
-    font-family: 'Brush Script MT', cursive;
+    font-size: 30px;
+    font-family: "Calibri Light", monospace;
 }
 .info{
     margin-bottom: 20px;
@@ -61,4 +61,5 @@
     font-size: 15px;
     font-style: normal;
     margin-bottom: 20px;
+    font-family: "Calibri Light", monospace ;
 }
