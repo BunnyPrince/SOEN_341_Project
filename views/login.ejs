@@ -9,18 +9,26 @@
     <div  align="center" >
       <div class="col-sm-4 p-5">
            <div class="card btn-login-card">
+               <h1 class="name-inst">Instagram clone</h1>
                 <div class="card-body">
                     <% for (let m of msg) { %>
                         <h4> <%= m %> </h4>
                     <% } %>
                      <form action="/login" method="post">
+                         <div class="input1">
                         <input class="login-input" placeholder="Enter username" name="username" required>
+                         </div>
+                         <div class="input2">
                          <input type="password" class="login-input" placeholder="Enter password" name="password" required>
-                        <button class="btn btn-button">Login</button>
+                         </div>
+                         <button class="btn btn-button">Login</button>
                     </form>
+                </div>
+           </div>
+          <div class="register">
                     <button class="btn btn-button" onclick="location.href ='/register';">Don't have an account yet? Register</button>
                 </div>
-            </div>
+
       </div>
     </div>
 
