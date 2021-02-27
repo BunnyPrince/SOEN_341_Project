@@ -10,28 +10,27 @@
     -webkit-box-direction: normal;
     flex-direction: column;
     position: relative;
-    font: inherit;
     vertical-align: baseline;
 }
 .profile-header{
-    margin-bottom: 44px;
     max-height: 300px;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     flex-direction: row;
     align-items: stretch;
-    border: 0 solid #000;
     display: flex;
     flex-shrink: 0;
     padding: 0;
     position: relative;
     vertical-align: baseline;
+    margin-bottom: 20px;
 }
 .user-container{
     float:left;
     padding:5px;
     margin: 30px;
     border-top: 44px;
+      border-color: grey;
 }
 #user-pic{
     display: inline-block;
@@ -62,4 +61,11 @@
     font-style: normal;
     margin-bottom: 20px;
     font-family: "Calibri Light", monospace ;
+}
+.galleryimage{
+    height: 140px;
+    width: 170px;
+    border-radius: 20%;
+    margin-left: 20px;
+    margin-bottom: 20px;
 }

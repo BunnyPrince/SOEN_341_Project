@@ -10,7 +10,7 @@
 
 <main>
     <div class = "profile-container">
-        <div content="profile-header">
+        <div class="profile-header">
             <div class="user-container" id="user-pic">
                 <div class="pic">
                     <img src="<%= user.pfp.url %>" width="150" alt="" >
@@ -29,21 +29,23 @@
                 </div>
             </div>
         </div>
+        <div class="posts">
+          <!--  <% for (const image of user.images) { %>
+                        <a href="/images/<%= image._id %>">
+                            <img class="galleryimage"
+                                 src="<%= image.url %>" alt="">
+                        </a>
+                 <% } %>
+                 -->
+            <div class="row">
+                <div class="column1">
+                </div>
+                <div class="column2">
+                </div>
+                <div class="column3">
+                </div>
+        </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <!-- Follow/Unfollow buttons -->
         <form action="/follow?_method=PUT" method="post"
@@ -63,7 +65,6 @@
             <input type="hidden" id="userid" name="userid" value="<%= user._id %>">
             <button type="submit">Unfollow</button>
         </form>
-
 
     </div>
 </main>
