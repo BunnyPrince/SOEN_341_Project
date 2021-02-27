@@ -8,6 +8,8 @@
 .login-input{
     margin-bottom: 10px;
     background-color: #3e83f6;
+    alignment: center;
+    width: 300px;
 }
 
 .btn-login-card {
@@ -18,6 +20,7 @@
 }
 .btn-login-background{
     background-color: white;
+    alignment: center;
 }
 
 .btn-button{
@@ -33,10 +36,12 @@
     width: 40%;
     text-align: left;
     color: #C5C6C7;
+    alignment: center;
 }
 .register-input {
     float: left;
     width: 60%;
+    alignment: center;
 }
 
 
@@ -45,6 +50,7 @@
     padding: 40px 0;
     align-self: flex-end;
     margin-bottom: 30px;
+    alignment: center;
     /*
     background: #a9f5ef;
     border-inline-color: #a9f5ef;
@@ -70,7 +76,10 @@
 }
 .input1{
     margin-bottom: 20px;
+    width: 300px;
+
 }
 .input2{
     margin-bottom: 20px;
+    width: 300px;
 }
