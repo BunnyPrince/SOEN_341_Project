@@ -25,33 +25,35 @@ font-size: 18px;
     /* outline: black auto 5px; */
     background-color: #ffffff;
 }
-.feed-content {
-    display: flex;
-    margin: 50px;
-    padding: 10px;
-     border: 1px solid #dbdbdb;
-    width: 400px;
-    align-items: center;
-        justify-content: center;
-    background-color: #ffffff;
 
-
-}
 .feed-container{
        /*  display: flex;*/
-        padding: 0 30% 100px;
+       /* padding: 0 30% 100px; */
         background-color: #fafafa;
         align-items: center;
         justify-content: center;
 
 }
+.feed-content {
+    display: flex;
+    padding: 20px;
+    border: 1px solid #dbdbdb;
+    width: 505px;
+    margin: 50px auto; /* center horizontally; 50px margin on top+bottom */
+    align-items: center; /* center horizontally */
+    justify-content: center; /* center horizontally */
+    background-color: #ffffff;
+}
+.post-container {
+    position: relative;
+}
 div.post {
-    width: 300px;
+    width: auto;
     object-fit: cover; /* makes img match the width by cropping */
     overflow-x: hidden;
 }
 img.post {
-    width: 300px;
+    width: 500px;
     object-position: 50% 50%;
     margin: 0 auto; /* center img in div */
     display: block; /* center img in div */
@@ -60,15 +62,30 @@ img.post {
 .line1{
     display: inline-block;
 }
-
-.input-comment{
+div.comments {
+    padding:10px;
+}
+.more {
+    padding:10px;
+    margin-left:auto;
+    margin-right:auto;
+    display: block;
+    align-self: center;
+    text-align: center;
+}
+.new-comment{
+    border-top: 1px solid #dbdbdb;
+    width: inherit;
+    position: relative;
+    padding:10px;
+    /* margin: 1px; */
+}
+div.input-comment {
+}
+input.input-comment{
     border:0;
 }
 .submit-btn{
-position: absolute;
-    right:10px;
-}
-.new-comment{
-    width: inherit;
-    position: relative;
+    position: absolute;
+    right: 0;
 }

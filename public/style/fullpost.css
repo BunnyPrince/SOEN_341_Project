@@ -1,13 +1,14 @@
 .post-card {
     padding:80px;
     display:flex;
+    margin:auto; /* center horizontally; 50px margin on top+bottom */
     align-items: center; /* center the content (post-body) */
-    justify-content: center;
+    justify-content: center; /* center horizontally */
 }
 .post-body {
-    max-height:inherit; /* this child div does not expand outside of parent (post-card) */
-    padding: 0;
     display:flex;
+    padding: 0;
+    max-height:inherit; /* this child div does not expand outside of parent (post-card) */
     background-color:white;
     /* border: #dbdbdb solid 1px; */
 }
