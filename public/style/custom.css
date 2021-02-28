@@ -69,8 +69,10 @@
 }
 
 .name-inst{
-    font-family: 'Playfair Display', cursive;
-	font-size: 24px;
+    /*font-family: 'Playfair Display', cursive;*/
+    /*font-family: "Brush Script MT",cursive;*/
+    font-family: Billabong, cursive;
+	font-size: 28px;
 	font-style: italic;
 	margin-bottom: 20px;
 }
