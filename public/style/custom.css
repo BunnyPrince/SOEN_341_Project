@@ -25,8 +25,8 @@
 }
 
 .btn-button{
-    background-color: lightblue;
-    color: black;
+    background-color: royalblue;
+    color: white;
     width: 300px;
     alignment: center;
 }
@@ -47,9 +47,9 @@
 
 .card {
     max-width: 1100px;
-    padding: 40px 0;
+    padding: 20px 0;
     align-self: flex-end;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     alignment: center;
     /*
     background: #a9f5ef;
@@ -68,15 +68,6 @@
     width: 150px;
 }
 
-.name-inst{
-    /*font-family: 'Playfair Display', cursive;*/
-    /*font-family: "Brush Script MT",cursive;*/
-    font-family: Billabong, cursive;
-	font-size: 28px;
-	font-style: italic;
-	margin-bottom: 20px;
-}
-
 .input1{
     margin-bottom: 20px;
     width: 300px;
@@ -85,4 +76,9 @@
 .input2{
     margin-bottom: 20px;
     width: 300px;
+}
+.register{
+    padding-top: 20px;
+    width: 350px;
+    alignment: center;
 }
