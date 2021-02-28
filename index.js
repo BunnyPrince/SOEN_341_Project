@@ -145,7 +145,7 @@ app.post('/login', async (req, res) => {
 
     // res.send('POST METHOD /login - Error route')
 })
-/* index */
+/* explore */
 app.get('/images', isLogged, async (req, res) => {
     const images = await Image.find({}).sort({createdAt: 'desc'});
     res.render('images/explore', {images})
