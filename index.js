@@ -303,10 +303,31 @@ app.get('/:username', isLogged, async (req, res, next) => {
         console.log(isBeingFollowed);
         console.log(userSession.username + userSession._id + ' follows ' + user.username + user._id + '? ' + isBeingFollowed)
         console.log(userSession.username + userSession._id + ' same as ' + user.username + user._id + '? ' + duplicateUser)
-        return res.render('profile', {user, isBeingFollowed, duplicateUser})
+        return res.render('profile', {user, isBeingFollowed, duplicateUser, overlay:false, usersList:[]})
     }
     // if no users found, send to error page
     next()
+})
+/* modal for follows/followers list */
+app.post('/:username/followers', async (req, res, next) => {
+    const user = await User.findById(req.body.userid).populate('images')
+    const usersList = []
+    for (const u of user.followers) {
+        const follower = await User.findById(u)
+        usersList.push(follower.username)
+    }
+    console.log(usersList)
+    return res.render('profile', {user, duplicateUser: req.body.duplicateUser, isBeingFollowed: req.body.isBeingFollowed, overlay: true, usersList})
+})
+app.post('/:username/follows', async (req, res, next) => {
+    const user = await User.findById(req.body.userid).populate('images')
+    const usersList = []
+    for (const u of user.follows) {
+        const follow = await User.findById(u)
+        usersList.push(follow.username)
+    }
+    console.log(usersList)
+    return res.render('profile', {user, duplicateUser: req.body.duplicateUser, isBeingFollowed: req.body.isBeingFollowed, overlay: true, usersList})
 })
 /* follow someone */
 app.put('/follow', async (req, res) => {

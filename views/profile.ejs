@@ -5,6 +5,7 @@
         crossorigin="anonymous"></script>
 <link href="/style/basic.css" rel="stylesheet" type="text/css">
 <link href="/style/custom.css" rel="stylesheet" type="text/css">
+<link href="/style/styles.css" rel="stylesheet" type="text/css">
 
 <%- include('partials/header') %>
 
@@ -16,9 +17,21 @@
 
             <img src="<%= user.pfp.url %>" width="90" alt="">
             <p4> <%= user.username %></p4>
-            <button type="button">followers</button>
+
+            <form action="/<%= user.username %>/followers" method="post">
+                <input type="hidden" id="userid" name="userid" value="<%= user._id %>">
+                <input type="hidden" id="isBeingFollowed" name="isBeingFollowed" value="<%= isBeingFollowed %>">
+                <input type="hidden" id="duplicateUser" name="duplicateUser" value="<%= duplicateUser %>">
+                <button type="submit">followers</button>
+            </form>
             <var1> <%= user.followers.length %> </var1>
-            <button type="button">following</button>
+
+            <form action="/<%= user.username %>/follows" method="post">
+                <input type="hidden" id="userid" name="userid" value="<%= user._id %>">
+                <input type="hidden" id="isBeingFollowed" name="isBeingFollowed" value="<%= isBeingFollowed %>">
+                <input type="hidden" id="duplicateUser" name="duplicateUser" value="<%= duplicateUser %>">
+                <button type="submit">followings</button>
+            </form>
             <var2> <%= user.follows.length %> </var2>
 
             <div class="container">
@@ -37,8 +50,9 @@
     </div>
     <form action="/follow?_method=PUT" method="post"
     <% if (isBeingFollowed || duplicateUser) { %>
-                style="display: none"
-                <% } %> >
+          style="display: none"
+            <% } %>
+    >
         <input type="hidden" id="userid" name="userid" value="<%= user._id %>">
         <button type="submit">Follow
         </button>
@@ -46,12 +60,37 @@
     <form action="/unfollow?_method=PUT" method="post"
     <% if (!isBeingFollowed || duplicateUser) { %>
           style="display: none"
-            <% } %> >
+            <% } %>
+    >
         <input type="hidden" id="userid" name="userid" value="<%= user._id %>">
         <button type="submit">Unfollow</button>
     </form>
+
+    <div id="overlay"
+    <% if (overlay) { %>
+         class="active">
+        <% } %>
+    </div>
+
+    <div id="myModal" class="modal" style="display: block">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>Haha</p>
+                <% usersList.forEach(f => { %>
+                    <p><a href="/<%= f%>"><%=f%></a></p>
+                <% })%>
+            </div>
+        </div>
+    </div>
+
 </main>
 
+<script>
+    function openModal() {
+        console.log('open modal')
+    }
+</script>
 
 <%- include('./partials/footer') %>
 
