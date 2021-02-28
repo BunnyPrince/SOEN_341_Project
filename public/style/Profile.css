@@ -69,3 +69,11 @@
     margin-left: 20px;
     margin-bottom: 20px;
 }
+
+/* Noah test */
+.group-of-three {
+    display: flex;
+}
+.img-per-row {
+    display: inline-block;
+}

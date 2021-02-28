@@ -25,18 +25,28 @@
                      <%= user.follows.length %>
                 </div>
                 <div class="user-bio">
-                    <h2>this is the bio. </h2>
+                    <h2>  </h2>
                 </div>
             </div>
         </div>
         <div class="posts">
-          <!--  <% for (const image of user.images) { %>
+            <% let i = 0 %>
+            <% for (const image of user.images) { %>
+                <% if (i % 3 === 0) { %>
+                <div class="group-of-three">
+                    <% } %>
+                    <div class="img-per-row">
                         <a href="/images/<%= image._id %>">
                             <img class="galleryimage"
                                  src="<%= image.url %>" alt="">
                         </a>
-                 <% } %>
-                 -->
+                    </div>
+                <% if (i % 3 === 2) { %>
+                    </div>
+                <% } %>
+                <% i++ %>
+            <% } %>
+
             <div class="row">
                 <div class="column1">
                 </div>
@@ -69,5 +79,8 @@
     </div>
 </main>
 
+<script>
+
+</script>
 
 <%- include('./partials/footer') %>
