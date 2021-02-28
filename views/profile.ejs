@@ -31,7 +31,6 @@
         </div>
         <div class="posts">
 
-              <% for (const image of user.images) { %>
             <% let i = 0 %>
             <% for (const image of user.images) { %>
                 <% if (i % 3 === 0) { %>
@@ -42,7 +41,6 @@
                             <img class="galleryimage"
                                  src="<%= image.url %>" alt="">
                         </a>
-                 <% } %>
 
                     </div>
                 <% if (i % 3 === 2) { %>
