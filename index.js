@@ -314,7 +314,7 @@ app.post('/:username/followers', async (req, res, next) => {
     const usersList = []
     for (const u of user.followers) {
         const follower = await User.findById(u)
-        usersList.push(follower.username)
+        usersList.push(follower)
     }
     console.log(usersList)
     return res.render('profile', {user, duplicateUser: req.body.duplicateUser, isBeingFollowed: req.body.isBeingFollowed, overlay: true, usersList})
@@ -324,7 +324,7 @@ app.post('/:username/follows', async (req, res, next) => {
     const usersList = []
     for (const u of user.follows) {
         const follow = await User.findById(u)
-        usersList.push(follow.username)
+        usersList.push(follow)
     }
     console.log(usersList)
     return res.render('profile', {user, duplicateUser: req.body.duplicateUser, isBeingFollowed: req.body.isBeingFollowed, overlay: true, usersList})

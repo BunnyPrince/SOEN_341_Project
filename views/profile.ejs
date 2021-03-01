@@ -75,11 +75,18 @@
     <div id="myModal" class="modal" style="display: block">
         <!-- Modal content -->
         <div class="modal-content">
+            <div class="modal-header">
+                <p>List</p>
+                <form action="/<%= user.username %>" method="get">
+                    <button type="submit">&times;</button>
+                </form>
+            </div>
             <div class="modal-body">
-                <p>Haha</p>
+                <!--<p>Haha, it's nothing...</p>-->
                 <% usersList.forEach(f => { %>
-                    <p><a href="/<%= f%>"><%=f%></a></p>
-                <% })%>
+                    <img src="<%= f.pfp.url %>" width="30" alt="pfp">
+                    <p><a href="/<%= f.username %>"><%= f.username %></a></p>
+                <% }) %>
             </div>
         </div>
     </div>
