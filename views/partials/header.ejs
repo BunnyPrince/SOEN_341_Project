@@ -1,5 +1,6 @@
 <title>NavBar</title>
 
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
@@ -8,10 +9,12 @@
 
 <link href="/style/basic.css" rel="stylesheet" type="text/css">
 <link href="/style/custom.css" rel="stylesheet" type="text/css">
-<nav class="navbar navbar-expand-sm border-bottom border-dark
-">
+<link href="/style/navbar.css" rel="stylesheet" type="text/css">
+
+
+<nav class="navbar sticky-top navbar-custom navbar-expand-sm border-bottom border-dark">
     <div class="container-fluid ">
-        <!--    <a class="navbar-brand" href="#">Navbar</a>-->
+        <a class="navbar-brand" href="#"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -25,79 +28,117 @@
                     <a class="nav-link" id="nav-image" href="/">
 
                         <img src="https://lh3.googleusercontent.com/i5MfhCHoL9b4CMg7EqHDOLvIjJXyT2rqwBefKMQygYNqYUjXWJvU-MxY9iIWjslfTJGqGOU=s170"
-                             width="110" height="35" alt="">
+                             width="110" height="40" alt="">
 
                     </a>
                 </li>
 
-                <!---search bar------>
-                <li>
-                    <form class="d-flex nav-search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-navbar-button" type="button" onclick="location.href ='/search';">
+
+                <!---search bar--dropdownmenu---->
+
+                <form class="d-flex nav-search">
+                    <div class="dropdown">
+                        <button class="btn btn-sm dropmenu-options " type="button"
+                                id="dropdownMenuButton"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+
+                            <a class="nav-link" id="nav-profile" href="/">
+                                <form class="d-flex nav-search">
+                                    <input class="form-control input-searchbar me-2" type="search" placeholder="Search"
+                                           aria-label="Search">
+                                </form>
+                            </a>
+
+
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item nav-link" href="/search">
+                                    users
+                                </a></li>
+                        </ul>
+
+                        <button class="btn btn-navbar-button search-icon" type="button"
+                                onclick="location.href ='/search';">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                                  class="bi bi-search" viewBox="0 0 16 16">
                                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                             </svg>
                         </button>
-                    </form>
-                </li>
+                    </div>
+                </form>
 
-                <!---home-feed-------->
-                <li class="nav-item nav-icons">
-                    <a class="nav-link" id="nav-feed" href="/">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                             class="bi bi-house-door" viewBox="0 0 16 16">
-                            <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
-                        </svg>
-                    </a>
-                </li>
+                    <!---home-feed-------->
+                    <li class="nav-item nav-icons">
+                        <a class="nav-link" id="nav-feed" href="/">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                 class="bi bi-house-door" viewBox="0 0 16 16">
+                                <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
+                            </svg>
+                        </a>
+                    </li>
 
-                <!---explore-------->
-                <li class="nav-item nav-icons">
-                    <a class="nav-link" id="nav-image" href="/images">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                             class="bi bi-compass" viewBox="0 0 16 16">
-                            <path d="M8 16.016a7.5 7.5 0 0 0 1.962-14.74A1 1 0 0 0 9 0H7a1 1 0 0 0-.962 1.276A7.5 7.5 0 0 0 8 16.016zm6.5-7.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
-                            <path d="M6.94 7.44l4.95-2.83-2.83 4.95-4.949 2.83 2.828-4.95z"/>
-                        </svg>
-                    </a>
-                </li>
-
-
-                <!---profile-pic---static---->
-                <li class="nav-item nav-icons">
-                    <a class="nav-link" id="nav-profile" href="/profile">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjBxZURopzpB6AMcmpjQiJv8Bv9GquDCrDDw&usqp=CAU"
-                             width="25" height="25" alt="">
-                    </a>
-                </li>
+                    <!---explore-------->
+                    <li class="nav-item nav-icons">
+                        <a class="nav-link" id="nav-image" href="/images">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                 class="bi bi-compass" viewBox="0 0 16 16">
+                                <path d="M8 16.016a7.5 7.5 0 0 0 1.962-14.74A1 1 0 0 0 9 0H7a1 1 0 0 0-.962 1.276A7.5 7.5 0 0 0 8 16.016zm6.5-7.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+                                <path d="M6.94 7.44l4.95-2.83-2.83 4.95-4.949 2.83 2.828-4.95z"/>
+                            </svg>
+                        </a>
+                    </li>
 
 
-                <!---post-------->
-                <li class="nav-item nav-icons">
-                    <a class="nav-link" id="" href="/images/new">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                             class="bi bi-card-image" viewBox="0 0 16 16">
-                            <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-                            <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54A.505.505 0 0 1 1 12.5v-9a.5.5 0 0 1 .5-.5h13z"/>
-                        </svg>
-                    </a>
-                </li>
+                    <!---post-------->
+                    <li class="nav-item nav-icons">
+                        <a class="nav-link" id="" href="/images/new">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                 class="bi bi-card-image" viewBox="0 0 16 16">
+                                <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                                <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54A.505.505 0 0 1 1 12.5v-9a.5.5 0 0 1 .5-.5h13z"/>
+                            </svg>
+                        </a>
+                    </li>
+
+                    <!---profile pic dropdownmenu-------->
+
+                    <div class="dropdown">
+                        <button class="btn btn-sm dropmenu-options " type="button"
+                                id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+
+                            <li class="nav-item ">
+                                <a class="nav-link" id="nav-profile" href="/profile">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjBxZURopzpB6AMcmpjQiJv8Bv9GquDCrDDw&usqp=CAU"
+                                         width="25" height="25" alt="">
+                                </a>
+                            </li>
+
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item nav-link" href="/profile">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                        <path fill-rule="evenodd"
+                                              d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                    </svg>
+                                    Profile
+                                </a></li>
+                            <li><a class="dropdown-item" href="#">
+                                    <a type="button" onclick="proceed();" class="d-flex btn btn-navbar-button">
+                                        Log Out
+                                    </a>
+                                </a></li>
+                        </ul>
+                    </div>
+
 
             </ul>
-
-
-            <button type="button" onclick="proceed();" class="d-flex btn btn-navbar-button">Logout
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-x"
-                     viewBox="0 0 16 16">
-                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                </svg>
-            </button>
-
-
         </div>
     </div>
+
 </nav>
 
 
@@ -111,4 +152,8 @@
         form.submit();
     }
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
 
