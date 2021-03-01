@@ -66,6 +66,7 @@ img.post {
 div.oneline {
     display:inline-block;
 }
+
 p.oneline {
     overflow-wrap: break-word;
     word-wrap: break-word;
@@ -73,8 +74,8 @@ p.oneline {
 }
 .button {
     position:absolute;
-    right:5;
-    color: #3e83f6;
+    right:5px;
+    color: royalblue;
     z-index: 5; /* buttons are "behind" sticky .caption and .new-comment */
 }
 a {

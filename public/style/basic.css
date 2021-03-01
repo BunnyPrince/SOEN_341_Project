@@ -9,10 +9,9 @@ main {
 
   min-height: 100%;
   margin: 0 auto -50px;
-    padding-bottom: 80px;
-
+  padding-bottom: 80px;
 }
-
+/*this is a comment*/
 /*putting the height of the footer*/
 .footer,
 .push {
@@ -23,7 +22,7 @@ main {
   background-color: white;
 }
 .navbar a{
-  color: black;
+  color: white;
 }
 .nav-div{
     border: #dbdbdb;
