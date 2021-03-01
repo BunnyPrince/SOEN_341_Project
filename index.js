@@ -147,12 +147,12 @@ app.post('/login', async (req, res) => {
 })
 /* index */
 app.get('/images', isLogged, async (req, res) => {
-    const images = await Image.find({});
-    res.render('images/index', {images})
+    const images = await Image.find({}).sort({createdAt: 'desc'});
+    res.render('images/explore', {images})
 })
 /* create */
 app.get('/images/new', isLogged, (req, res) => {
-    res.render('images/new');
+    res.render('images/upload');
 })
 
 /* TO-DO: redirect to the current user's profile (see route at the bottom) */
@@ -223,7 +223,7 @@ app.get('/images/:id', isLogged, async (req, res) => {
     const imgUser = await User.findById(imageUserId)
     // get current user
     const currentUser = await User.findById(req.session.user_id)
-    res.render('images/show', {image, permission, imgUser, currentUser})
+    res.render('images/fullpost', {image, permission, imgUser, currentUser})
 })
 /* new comment post route */
 app.post('/images/:id/comments', async (req, res) => {

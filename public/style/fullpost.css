@@ -1,0 +1,89 @@
+.post-card {
+    padding:80px;
+    display:flex;
+    align-items: center; /* center the content (post-body) */
+    justify-content: center;
+}
+.post-body {
+    max-height:inherit; /* this child div does not expand outside of parent (post-card) */
+    padding: 0;
+    display:flex;
+    background-color:white;
+    /* border: #dbdbdb solid 1px; */
+}
+.post-column {
+    display: inline-block;
+    /*border: 1px solid #dbdbdb; */
+    height: 500px;
+}
+.post-container {
+    display: flex;/* parent div to the image container (post div) */
+}
+.post { /* div containing the image*/
+    width: auto;
+}
+img.post {
+    height: 500px; /* needs to fit the div.post-column*/
+}
+.comment-section {
+    background-color: #fafafa;
+    position:relative;/* Parent div of new-comment div: this line helps make new-comment sticky */
+    border: #dbdbdb solid 1px;
+    height: 500px;
+    width: 300px;
+    overflow-x: hidden;
+    overflow-y:auto;
+}
+.caption-box {
+    background-color: white; /* this div cannot be transparent */
+    position: sticky;
+    top:0;
+    padding: 10px;
+    /*
+    height: 100px;*/
+    height: auto; /* !makes this parent div fit content (caption, delete/edit btns) */
+    border-bottom: #dbdbdb solid 1px;
+    z-index: 15; /* buttons are "behind" sticky .caption and .new-comment */
+}
+.caption {
+    /* box-sizing: border-box; /*box-sizing property*/
+}
+.show-btn-with-permission {
+    /* box-sizing: border-box; /*box-sizing property*/
+}
+.comment {
+    padding: 10px;
+}
+.new-comment {
+    background-color: white; /* this div cannot be transparent */
+    padding:10px;
+    border: #dbdbdb solid 1px;
+    /* make new comment form at bottom of comment-section div, parent div */
+    position: sticky;
+    bottom:0;
+    z-index: 15; /* buttons are "behind" sticky .caption and .new-comment */
+}
+div.oneline {
+    display:inline-block;
+}
+
+p.oneline {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+.button {
+    position:absolute;
+    right:5px;
+    color: royalblue;
+    z-index: 5; /* buttons are "behind" sticky .caption and .new-comment */
+}
+a {
+    text-decoration: none;
+}
+.avatar {
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}

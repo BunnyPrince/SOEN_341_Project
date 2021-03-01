@@ -1,0 +1,55 @@
+
+.username{
+font-size: 35px;
+    font-family: 'Brush Script MT', cursive;
+
+}
+
+.user-friends{
+font-size: 20px;
+}
+
+.comments{
+font-size: 20px;
+    font-family: Georgia, serif;
+
+}
+
+.description{
+font-size: 18px;
+    font-family: Georgia, serif;
+
+}
+
+.feed-btn{
+    /* outline: black auto 5px; */
+    background-color: #ffffff;
+}
+.feed-content {
+    padding:10px;
+    border: 2px solid #dbdbdb;
+    background-color: #ffffff;
+
+
+}
+.feed-container{
+        display: flex;
+        background-color: #fafafa;
+
+    justify-content: center;
+
+}
+.line1{
+    display: inline-block;
+}
+
+.input-comment{
+    border:0;
+}
+.submit-btn{
+position: absolute;
+    right:0;
+}
+.new-comment{
+    position: relative;
+}

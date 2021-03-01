@@ -1,15 +1,17 @@
 
 /*make the footer in too a sticky footer*/
 html, body {
+  /*
   height: 100%;
-  margin: 0;
+  margin: 0; */
 }
 main {
+
   min-height: 100%;
   margin: 0 auto -50px;
-    padding-bottom: 80px;
+  padding-bottom: 80px;
 }
-
+/*this is a comment*/
 /*putting the height of the footer*/
 .footer,
 .push {
@@ -17,14 +19,16 @@ main {
 }
 
 .navbar{
-  background-color: #1F2833;
+  background-color: white;
 }
 .navbar a{
-  color: #C5C6C7;
+  color: white;
 }
-
+.nav-div{
+    border: #dbdbdb;
+}
 main{
-  background-color: #a9f5ef;
+background-color: #f9f9f9;
 }
 
 

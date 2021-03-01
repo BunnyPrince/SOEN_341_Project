@@ -1,0 +1,48 @@
+/*the style for the Profile */
+
+.cardd {
+    margin: 0 0;
+    overflow: auto;
+    padding: 0 0;
+    width: 100%;
+}
+.card-body-p{
+    border-radius: 20%;
+    margin: 10px 10px;
+}
+.gallery{
+    float: left;
+    margin-outside: 20px;
+    /* border-color: #a9f5ef; */
+}
+
+.galleryimage{
+    height: 140px;
+    width: 170px;
+    border-radius: 20%;
+    margin-left: 20px;
+    margin-bottom: 20px;
+
+}
+.container-for-profile {
+    padding: 40px 0;
+    align-self: flex-end;
+   /* background: #a9f5ef; */
+    margin-left: 100px;
+    margin-right: auto;
+    width: 50%;
+    text-decoration-line: none;
+    overflow-style: marquee-line;
+}
+
+.Bio{
+    width: 50%;
+    display: inline-block;
+    backface-visibility: visible;
+}
+.boxes{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    alignment: left;
+}
