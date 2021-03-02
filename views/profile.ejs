@@ -15,33 +15,24 @@
     <br>
     <div class="cardd">
       <div class="card-body-p">
-            <img src="<%= user.pfp.url %>" width="90" alt="">
-            <p4> <%= user.username %></p4>
-
-            <form action="/<%= user.username %>/followers" method="post">
-                <input type="hidden" id="userid" name="userid" value="<%= user._id %>">
-                <input type="hidden" id="isBeingFollowed" name="isBeingFollowed" value="<%= isBeingFollowed %>">
-                <input type="hidden" id="duplicateUser" name="duplicateUser" value="<%= duplicateUser %>">
-                <button type="submit">followers</button>
-            </form>
-            <var1> <%= user.followers.length %> </var1>
-
-            <form action="/<%= user.username %>/follows" method="post">
-                <input type="hidden" id="userid" name="userid" value="<%= user._id %>">
-                <input type="hidden" id="isBeingFollowed" name="isBeingFollowed" value="<%= isBeingFollowed %>">
-                <input type="hidden" id="duplicateUser" name="duplicateUser" value="<%= duplicateUser %>">
-                <button type="submit">followings</button>
-            </form>
-            <var2> <%= user.follows.length %> </var2>
-
             <div class="boxes">
                 <!-- User profile description: pfp, username, bio, number of followers/followings -->
                 <div class="Bio">
                     <img src="<%= user.pfp.url %>" width="150" alt="">
                     <%= user.username %>
-                    <button type="button">followers</button>
+                    <form action="/<%= user.username %>/followers" method="post">
+                        <input type="hidden" id="userid" name="userid" value="<%= user._id %>">
+                        <input type="hidden" id="isBeingFollowed" name="isBeingFollowed" value="<%= isBeingFollowed %>">
+                        <input type="hidden" id="duplicateUser" name="duplicateUser" value="<%= duplicateUser %>">
+                        <button type="submit">followers</button>
+                    </form>
                      <%= user.followers.length %>
-                    <button type="button">following</button>
+                    <form action="/<%= user.username %>/follows" method="post">
+                        <input type="hidden" id="userid" name="userid" value="<%= user._id %>">
+                        <input type="hidden" id="isBeingFollowed" name="isBeingFollowed" value="<%= isBeingFollowed %>">
+                        <input type="hidden" id="duplicateUser" name="duplicateUser" value="<%= duplicateUser %>">
+                        <button type="submit">followings</button>
+                    </form>
                      <%= user.follows.length %>
                 </div>
 
