@@ -75,6 +75,7 @@ p.oneline {
 .button {
     position:absolute;
     right:5px;
+   /* color: #3e83f6; */
     color: royalblue;
     z-index: 5; /* buttons are "behind" sticky .caption and .new-comment */
 }

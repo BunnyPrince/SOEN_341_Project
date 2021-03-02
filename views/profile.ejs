@@ -3,59 +3,30 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
         crossorigin="anonymous"></script>
-<link href="/style/basic.css" rel="stylesheet" type="text/css">
-<link href="/style/custom.css" rel="stylesheet" type="text/css">
+
 <link href="/style/Profile.css" rel="stylesheet" type="text/css">
 
 <%- include('partials/header') %>
 
 <main>
-
-    <br>
-    <div class="cardd">
-
-        <div class="card-body-p">
-            <div class="boxes">
-
-                <!-- User profile description: pfp, username, bio, number of followers/followings -->
-                <div class="Bio">
-                    <img src="<%= user.pfp.url %>" width="150" alt="">
-                    <%= user.username %>
-                    <button type="button">followers</button>
-                     <%= user.followers.length %>
-                    <button type="button">following</button>
-                     <%= user.follows.length %>
-                </div>
-
-                <div class="Bio">
-                    <p>I'm a Barbadian singer, actress, and businesswoman. </p>
-                    <p>Born in Saint Michael and raised in Bridgetown, Barbados. </p>
-                    <p>Discovered by American record producer Evan Rogers. </p>
+    <div class = "profile-container">
+        <div class="profile-header">
+            <div class="user-container" id="user-pic">
+                <div class="pic">
+                    <img src="<%= user.pfp.url %>" width="150" alt="" >
                 </div>
             </div>
-
-            <!-- Listing of the posts from the user -->
-            <div class="container-for-profile">
-                <div class="gallery">
-                    <% for (const image of user.images) { %>
-                        <a href="/images/<%= image._id %>">
-                            <img class="galleryimage"
-                                 src="<%= image.url %>" alt="">
-                        </a>
-                    <% } %>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Follow/Unfollow buttons -->
-        <form action="/follow?_method=PUT" method="post"
+            <div class="user-container" id="user-info">
+                <h1 class="name"><%= user.username %></h1>
+                    <!-- follow/Unfollow buttons -->
+                <h2 class="name">
+                 <form action="/follow?_method=PUT" method="post"
         <% if (isBeingFollowed || duplicateUser) { %>
               style="display: none"
                 <% } %>
         >
             <input type="hidden" id="userid" name="userid" value="<%= user._id %>">
-            <button type="submit">Follow
+            <button class="button" type="submit">follow
             </button>
         </form>
         <form action="/unfollow?_method=PUT" method="post"
@@ -64,9 +35,46 @@
                 <% } %>
         >
             <input type="hidden" id="userid" name="userid" value="<%= user._id %>">
-            <button type="submit">Unfollow</button>
+            <button class="button"  type="submit">unfollow</button>
         </form>
+                </h2>
+                <div class="info">
+                    <div class="group">
+                    <button class="button" type="button">followers</button>
+                     <%= user.followers.length%>
+                    </div>
+                    <div class="group">
+                    <button class="button" type="button">following</button>
+                     <%= user.follows.length %>
+                    </div>
+                </div>
+                <div class="user-bio">
+                    <h2>this is the bio. </h2>
+                </div>
+            </div>
+        </div>
+        <div class="posts">
 
+            <% let i = 0 %>
+            <% for (const image of user.images) { %>
+                <% if (i % 3 === 0) { %>
+                <div class="group-of-three">
+                    <% } %>
+                    <div class="img-per-row">
+                        <a href="/images/<%= image._id %>">
+                            <img class="galleryimage"
+                                 src="<%= image.url %>" alt="">
+                        </a>
+
+                    </div>
+                <% if (i % 3 === 2) { %>
+                    </div>
+                <% } %>
+                <% i++ %>
+            <% } %>
+
+        </div>
+    </div>
 
     </div>
 </main>
