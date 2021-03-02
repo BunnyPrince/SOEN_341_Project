@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+
     <list default="true" id="0171186b-a5ea-4347-9235-e8903c887734" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/style/Profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/style/Profile.css" afterDir="false" />
+
+    <list default="true" id="0171186b-a5ea-4347-9235-e8903c887734" name="Default Changelist" comment="#64 change the color to #0d6efc">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/login.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/login.ejs" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,7 +26,11 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
+
         <entry key="$PROJECT_DIR$" value="Navbar-#11" />
+
+        <entry key="$PROJECT_DIR$" value="login" />
+
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -175,6 +185,7 @@
       <option name="project" value="LOCAL" />
       <updated>1614493704320</updated>
     </task>
+
     <task id="LOCAL-00015" summary="#61 changes to the follow/unfollow button">
       <created>1614648992607</created>
       <option name="number" value="00015" />
@@ -190,6 +201,9 @@
       <updated>1614649696731</updated>
     </task>
     <option name="localTasksCounter" value="17" />
+
+    <option name="localTasksCounter" value="15" />
+
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -218,8 +232,12 @@
     <MESSAGE value="#47 #49 add the footer" />
     <MESSAGE value="#64 change the login page appearance." />
     <MESSAGE value="#64 change the color to #0d6efc" />
+
     <MESSAGE value="#61 changes to the follow/unfollow button" />
     <MESSAGE value="#61 changes to the images" />
     <option name="LAST_COMMIT_MESSAGE" value="#61 changes to the images" />
+
+    <option name="LAST_COMMIT_MESSAGE" value="#64 change the color to #0d6efc" />
+
   </component>
 </project>
