@@ -66,14 +66,12 @@
     font-family: "Calibri Light", monospace ;
 }
 .galleryimage{
-    height: 140px;
-    width: 170px;
-    border-radius: 20%;
     margin-left: 20px;
     margin-bottom: 20px;
 }
 .group-of-three {
     display: flex;
+
 }
 .img-per-row {
     display: inline-block;
