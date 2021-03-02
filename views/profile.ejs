@@ -3,69 +3,90 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
         crossorigin="anonymous"></script>
+
 <link href="/style/basic.css" rel="stylesheet" type="text/css">
 <link href="/style/custom.css" rel="stylesheet" type="text/css">
 <link href="/style/styles.css" rel="stylesheet" type="text/css">
+
+
 <link href="/style/Profile.css" rel="stylesheet" type="text/css">
 
 <%- include('partials/header') %>
 
 <main>
+    <!-- Listing of the posts from the user -->
 
-    <br>
-    <div class="cardd">
-        <div class="card-body-p">
-            <div class="boxes">
-                <!-- User profile description: pfp, username, bio, number of followers/followings -->
-                <div class="Bio">
+    <div class="profile-container">
+        <div class="profile-header">
+            <div class="user-container" id="user-pic">
+                <div class="pic">
                     <img src="<%= user.pfp.url %>" width="150" alt="">
-                    <%= user.username %>
-                    <button type="button"
-                            onclick="showList('<%= user._id %>', '<%= isBeingFollowed %>', '<%= duplicateUser %>', 'followers', '<%= user.username %>')">
-                        followers
-                    </button>
-                    <%= user.followers.length %>
-                    <button type="button"
-                            onclick="showList('<%= user._id %>', '<%= isBeingFollowed %>', '<%= duplicateUser %>', 'follows', '<%= user.username %>')">
-                        followings
-                    </button>
-                    <%= user.follows.length %>
-                </div>
-
-                <div class="Bio">
-                    <p>I'm a Barbadian singer, actress, and businesswoman. </p>
-                    <p>Born in Saint Michael and raised in Bridgetown, Barbados. </p>
-                    <p>Discovered by American record producer Evan Rogers. </p>
                 </div>
             </div>
+            <div class="user-container" id="user-info">
+                <h1 class="name"><%= user.username %></h1>
+                <!-- follow/Unfollow buttons -->
+                <h2 class="name">
+                    <!-- Follow/Unfollow buttons -->
+                    <button class="button" type="button"
 
-            <!-- Listing of the posts from the user -->
-            <div class="container-for-profile">
-                <div class="gallery">
-                    <% for (const image of user.images) { %>
+                    <% if (isBeingFollowed || duplicateUser) { %>
+                            style="display: none"
+                            <% } %>
+
+                            onclick="editFollow('<%= user._id %>', 'follow')">Follow
+                    </button>
+                    <button class="button" type="button"
+                    <% if (!isBeingFollowed || duplicateUser) { %>
+                            style="display: none"
+                            <% } %>
+
+                            onclick="editFollow('<%= user._id %>', 'unfollow')">Unfollow
+                    </button>
+
+                </h2>
+                <div class="info">
+                    <div class="group">
+                        <button class="button" type="button"
+                                onclick="showList('<%= user._id %>', '<%= isBeingFollowed %>', '<%= duplicateUser %>', 'followers', '<%= user.username %>')">
+                            followers
+                        </button>
+                        <%= user.followers.length %>
+                    </div>
+                    <div class="group">
+                        <button class="button" type="button"
+                                onclick="showList('<%= user._id %>', '<%= isBeingFollowed %>', '<%= duplicateUser %>', 'follows', '<%= user.username %>')">
+                            followings
+                        </button>
+                        <%= user.follows.length %>
+                    </div>
+                </div>
+                <div class="user-bio">
+                    <h2>this is the bio. </h2>
+                </div>
+            </div>
+        </div>
+        <div class="posts">
+
+            <% let i = 0 %>
+            <% for (const image of user.images) { %>
+                <% if (i % 3 === 0) { %>
+                <div class="group-of-three">
+                    <% } %>
+                    <div class="img-per-row">
                         <a href="/images/<%= image._id %>">
                             <img class="galleryimage"
                                  src="<%= image.url %>" alt="">
                         </a>
-                    <% } %>
+
+                    </div>
+                    <% if (i % 3 === 2) { %>
                 </div>
-            </div>
+                <% } %>
+                <% i++ %>
+            <% } %>
 
         </div>
-
-        <!-- Follow/Unfollow buttons -->
-        <button type="button"
-        <% if (isBeingFollowed || duplicateUser) { %>
-                style="display: none"
-                <% } %>
-                onclick="editFollow('<%= user._id %>', 'follow')">Follow
-        </button>
-        <button type="button"
-        <% if (!isBeingFollowed || duplicateUser) { %>
-                style="display: none"
-                <% } %>
-                onclick="editFollow('<%= user._id %>', 'unfollow')">Unfollow
-        </button>
 
     </div>
 
@@ -93,15 +114,17 @@
             </div>
         </div>
     </div>
+
+
 </main>
 
 <script>
     function editFollow(userid, type) {
         console.log('clicked ' + type);
-        var form = document.createElement('form');
+        let form = document.createElement('form');
         form.setAttribute('method', 'post');
         form.setAttribute('action', '/' + type + '?_method=PUT');
-        var input = document.createElement('input');
+        let input = document.createElement('input');
         input.setAttribute('name', 'userid');
         input.setAttribute('value', userid);
         form.style.display = 'hidden';
@@ -112,16 +135,16 @@
 
     function showList(userid, isBeingFollowed, duplicateUser, type, username) {
         console.log('clicked ' + type);
-        var form = document.createElement('form');
+        let form = document.createElement('form');
         form.setAttribute('method', 'post');
         form.setAttribute('action', '/' + username + '/' + type);
-        var inputUserID = document.createElement('input');
+        let inputUserID = document.createElement('input');
         inputUserID.setAttribute('name', 'userid');
         inputUserID.setAttribute('value', userid);
-        var inputFollowed = document.createElement('input');
+        let inputFollowed = document.createElement('input');
         inputFollowed.setAttribute('name', 'isBeingFollowed');
         inputFollowed.setAttribute('value', isBeingFollowed);
-        var inputDuplicate = document.createElement('input');
+        let inputDuplicate = document.createElement('input');
         inputDuplicate.setAttribute('name', 'duplicateUser');
         inputDuplicate.setAttribute('value', duplicateUser);
         form.appendChild(inputUserID);
@@ -134,3 +157,4 @@
 </script>
 
 <%- include('./partials/footer') %>
+
