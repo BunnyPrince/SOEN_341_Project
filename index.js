@@ -99,19 +99,16 @@ db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", () => {
     console.log("Database connected");
 })
-/* FOR TESTING: DELETE LATER */ // app.use((req, res, next) => {req.session.user_id = 'admin'; next();})
-/* ==================================================== RESTFUL ROUTES & MONGOOSE CRUD  ====================================================  */
-/* TO-DO: PERSONALIZED FEED */
-app.get('/', async (req, res) => {
-    if (req.session.user_id){
-        let { follows } = await User.findById(req.session.user_id)
-        // console.log(follows)
-        let feedImgs = await Image.find({user: {$in: follows}})
-        console.log(feedImgs)
 
-        return res.render('feed', { feedImgs });
-    }
-    else {
+/* ==================================================== RESTFUL ROUTES & MONGOOSE CRUD  ====================================================  */
+/* profile page (redirect to login if not logged in) */
+app.get('/', async (req, res) => {
+    if (req.session.user_id) {
+        let {follows} = await User.findById(req.session.user_id)
+        let feedImgs = await Image.find({user: {$in: follows}})
+        // console.log(feedImgs)
+        return res.render('feed', {feedImgs});
+    } else {
         res.render('login', {
             msg:
                 [req.flash('failedLogin'), req.flash('successRegister')]
@@ -120,15 +117,6 @@ app.get('/', async (req, res) => {
 })
 app.post('/login', async (req, res) => {
     const {username, password} = req.body
-    // ! special admin login data !
-    if (username === 'admin' && password === 'soen341') {
-        // if success admin login
-        req.session.user_id = username
-        console.log("ADMIN success login")
-        return res.redirect('/')
-    }
-
-    // search username
     const searchUser = await User.findOne({username})
     if (!searchUser) {
         console.log('Failed login')
@@ -142,33 +130,12 @@ app.post('/login', async (req, res) => {
         // if success login, store user._id in session
         req.session.user_id = searchUser._id
         console.log("success login") // TO-DO: implement success login message
-        res.redirect('/')
-    } else {
-        console.log('Failed login')
-        req.flash('failedLogin', "Wrong username and/or password.")
-        res.redirect('/')
+        return res.redirect('/')
     }
+    console.log('Failed login')
+    req.flash('failedLogin', "Wrong username and/or password.")
+    res.redirect('/')
 
-    // res.send('POST METHOD /login - Error route')
-})
-/* explore */
-app.get('/images', isLogged, async (req, res) => {
-    const images = await Image.find({}).sort({createdAt: 'desc'});
-    res.render('images/explore', {images})
-})
-/* create */
-app.get('/images/new', isLogged, (req, res) => {
-    res.render('images/upload');
-})
-
-/* TO-DO: redirect to the current user's profile (see route at the bottom) */
-app.get('/profile', isLogged, async (req, res) => {
-    // retrieve user from session
-    if (req.session.user_id === 'admin')
-        return res.redirect(`/admin`)
-    const {user_id} = req.session
-    const user = await User.findById(user_id)
-    res.redirect(`/${user.username}`); // redirect to '/<username>'
 })
 app.get('/search', (req, res) => {
     res.render('search');
@@ -187,7 +154,7 @@ app.post('/register', async (req, res) => {
     // hash password before storing
     const hash = await bcrypt.hash(password, 12)
 
-    // create user if data valid
+    // create user if data valid, and redirect to login
     const newUser = new User({username, email, password: hash})
     await newUser.save()
     console.log(newUser)
@@ -195,13 +162,25 @@ app.post('/register', async (req, res) => {
     res.redirect('/')
 
 })
-
+app.get('/profile', isLogged, async (req, res) => {
+    const {user_id} = req.session
+    const user = await User.findById(user_id)
+    res.redirect(`/${user.username}`); // redirect to '/<username>'
+})
 app.post('/logout', (req, res) => {
     req.session.user_id = null
     req.session.destroy() // completely any information stored in session
     res.redirect('/')
 })
-
+/* explore */
+app.get('/images', isLogged, async (req, res) => {
+    const images = await Image.find({}).sort({createdAt: 'desc'});
+    res.render('images/explore', {images})
+})
+/* get and post routes for UPLOAD */
+app.get('/images/new', isLogged, (req, res) => {
+    res.render('images/upload');
+})
 app.post('/images', upload.array('image'), async (req, res) => {
     const {user_id} = req.session
     if (!user_id)
@@ -217,7 +196,7 @@ app.post('/images', upload.array('image'), async (req, res) => {
     res.redirect(`/images/${image._id}`)
 
 })
-/* show : in template => TO-DO! add permission to be able to delete comments */
+/* show full post */
 app.get('/images/:id', isLogged, async (req, res) => {
     const image = await Image.findById(req.params.id).populate('comments')
     // check if image belongs to current user
@@ -231,23 +210,7 @@ app.get('/images/:id', isLogged, async (req, res) => {
     const currentUser = await User.findById(req.session.user_id)
     res.render('images/fullpost', {image, permission, imgUser, currentUser})
 })
-/* new comment post route */
-app.post('/images/:id/comments', async (req, res) => {
-    const image = await Image.findById(req.params.id)
-    const comment = new Comment(req.body.comment)
-    image.comments.push(comment)
-    await comment.save()
-    await image.save()
-    res.redirect(`/images/${image._id}`)
-})
-/* delete comment */
-app.delete('/images/:imageId/comments/:commentId', async (req, res) => {
-    const {imageId, commentId} = req.params
-    const image = await Image.findByIdAndUpdate(imageId, {$pull: {comments: commentId}})/* delete reference to comment */
-    await Comment.findByIdAndDelete(req.params.commentId)
-    res.redirect(`/images/${image._id}`)
-})
-/* update image */
+/* get and put routes to update image */
 app.get('/images/:id/edit', isLogged, async (req, res) => {
     const {user_id: user} = req.session
     const image = await Image.findById(req.params.id)
@@ -286,10 +249,24 @@ app.delete('/images/:id', async (req, res) => {
     await Image.findByIdAndDelete(id) // delete image from db
     res.redirect('/images')
 })
-/* to-do: user profile */
+/* new comment post route */
+app.post('/images/:id/comments', async (req, res) => {
+    const image = await Image.findById(req.params.id)
+    const comment = new Comment(req.body.comment)
+    image.comments.push(comment)
+    await comment.save()
+    await image.save()
+    res.redirect(`/images/${image._id}`)
+})
+/* delete comment */
+app.delete('/images/:imageId/comments/:commentId', async (req, res) => {
+    const {imageId, commentId} = req.params
+    const image = await Image.findByIdAndUpdate(imageId, {$pull: {comments: commentId}})/* delete reference to comment */
+    await Comment.findByIdAndDelete(req.params.commentId)
+    res.redirect(`/images/${image._id}`)
+})
+/* user profile */
 app.get('/:username', isLogged, async (req, res, next) => {
-    if (req.params.username === 'admin')
-        return res.send('user profile')
     const {username} = req.params
     const user = await User.findOne({username}).populate('images')
     if (user) {
@@ -309,7 +286,7 @@ app.get('/:username', isLogged, async (req, res, next) => {
         console.log(isBeingFollowed);
         console.log(userSession.username + userSession._id + ' follows ' + user.username + user._id + '? ' + isBeingFollowed)
         console.log(userSession.username + userSession._id + ' same as ' + user.username + user._id + '? ' + duplicateUser)
-        return res.render('profile', {user, isBeingFollowed, duplicateUser, overlay:false, usersList:[]})
+        return res.render('profile', {user, isBeingFollowed, duplicateUser, overlay: false, usersList: []})
     }
     // if no users found, send to error page
     next()
@@ -323,7 +300,13 @@ app.post('/:username/followers', async (req, res, next) => {
         usersList.push(follower)
     }
     console.log(usersList)
-    return res.render('profile', {user, duplicateUser: req.body.duplicateUser, isBeingFollowed: req.body.isBeingFollowed, overlay: true, usersList})
+    return res.render('profile', {
+        user,
+        duplicateUser: req.body.duplicateUser,
+        isBeingFollowed: req.body.isBeingFollowed,
+        overlay: true,
+        usersList
+    })
 })
 app.post('/:username/follows', async (req, res, next) => {
     const user = await User.findById(req.body.userid).populate('images')
@@ -333,7 +316,13 @@ app.post('/:username/follows', async (req, res, next) => {
         usersList.push(follow)
     }
     console.log(usersList)
-    return res.render('profile', {user, duplicateUser: req.body.duplicateUser, isBeingFollowed: req.body.isBeingFollowed, overlay: true, usersList})
+    return res.render('profile', {
+        user,
+        duplicateUser: req.body.duplicateUser,
+        isBeingFollowed: req.body.isBeingFollowed,
+        overlay: true,
+        usersList
+    })
 })
 /* follow someone */
 app.put('/follow', async (req, res) => {
@@ -341,26 +330,27 @@ app.put('/follow', async (req, res) => {
     const userFollowing = await User.findById(req.session.user_id)
     if (userToFollow.username === userFollowing.username) {
         console.log('same person')
-        res.redirect('/' + userFollowing.username)
-    } else {
-        let isBeingFollowed = false
-        const users = await User.find({follows: {$in: [userToFollow._id]}})
-        for (const u of users) {
-            if (u.username === userFollowing.username) {
-                isBeingFollowed = true;
-                console.log(u);
-                break;
-            }
-        }
-        if (!isBeingFollowed) {
-            await User.findByIdAndUpdate(userFollowing._id, {$push: {follows: userToFollow._id}})
-            await User.findByIdAndUpdate(userToFollow._id, {$push: {followers: userFollowing._id}})
-            console.log(userFollowing.username + ' is now following ' + userToFollow.username)
-        } else {
-            console.log('duplicate follow')
-        }
-        res.redirect('/' + userToFollow.username)
+        return res.redirect('/' + userFollowing.username)
     }
+    /* else */
+    let isBeingFollowed = false
+    const users = await User.find({follows: {$in: [userToFollow._id]}})
+    for (const u of users) {
+        if (u.username === userFollowing.username) {
+            isBeingFollowed = true;
+            console.log(u);
+            break;
+        }
+    }
+    if (!isBeingFollowed) {
+        await User.findByIdAndUpdate(userFollowing._id, {$push: {follows: userToFollow._id}})
+        await User.findByIdAndUpdate(userToFollow._id, {$push: {followers: userFollowing._id}})
+        console.log(userFollowing.username + ' is now following ' + userToFollow.username)
+    } else {
+        console.log('duplicate follow')
+    }
+    res.redirect('/' + userToFollow.username)
+
     // res.send('Follow!')
 })
 /* unfollow someone */
@@ -391,10 +381,13 @@ app.put('/unfollow', async (req, res) => {
     }
     // res.send('Follow!')
 })
+
 /* ------------------------------------------------ Testing ------------------------------------------------ */
 // Testing the error route
 app.get('*', (req, res) => {
-    res.send('404: page not found.')
+    res.send('<div style=margin:100px auto;">' +
+        '<h1>404: page not found.</h1>' +
+        '</div>')
 })
 
 
