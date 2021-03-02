@@ -75,6 +75,7 @@
 }
 .img-per-row {
     display: inline-block;
+    width: 30%;
 }
 .button{
     background-color: royalblue;
