@@ -14,16 +14,39 @@
             <div class="user-container" id="user-pic">
                 <div class="pic">
                     <img src="<%= user.pfp.url %>" width="150" alt="" >
-
                 </div>
             </div>
             <div class="user-container" id="user-info">
                 <h1 class="name"><%= user.username %></h1>
+                    <!-- follow/Unfollow buttons -->
+                <h2 class="name">
+                 <form action="/follow?_method=PUT" method="post"
+        <% if (isBeingFollowed || duplicateUser) { %>
+              style="display: none"
+                <% } %>
+        >
+            <input type="hidden" id="userid" name="userid" value="<%= user._id %>">
+            <button class="button" type="submit">follow
+            </button>
+        </form>
+        <form action="/unfollow?_method=PUT" method="post"
+        <% if (!isBeingFollowed || duplicateUser) { %>
+              style="display: none"
+                <% } %>
+        >
+            <input type="hidden" id="userid" name="userid" value="<%= user._id %>">
+            <button class="button"  type="submit">unfollow</button>
+        </form>
+                </h2>
                 <div class="info">
-                    <button type="button">followers</button>
-                     <%= user.followers.length %>
-                    <button type="button">following</button>
+                    <div class="group">
+                    <button class="button" type="button">followers</button>
+                     <%= user.followers.length%>
+                    </div>
+                    <div class="group">
+                    <button class="button" type="button">following</button>
                      <%= user.follows.length %>
+                    </div>
                 </div>
                 <div class="user-bio">
                     <h2>this is the bio. </h2>
@@ -52,25 +75,6 @@
 
         </div>
     </div>
-
-    <!-- Follow/Unfollow buttons -->
-        <form action="/follow?_method=PUT" method="post"
-        <% if (isBeingFollowed || duplicateUser) { %>
-              style="display: none"
-                <% } %>
-        >
-            <input type="hidden" id="userid" name="userid" value="<%= user._id %>">
-            <button type="submit">Follow
-            </button>
-        </form>
-        <form action="/unfollow?_method=PUT" method="post"
-        <% if (!isBeingFollowed || duplicateUser) { %>
-              style="display: none"
-                <% } %>
-        >
-            <input type="hidden" id="userid" name="userid" value="<%= user._id %>">
-            <button type="submit">Unfollow</button>
-        </form>
 
     </div>
 </main>

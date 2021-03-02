@@ -30,7 +30,8 @@
     padding:5px;
     margin: 30px;
     border-top: 44px;
-      border-color: grey;
+    border-color: grey;
+    display: inline-block;
 }
 #user-pic{
     display: inline-block;
@@ -50,6 +51,8 @@
     margin-bottom: 20px;
     font-size: 30px;
     font-family: "Calibri Light", monospace;
+    display: inline-block;
+
 }
 .info{
     margin-bottom: 20px;
@@ -69,10 +72,21 @@
     margin-left: 20px;
     margin-bottom: 20px;
 }
-/* Noah test */
 .group-of-three {
     display: flex;
 }
 .img-per-row {
     display: inline-block;
+}
+.button{
+    background-color: royalblue;
+    border-color: royalblue;
+    color: white;
+    alignment: center;
+    display: inline-block;
+    font-max-size: 20px;
+}
+.group{
+    display: inline-block;
+    alignment: center;
 }
