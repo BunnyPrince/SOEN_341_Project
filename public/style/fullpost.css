@@ -67,6 +67,7 @@ img.post {
 div.oneline {
     display:inline-block;
 }
+
 p.oneline {
     overflow-wrap: break-word;
     word-wrap: break-word;

@@ -14,7 +14,7 @@
     padding: 10px;
 
 }
-img {
+img.image-explore {
     height: 350px; /* fix img height */
     object-position: 50% 50%;
     margin: 0 auto; /* center img in div */
