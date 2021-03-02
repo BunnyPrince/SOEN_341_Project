@@ -1,0 +1,29 @@
+
+.dropmenu-options {
+    display: inline-block;
+    background: white;
+    color: black;
+}
+
+.nav-insta-logo {
+    margin-left: 150px;
+    margin-right: 225px;
+}
+
+.nav-search {
+    margin-right: 150px;
+    margin-bottom: 1px;
+}
+
+.input-searchbar {
+    background-color: #f9f9f9;
+    height: 25px;
+}
+
+.search-icon {
+    margin-top: 10px;
+}
+
+.nav-icons {
+    margin-right: 10px;
+}

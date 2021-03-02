@@ -102,9 +102,15 @@ db.once("open", () => {
 /* FOR TESTING: DELETE LATER */ // app.use((req, res, next) => {req.session.user_id = 'admin'; next();})
 /* ==================================================== RESTFUL ROUTES & MONGOOSE CRUD  ====================================================  */
 /* TO-DO: PERSONALIZED FEED */
-app.get('/', (req, res) => {
-    if (req.session.user_id)
-        return res.render('feed');
+app.get('/', async (req, res) => {
+    if (req.session.user_id){
+        let { follows } = await User.findById(req.session.user_id)
+        // console.log(follows)
+        let feedImgs = await Image.find({user: {$in: follows}})
+        console.log(feedImgs)
+
+        return res.render('feed', { feedImgs });
+    }
     else {
         res.render('login', {
             msg:
@@ -145,7 +151,7 @@ app.post('/login', async (req, res) => {
 
     // res.send('POST METHOD /login - Error route')
 })
-/* index */
+/* explore */
 app.get('/images', isLogged, async (req, res) => {
     const images = await Image.find({}).sort({createdAt: 'desc'});
     res.render('images/explore', {images})
