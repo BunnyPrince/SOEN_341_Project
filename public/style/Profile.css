@@ -24,6 +24,10 @@
     position: relative;
     vertical-align: baseline;
     margin-bottom: 20px;
+
+    /* Fixing un clickable buttons issue (see modal class) */
+    z-index: 15;
+
 }
 .user-container{
     float:left;
@@ -88,4 +92,21 @@
 .group{
     display: inline-block;
     alignment: center;
+}
+
+
+div.modal .modal-header .modal-body .modal-content {
+    /* modal divs should be behind other divs until clicked on */
+    z-index: 5;
+    /* This alternative solution wouldn't work: display none */
+}
+div.modal {
+    /* overlay on the whole page */
+    display: block;
+}
+div.modal-content {
+    /* limit size of the "popup" box */
+    display: block;
+    margin: 100px auto;
+    width: 450px;
 }
