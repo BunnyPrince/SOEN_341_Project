@@ -14,26 +14,22 @@
 
     <br>
     <div class="cardd">
-      <div class="card-body-p">
+        <div class="card-body-p">
             <div class="boxes">
                 <!-- User profile description: pfp, username, bio, number of followers/followings -->
                 <div class="Bio">
                     <img src="<%= user.pfp.url %>" width="150" alt="">
                     <%= user.username %>
-                    <form action="/<%= user.username %>/followers" method="post">
-                        <input type="hidden" id="userid" name="userid" value="<%= user._id %>">
-                        <input type="hidden" id="isBeingFollowed" name="isBeingFollowed" value="<%= isBeingFollowed %>">
-                        <input type="hidden" id="duplicateUser" name="duplicateUser" value="<%= duplicateUser %>">
-                        <button type="submit">followers</button>
-                    </form>
-                     <%= user.followers.length %>
-                    <form action="/<%= user.username %>/follows" method="post">
-                        <input type="hidden" id="userid" name="userid" value="<%= user._id %>">
-                        <input type="hidden" id="isBeingFollowed" name="isBeingFollowed" value="<%= isBeingFollowed %>">
-                        <input type="hidden" id="duplicateUser" name="duplicateUser" value="<%= duplicateUser %>">
-                        <button type="submit">followings</button>
-                    </form>
-                     <%= user.follows.length %>
+                    <button type="button"
+                            onclick="showList('<%= user._id %>', '<%= isBeingFollowed %>', '<%= duplicateUser %>', 'followers', '<%= user.username %>')">
+                        followers
+                    </button>
+                    <%= user.followers.length %>
+                    <button type="button"
+                            onclick="showList('<%= user._id %>', '<%= isBeingFollowed %>', '<%= duplicateUser %>', 'follows', '<%= user.username %>')">
+                        followings
+                    </button>
+                    <%= user.follows.length %>
                 </div>
 
                 <div class="Bio">
@@ -58,43 +54,20 @@
         </div>
 
         <!-- Follow/Unfollow buttons -->
-        <form action="/follow?_method=PUT" method="post"
+        <button type="button"
         <% if (isBeingFollowed || duplicateUser) { %>
-              style="display: none"
+                style="display: none"
                 <% } %>
-        >
-            <input type="hidden" id="userid" name="userid" value="<%= user._id %>">
-            <button type="submit">Follow
-            </button>
-        </form>
-        <form action="/unfollow?_method=PUT" method="post"
+                onclick="editFollow('<%= user._id %>', 'follow')">Follow
+        </button>
+        <button type="button"
         <% if (!isBeingFollowed || duplicateUser) { %>
-              style="display: none"
+                style="display: none"
                 <% } %>
-        >
-            <input type="hidden" id="userid" name="userid" value="<%= user._id %>">
-            <button type="submit">Unfollow</button>
-        </form>
-
+                onclick="editFollow('<%= user._id %>', 'unfollow')">Unfollow
+        </button>
 
     </div>
-    <form action="/follow?_method=PUT" method="post"
-    <% if (isBeingFollowed || duplicateUser) { %>
-          style="display: none"
-            <% } %>
-    >
-        <input type="hidden" id="userid" name="userid" value="<%= user._id %>">
-        <button type="submit">Follow
-        </button>
-    </form>
-    <form action="/unfollow?_method=PUT" method="post"
-    <% if (!isBeingFollowed || duplicateUser) { %>
-          style="display: none"
-            <% } %>
-    >
-        <input type="hidden" id="userid" name="userid" value="<%= user._id %>">
-        <button type="submit">Unfollow</button>
-    </form>
 
     <div id="overlay"
     <% if (overlay) { %>
@@ -123,8 +96,40 @@
 </main>
 
 <script>
-    function openModal() {
-        console.log('open modal')
+    function editFollow(userid, type) {
+        console.log('clicked ' + type);
+        var form = document.createElement('form');
+        form.setAttribute('method', 'post');
+        form.setAttribute('action', '/' + type + '?_method=PUT');
+        var input = document.createElement('input');
+        input.setAttribute('name', 'userid');
+        input.setAttribute('value', userid);
+        form.style.display = 'hidden';
+        form.appendChild(input);
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+    function showList(userid, isBeingFollowed, duplicateUser, type, username) {
+        console.log('clicked ' + type);
+        var form = document.createElement('form');
+        form.setAttribute('method', 'post');
+        form.setAttribute('action', '/' + username + '/' + type);
+        var inputUserID = document.createElement('input');
+        inputUserID.setAttribute('name', 'userid');
+        inputUserID.setAttribute('value', userid);
+        var inputFollowed = document.createElement('input');
+        inputFollowed.setAttribute('name', 'isBeingFollowed');
+        inputFollowed.setAttribute('value', isBeingFollowed);
+        var inputDuplicate = document.createElement('input');
+        inputDuplicate.setAttribute('name', 'duplicateUser');
+        inputDuplicate.setAttribute('value', duplicateUser);
+        form.appendChild(inputUserID);
+        form.appendChild(inputFollowed);
+        form.appendChild(inputDuplicate);
+        form.style.display = 'hidden';
+        document.body.appendChild(form);
+        form.submit();
     }
 </script>
 
