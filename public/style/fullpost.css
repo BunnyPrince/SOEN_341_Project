@@ -1,3 +1,4 @@
+/*-----div---------*/
 .post-card {
     padding:80px;
     display:flex;
@@ -22,9 +23,6 @@
 }
 .post { /* div containing the image*/
     width: auto;
-}
-img.post {
-    height: 500px; /* needs to fit the div.post-column*/
 }
 .comment-section {
     background-color: #fafafa;
@@ -67,18 +65,27 @@ img.post {
 div.oneline {
     display:inline-block;
 }
-
-p.oneline {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    hyphens: auto;
+/*--------image-------*/
+img.post {
+    height: 500px; /* needs to fit the div.post-column*/
 }
+
+/*---------button-----*/
 .button {
     position:absolute;
     right:5px;
     color: #3e83f6;
     z-index: 5; /* buttons are "behind" sticky .caption and .new-comment */
 }
+
+/*---------p---------*/
+p.oneline {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+/*--------other--------*/
 a {
     text-decoration: none;
 }

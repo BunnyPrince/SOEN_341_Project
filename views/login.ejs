@@ -1,39 +1,45 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-<link href="/style/basic.css" rel="stylesheet" type="text/css">
-<link href="/style/custom.css" rel="stylesheet" type="text/css">
+
+<link href="/style/login.css" rel="stylesheet" type="text/css">
+<link href="/style/similar.css" rel="stylesheet" type="text/css">
 
 
-
-<main class="btn-login-background">
+<main class="btn-background">
     <div  align="center" >
-      <div class="col-sm-4 p-5">
-          <div class="card btn-login-card">
-               <h1 class="name-inst">
-                   <img src="https://1000logos.net/wp-content/uploads/2017/02/Instagram-Logo.png"
-                             width=170px height=70px alt=""> </h1>
+        <article class="article_centering">
+            <div class="card btn-card">
+
+                <h1 class="name-inst">
+                    <img src="https://i.pinimg.com/originals/f9/f0/7a/f9f07a203874e68dd521ff8f8b12d0b7.gif" width=170px height=70px alt="">
+                </h1>
+
                 <div class="card-body">
                     <% for (let m of msg) { %>
                         <h4> <%= m %> </h4>
                     <% } %>
-                     <form action="/login" method="post">
-                         <div class="input1">
-                        <input class="login-input" placeholder="Enter username" name="username" required>
-                         </div>
-                         <div class="input2">
-                         <input type="password" class="login-input" placeholder="Enter password" name="password" required>
-                         </div>
-                         <button class="btn btn-button">Login</button>
-                    </form>
+
+                        <form action="/login" method="post">
+                            <div class="input1">
+                                <input class="login-input" placeholder="Enter username" name="username" required>
+                            </div>
+
+                            <div class="input2">
+                                <input type="password" class="login-input" placeholder="Enter password" name="password" required>
+                            </div>
+
+                            <button class="btn btn-button">Login</button>
+                        </form>
                 </div>
-          </div>
-          <div class="register">
-              <button class="btn btn-button" onclick="location.href ='/register';">Don't have an account yet? Register</button>
-          </div>
-      </div>
+            </div>
+
+            <div class="card btn-card">
+                <p style="vertical-align: inherit">Don't have an account yet?
+                <a href ='/register';>Register</a>
+                </p>
+            </div>
+        </article>
     </div>
-
-
 </main>
 
 <%- include('./partials/footer') %>

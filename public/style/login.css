@@ -1,0 +1,49 @@
+/*
+in similar.css
+-html
+-btn-background
+-card
+-btn-card
+-btn-button
+ */
+
+/*---------article-----------*/
+.article_centering {
+    flex-direction: row;
+    flex-grow: 1;
+    justify-content: center;
+    margin: 20% auto 0;
+    max-width: 935px;
+    padding-bottom: 32px;
+    width: 100%;
+}
+
+/*---------div-----------*/
+.input1{
+    margin-bottom: 20px;
+    width: 300px;
+}
+
+.input2{
+    margin-bottom: 20px;
+    width: 300px;
+}
+
+/*---------form-------*/
+form{
+    align-items: center;
+}
+
+/*---------input-----------*/
+.login-input{
+    margin-bottom: 10px;
+    background-color: #e4e7eb;
+    alignment: center;
+    width: 300px;
+}
+
+/*----------p--------------*/
+p{
+    margin: 15px;
+    text-align: center;
+}

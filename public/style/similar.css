@@ -1,0 +1,33 @@
+/*
+everything in this css file applies to the login.ejs and the register.ejs files
+ */
+
+html {
+    background-color: #f1f3f5;
+}
+/*---------main-----------*/
+.btn-background{
+    background-color: #f1f3f5;
+    alignment: center;
+}
+/*---------card------------*/
+.card {
+    max-width: 1100px;
+    padding: 20px 0;
+    align-self: flex-end;
+    margin-bottom: 20px;
+    align-items: center;
+}
+.btn-card {
+    background-color: white;
+    padding-top: 20px;
+    width: 350px;
+    align-items: center;
+}
+/*-------button------------*/
+.btn-button{
+    background-color: royalblue;
+    color: white;
+    width: 300px;
+    alignment: center;
+}

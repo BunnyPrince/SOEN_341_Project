@@ -1,0 +1,48 @@
+/*
+in similar.css
+-html
+-btn-background
+-card
+-btn-card
+-btn-button
+ */
+
+/*---------article-----------*/
+.article_centering {
+    flex-direction: row;
+    flex-grow: 1;
+    justify-content: center;
+    margin: 20% auto 0;
+    max-width: 935px;
+    padding-bottom: 32px;
+    width: 100%;
+}
+
+/*---------label-------*/
+.register-label {
+    float: left;
+    width: 40%;
+    text-align: left;
+    color: black;
+    alignment: center;
+}
+
+/*----------input--------*/
+input {
+    margin-bottom: 10px;
+    background-color: #e4e7eb;
+    alignment: center;
+    width: 300px;
+}
+
+.text{
+    background-color: royalblue;
+    color: white;
+    width: 300px;
+    alignment: center;
+}
+/*----------p--------------*/
+p{
+    margin: 15px;
+    text-align: center;
+}

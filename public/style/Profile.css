@@ -1,5 +1,6 @@
 /*the style for the Profile */
 
+/*---------div-----------*/
 .profile-container{
     -webkit-box-flex: 1;
     flex-grow: 1;
@@ -49,30 +50,22 @@
 }
 .pic{
     justify-content: center;
+    width: 150px;
+    height: 150px;
+    position: relative;
+    overflow: hidden;
     border-radius: 50%;
-}
-.name{
-    margin-bottom: 20px;
-    font-size: 30px;
-    font-family: "Calibri Light", monospace;
-    display: inline-block;
-
 }
 .info{
     margin-bottom: 20px;
     font-size: 20px;
     font-style: normal;
 }
-.user-bio{
-    font-size: 15px;
-    font-style: normal;
-    margin-bottom: 20px;
-    font-family: "Calibri Light", monospace ;
+.group{
+    display: inline-block;
+    alignment: center;
 }
-.galleryimage{
-    margin-left: 20px;
-    margin-bottom: 20px;
-}
+
 .group-of-three {
     display: flex;
 
@@ -81,6 +74,15 @@
     display: inline-block;
     width: 30%;
 }
+
+.user-bio{
+    font-size: 15px;
+    font-style: normal;
+    margin-bottom: 20px;
+    font-family: "Calibri Light", monospace ;
+}
+
+/*--------button--------*/
 .button{
     background-color: royalblue;
     border-color: royalblue;
@@ -89,12 +91,33 @@
     display: inline-block;
     font-max-size: 20px;
 }
-.group{
-    display: inline-block;
-    alignment: center;
+
+/*-----------image--------*/
+.round-img {
+    display: inline;
+    height: 100%;
+    width: auto;
 }
 
+.galleryimage{
+    margin-left: 20px;
+    margin-bottom: 20px;
 
+    /*this will make the image not distort*/
+    height: 150px;
+    /*height: 150px;*/
+    /*width: 150px;*/
+}
+/*---------h-------*/
+.name{
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-family: "Calibri Light", monospace;
+    display: inline-block;
+
+}
+
+/*---------other-------*/
 div.modal .modal-header .modal-body .modal-content {
     /* modal divs should be behind other divs until clicked on */
     z-index: 5;

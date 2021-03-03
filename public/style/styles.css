@@ -1,3 +1,4 @@
+/*--------div---------*/
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -23,21 +24,6 @@
 .modal-header {
     font-weight: bold;
 }
-/* The Close Button */
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
 #overlay {
     position: fixed;
     opacity: 0;
@@ -53,4 +39,20 @@
 #overlay.active {
     pointer-events: all;
     opacity: 1;
+}
+
+/*------------button---------*/
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
