@@ -19,7 +19,7 @@ nav {
 .input-searchbar {
     background-color: #f9f9f9;
     height: 25px;
-    width: 100%;
+    width: 206px;
 }
 
 /*---------placement---------*/
@@ -40,4 +40,7 @@ nav {
 
 .searchbar {
     padding-top: 15px;
+}
+.navbar {
+  height: 60px;
 }
