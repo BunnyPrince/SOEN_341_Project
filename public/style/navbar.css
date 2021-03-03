@@ -12,6 +12,7 @@ nav {
     display: inline-block;
     background: white;
     color: black;
+
 }
 /*---------input-----------*/
 .input-searchbar {
@@ -20,24 +21,19 @@ nav {
     width: 100%;
 }
 
-/*---------others---------*/
-.nav-insta-logo {
-    margin-left: 50px;
-    margin-right: 50px;
+/*---------placement---------*/
+.flex-boxx{
+    display: flex;
+    align-items: center;
+  /*  justify-content: flex-end; */
 }
-
-.nav-search {
-    margin-right: 150px;
-    margin-bottom: 1px;
+.search-icon{
+    margin-right: 300px;
 }
-
-
-
-.search-icon {
-    margin-top: 10px;
+.insta-logo{
+    margin-right: 220px;
+    margin-left: 150px;
 }
-
-.nav-icons {
-    margin-right: 10px;
+.searchbar{
+    padding-top: 15px;
 }
-
