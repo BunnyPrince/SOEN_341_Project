@@ -24,6 +24,16 @@ html {
     width: 350px;
     align-items: center;
 }
+/*---------article-----------*/
+.article_centering {
+    flex-direction: row;
+    flex-grow: 1;
+    justify-content: center;
+    margin: 200px auto 0;
+    max-width: 935px;
+    padding-bottom: 32px;
+    width: 100%;
+}
 /*-------button------------*/
 .btn-button{
     background-color: royalblue;

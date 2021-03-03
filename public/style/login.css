@@ -5,18 +5,9 @@ in similar.css
 -card
 -btn-card
 -btn-button
+-article_centering
  */
 
-/*---------article-----------*/
-.article_centering {
-    flex-direction: row;
-    flex-grow: 1;
-    justify-content: center;
-    margin: 20% auto 0;
-    max-width: 935px;
-    padding-bottom: 32px;
-    width: 100%;
-}
 
 /*---------div-----------*/
 .input1{
