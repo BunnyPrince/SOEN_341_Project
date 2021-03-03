@@ -103,10 +103,8 @@
     margin-left: 20px;
     margin-bottom: 20px;
 
-    /*this will make the image not distort*/
     height: 150px;
-    /*height: 150px;*/
-    /*width: 150px;*/
+    width: 150px;
 }
 /*---------h-------*/
 .name{
