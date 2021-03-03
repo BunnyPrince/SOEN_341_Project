@@ -29,16 +29,15 @@ nav {
 .flex-boxx {
     display: flex;
     align-items: center;
-    /*  justify-content: flex-end; */
 }
 
 .search-icon {
-    margin-right: 300px;
+    margin-right: 60%;
 }
 
 .insta-logo {
-    margin-right: 220px;
-    margin-left: 150px;
+    margin-right: 20%;
+    margin-left: 10%;
 }
 
 .searchbar {
@@ -46,4 +45,8 @@ nav {
 }
 .navbar {
   height: 60px;
+}
+.dropdown-menu{
+        right:0;
+    left: auto;
 }
