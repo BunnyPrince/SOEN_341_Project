@@ -1,3 +1,4 @@
+
 nav {
     background-color: white;
 }
@@ -19,9 +20,8 @@ nav {
 .input-searchbar {
     background-color: #f9f9f9;
     height: 25px;
-    width:  100%;
-    width :206px;
-    margin-left:0px;
+    width: 100%;
+    width: 206px;
 
 }
 
@@ -43,10 +43,21 @@ nav {
 .searchbar {
     padding-top: 15px;
 }
-.navbar {
-  height: 60px;
+
+.btn-sm {
+    padding: 0px;
 }
-.dropdown-menu{
-        right:0;
+
+/*-------other-----*/
+.navbar {
+    min-height: 60px;
+}
+
+.dropdown-menu {
+    right: 0;
     left: auto;
 }
+
+
+
+

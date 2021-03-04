@@ -8,27 +8,34 @@
 
 <link href="/style/navbar.css" rel="stylesheet" type="text/css">
 
-
-<nav class="navbar navbar-expand-lg navbar-light sticky-top border-bottom border-dark">
+<body>
+<nav class="navbar navbar-expand-xl navbar-light sticky-top border-bottom border-dark ">
     <div class="container-fluid">
 
-        <a class="insta-logo" href="/">
+
+        <!---logo-------->
+        <a class="navbar-brand insta-logo" href="/">
             <img src="https://lh3.googleusercontent.com/i5MfhCHoL9b4CMg7EqHDOLvIjJXyT2rqwBefKMQygYNqYUjXWJvU-MxY9iIWjslfTJGqGOU=s170"
                  width="110" height="40" alt="">
         </a>
+
+
+        <!---toggler btn-------->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
+
         <div class="collapse navbar-collapse " id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-lg-0 ">
+            <ul class="navbar-nav ">
+
 
                 <!---search-------->
                 <form class="flex-boxx searchbar search-icon">
                     <input class="form-control input-searchbar me-2" type="search" placeholder="Search"
                            aria-label="Search">
-                    <button class="btn btn-navbar-button " type="button"
+                    <button class="btn btn-navbar-button search-icon" type="button"
                             onclick="location.href ='/search';">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
                              class="bi bi-search" viewBox="0 0 16 16">
@@ -71,7 +78,7 @@
                 </li>
 
                 <!---profile pic dropdownmenu-------->
-                <div class=" btn-group dropdown flex-boxx">
+                <div class=" dropdown flex-boxx">
                     <button class="btn btn-sm dropmenu-options " type="button" id="dropdownMenuButton1"
                             data-bs-toggle="dropdown" aria-expanded="false">
 
@@ -105,6 +112,8 @@
         </div>
     </div>
 </nav>
+
+</body>
 
 
 <script>
