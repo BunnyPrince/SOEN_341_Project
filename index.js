@@ -85,6 +85,15 @@ const whenLogged = (req, res, next) => {
 }) */
 
 
+// Error Handling function
+const asyncErr = (fn) => {
+    return (req, res, next) => {
+        fn(req, res, next).catch(e => {
+            next(e)
+        })
+    }
+}
+
 /* ---------------------------------------------------- MongoDB connection ---------------------------------------------------- */
 let db_name = 'ig_db'
 mongoose.connect('mongodb://localhost:27017/' + db_name, {
@@ -101,6 +110,7 @@ db.once("open", () => {
 })
 
 /* ==================================================== RESTFUL ROUTES & MONGOOSE CRUD  ====================================================  */
+
 /* profile page (redirect to login if not logged in) */
 app.get('/', async (req, res) => {
     if (req.session.user_id) {
@@ -108,12 +118,12 @@ app.get('/', async (req, res) => {
         let feedImgs = await Image.find({user: {$in: follows}})
         // console.log(feedImgs)
         return res.render('feed', {feedImgs});
-    } else {
-        res.render('login', {
-            msg:
-                [req.flash('failedLogin'), req.flash('successRegister')]
-        })
-    }
+    } // else {
+    res.render('login', {
+        msg:
+            [req.flash('failedLogin'), req.flash('successRegister')]
+    })
+    //}
 })
 app.post('/login', async (req, res) => {
     const {username, password} = req.body
@@ -269,37 +279,36 @@ app.delete('/images/:imageId/comments/:commentId', async (req, res) => {
 app.get('/:username', isLogged, async (req, res, next) => {
     const {username} = req.params
     const user = await User.findOne({username}).populate('images')
-    if (user) {
-        const userSession = await User.findById(req.session.user_id)
-        let duplicateUser = false;
-        if (userSession.username === user.username)
-            duplicateUser = true
-        let isBeingFollowed = false
-        const users = await User.find({follows: {$in: [user._id]}})
-        for (const u of users) {
-            if (u.username === userSession.username) {
-                isBeingFollowed = true;
-                console.log(u.username);
-                break;
-            }
+    if (!user) // if profile page does not exist, send to error page
+        return next()
+    const userSession = await User.findById(req.session.user_id)
+    let duplicateUser = false;
+    if (userSession.username === user.username)
+        duplicateUser = true
+    let isBeingFollowed = false
+    const users = await User.find({follows: {$in: [user._id]}})
+    for (const u of users) {
+        if (u.username === userSession.username) {
+            isBeingFollowed = true;
+            console.log(u.username);
+            break;
         }
-        console.log(isBeingFollowed);
-        console.log(userSession.username + userSession._id + ' follows ' + user.username + user._id + '? ' + isBeingFollowed)
-        console.log(userSession.username + userSession._id + ' same as ' + user.username + user._id + '? ' + duplicateUser)
-        return res.render('profile', {user, isBeingFollowed, duplicateUser, overlay: false, usersList: []})
     }
-    // if no users found, send to error page
-    next()
+    // console.log(isBeingFollowed);
+    // console.log(userSession.username + userSession._id + ' follows ' + user.username + user._id + '? ' + isBeingFollowed)
+    // console.log(userSession.username + userSession._id + ' same as ' + user.username + user._id + '? ' + duplicateUser)
+    return res.render('profile', {user, isBeingFollowed, duplicateUser, overlay: false, usersList: []})
+
 })
-/* modal for follows/followers list */
-app.post('/:username/followers', async (req, res, next) => {
+/* Show follows and followers list (same route) */
+app.post('/:username/:f', async (req, res, next) => {
+    const {f} = req.params
+    if (f !== 'followers' && f !== 'follows')
+        return next()
     const user = await User.findById(req.body.userid).populate('images')
-    const usersList = []
-    for (const u of user.followers) {
-        const follower = await User.findById(u)
-        usersList.push(follower)
-    }
-    console.log(usersList)
+    console.log(user[f])
+    const usersList = await User.find({_id: {$in: user[f]}})
+    // console.log(usersList)
     return res.render('profile', {
         user,
         duplicateUser: req.body.duplicateUser,
@@ -307,89 +316,60 @@ app.post('/:username/followers', async (req, res, next) => {
         overlay: true,
         usersList
     })
-})
-app.post('/:username/follows', async (req, res, next) => {
-    const user = await User.findById(req.body.userid).populate('images')
-    const usersList = []
-    for (const u of user.follows) {
-        const follow = await User.findById(u)
-        usersList.push(follow)
-    }
-    console.log(usersList)
-    return res.render('profile', {
-        user,
-        duplicateUser: req.body.duplicateUser,
-        isBeingFollowed: req.body.isBeingFollowed,
-        overlay: true,
-        usersList
-    })
+
 })
 /* follow someone */
 app.put('/follow', async (req, res) => {
     const userToFollow = await User.findById(req.body.userid)
     const userFollowing = await User.findById(req.session.user_id)
+    // Users cannot follow themselves
     if (userToFollow.username === userFollowing.username) {
         console.log('same person')
         return res.redirect('/' + userFollowing.username)
     }
-    /* else */
-    let isBeingFollowed = false
-    const users = await User.find({follows: {$in: [userToFollow._id]}})
-    for (const u of users) {
+    // Check if sessionUser already follows user
+    // const users = await User.find({follows: {$in: [userToFollow._id]}})
+    for (let u of userToFollow.followers) {
         if (u.username === userFollowing.username) {
-            isBeingFollowed = true;
-            console.log(u);
-            break;
+            console.log('duplicate follow')
+            return res.redirect('/' + userToFollow.username)
         }
     }
-    if (!isBeingFollowed) {
-        await User.findByIdAndUpdate(userFollowing._id, {$push: {follows: userToFollow._id}})
-        await User.findByIdAndUpdate(userToFollow._id, {$push: {followers: userFollowing._id}})
-        console.log(userFollowing.username + ' is now following ' + userToFollow.username)
-    } else {
-        console.log('duplicate follow')
-    }
+    userFollowing.follows.push(userToFollow)
+    await userFollowing.save()
+    userToFollow.followers.push(userFollowing)
+    await userToFollow.save()
+
+    console.log(userFollowing.username + ' is now following ' + userToFollow.username)
     res.redirect('/' + userToFollow.username)
 
-    // res.send('Follow!')
 })
 /* unfollow someone */
 app.put('/unfollow', async (req, res) => {
-    const userToUnFollow = await User.findById(req.body.userid)
-    const userUnFollowing = await User.findById(req.session.user_id)
-    if (userToUnFollow.username === userUnFollowing.username) {
-        console.log('same person')
-        res.redirect('/' + userUnFollowing.username)
-    } else {
-        let isBeingFollowed = false
-        const users = await User.find({follows: {$in: [userToUnFollow._id]}})
-        for (const u of users) {
-            if (u.username === userUnFollowing.username) {
-                isBeingFollowed = true;
-                console.log(u);
-                break;
-            }
-        }
-        if (isBeingFollowed) {
-            await User.findByIdAndUpdate(userUnFollowing._id, {$pull: {follows: userToUnFollow._id}})
-            await User.findByIdAndUpdate(userToUnFollow._id, {$pull: {followers: userUnFollowing._id}})
-            console.log(userUnFollowing.username + ' has unfollowed ' + userToUnFollow.username)
-        } else {
-            console.log('has not followed yet')
-        }
-        res.redirect('/' + userToUnFollow.username)
-    }
-    // res.send('Follow!')
+    const userToUnfollow = { ... req.body }
+    const sessionUser = req.session.user_id
+
+    await User.findByIdAndUpdate(sessionUser, {$pull: {follows: userToUnfollow.userid}})
+    await User.findByIdAndUpdate(userToUnfollow.userid, {$pull: {followers: sessionUser}})
+    console.log(sessionUser + ' has unfollowed ' + userToUnfollow.username)
+    return res.redirect('/' + userToUnfollow.username)
+
 })
 
-/* ------------------------------------------------ Testing ------------------------------------------------ */
+/* ------------------------------------------------ Error Handling ------------------------------------------------ */
 // Testing the error route
-app.get('*', (req, res) => {
+/* app.get('*', (req, res) => {
     res.send('<div style=margin:100px auto;">' +
         '<h1>404: page not found.</h1>' +
         '</div>')
+})*/
+app.use((err, req, res, next) => {
+    const {status = '404', message = 'Page Not Found'} = err
+    res.status(status).send(message)
 })
-
+app.use((req, res) => {
+    res.send("PAGE NOT FOUND")
+})
 
 /* ============================================= connection to the port/localhost ============================================= */
 const port = 3000 || process.env.PORT
