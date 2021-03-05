@@ -1,62 +1,87 @@
-
-nav {
-    background-color: white;
+#header-navbar {
+  background-color: white;
+  min-height: 60px;
 }
 
-/*---------button-----------*/
-.btn-navbar-button {
-    background-color: #ffffff;
-    visibility: visible;
+#nav-user .dropdown-toggle {
+  padding: 0;
+  color: black;
+  text-decoration: none;
 }
 
-.dropmenu-options {
-    display: inline-block;
-    background: white;
-    color: black;
-
+@media (min-width: 768px) {
+  #header-navbar-links {
+    display: flex !important;
+    justify-content: space-between !important;
+  }
 }
 
-/*---------input-----------*/
 .input-searchbar {
-    background-color: #f9f9f9;
-    height: 25px;
-    width: 100%;
-    width: 206px;
-
+  background-color: #f9f9f9;
+  /*height: 25px;*/
+  min-width: 206px;
 }
 
-/*---------placement---------*/
-.flex-boxx {
-    display: flex;
-    align-items: center;
-}
 
-.search-icon {
-    margin-right: 60%;
-}
 
-.insta-logo {
-    margin-right: 20%;
-    margin-left: 10%;
-}
+/*nav {*/
+/*    background-color: white;*/
+/*}*/
 
-.searchbar {
-    padding-top: 15px;
-}
+/*!*---------button-----------*!*/
+/*.btn-navbar-button {*/
+/*    background-color: #ffffff;*/
+/*    visibility: visible;*/
+/*}*/
 
-.btn-sm {
-    padding: 0px;
-}
+/*.dropmenu-options {*/
+/*    display: inline-block;*/
+/*    background: white;*/
+/*    color: black;*/
 
-/*-------other-----*/
-.navbar {
-    min-height: 60px;
-}
+/*}*/
 
-.dropdown-menu {
-    right: 0;
-    left: auto;
-}
+/*!*---------input-----------*!*/
+/*.input-searchbar {*/
+/*    background-color: #f9f9f9;*/
+/*    height: 25px;*/
+/*    !*width: 100%;*!*/
+/*    width: 206px;*/
+
+/*}*/
+
+/*!*---------placement---------*!*/
+/*.flex-boxx {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*}*/
+
+/*!*.search-icon {*!*/
+/*!*    margin-right: 60%;*!*/
+/*!*}*!*/
+
+/*.insta-logo {*/
+/*    margin-right: 20%;*/
+/*    margin-left: 10%;*/
+/*}*/
+
+/*.searchbar {*/
+/*    padding-top: 15px;*/
+/*}*/
+
+/*.btn-sm {*/
+/*    padding: 0px;*/
+/*}*/
+
+/*!*-------other-----*!*/
+/*.navbar {*/
+/*    min-height: 60px;*/
+/*}*/
+
+/*.dropdown-menu {*/
+/*    right: 0;*/
+/*    left: auto;*/
+/*}*/
 
 
 
