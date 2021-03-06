@@ -42,24 +42,9 @@ app.use(session({
 
 app.use(flash())
 
-// configuring multer, cloudiary (image processing & storage)
-/* cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_KEY,
-    api_secret: process.env.CLOUDINARY_SECRET
-}) */
-/* const storage = new CloudinaryStorage({
-    cloudinary,
-    params: {
-        folder: 'ig_photos',
-        allowedFormats: ['jpeg', 'png', 'jpg']
-    }
-}) */
-
-// const upload = multer({storage})
-
 /* -------------------------------------------------- Setting up middleware -------------------------------------------------- */
 // middleware that prints logs about the session object
+/*
 app.use((req, res, next) => {
     const {user_id} = req.session
     if (user_id)
@@ -67,9 +52,11 @@ app.use((req, res, next) => {
     else
         console.log('Not logged in')
     next()
-})
+}) */
 // pfp on navbar middleware
 app.use(asyncErr(async (req, res, next) => {
+ /*   if (!req.session)
+        return redirect('/') */
     const {user_id} = req.session
     if (user_id) {
         const { pfp } = await User.findById(user_id)
@@ -95,24 +82,20 @@ db.once("open", () => {
 })
 
 /* ===================================== RESTFUL ROUTES   ====================================  */
-/* ===== start authentication routes: feed or login, register, profile redirect, logout =====*/
 app.use('/', authRouter)
 
 app.get('/search', (req, res) => {
     res.render('search')
 })
-/* ===== images and comment routes: explore, upload, fullpost, update, delete, new and delete comment =====*/
 app.use('/images', isLogged, imgRouter)
 
-/* ====== user router: profile, follows and followers 'popup' post routes, follow/unfollow put routes ==== */
 app.use('/', isLogged, usrRouter)
 
-/* ------------------------------------------------ Error Handling ------------------------------------------------ */
-// Testing the error route
+
+// Error routes
 app.all('*', (req, res, next) => {
     next(new ExpressError('404', 'Page Not Found'))
 })
-// Error template
 app.use((err, req, res, next) => {
     if (!err.message)
         err.message = 'Something went wrong!'

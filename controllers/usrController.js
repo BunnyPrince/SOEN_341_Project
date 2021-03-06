@@ -2,43 +2,44 @@ const User = require('../models/user')
 const ExpressError = require('../.utils/ExpressError')
 const Joi = require('joi') // schema validation
 
+console.log('DEBUGGING usrController!!!')
+
 const userProfile = async (req, res, next) => {
     const {username} = req.params
-    const user = await User.findOne({username}).populate('images')
+    const user = await User.findOne({username})
+        .populate('images')
+        .populate('followers')
     if (!user) {
-        return next(new ExpressError(404, 'User Not Found.'))
+        return next(new ExpressError(404, 'Sorry, this page isn\'t available.'))
     }
-    const userSession = await User.findById(req.session.user_id)
-    let duplicateUser = false;
-    if (userSession.username === user.username)
-        duplicateUser = true
+    const { followers } = user
+    const { user_id:sessionUserId } = req.session
+    let duplicateUser = (sessionUserId === user._id.toString())
+
     let isBeingFollowed = false
-    const users = await User.find({follows: {$in: [user._id]}})
-    for (const u of users) {
-        if (u.username === userSession.username) {
-            isBeingFollowed = true;
-            console.log(u.username);
-            break;
+    for (const follower of followers) {
+        if (follower._id.toString() === sessionUserId) {
+            isBeingFollowed = true
+            break
         }
     }
-    // console.log(isBeingFollowed);
-    // console.log(userSession.username + userSession._id + ' follows ' + user.username + user._id + '? ' + isBeingFollowed)
-    // console.log(userSession.username + userSession._id + ' same as ' + user.username + user._id + '? ' + duplicateUser)
-    return res.render('profile', {user, isBeingFollowed, duplicateUser, overlay: false, usersList: []})
+    return res.render('profile',
+        {user, isBeingFollowed, duplicateUser, overlay: false, usersList: []})
 }
 const showListFollows = async (req, res, next) => {
     const {f} = req.params
     if (f !== 'followers' && f !== 'follows')
         return next()
-    const user = await User.findById(req.body.userid).populate('images')
-    console.log(user[f])
-    const usersList = await User.find({_id: {$in: user[f]}})
+    const user = await User.findById(req.body.userid)
+        .populate('images')
+        .populate(f)
+    // console.log(user[f])
     return res.render('profile', {
         user,
         duplicateUser: req.body.duplicateUser,
         isBeingFollowed: req.body.isBeingFollowed,
         overlay: true,
-        usersList
+        usersList: user[f]
     })
 }
 const profileFollow = async (req, res) => {
@@ -63,11 +64,11 @@ const profileFollow = async (req, res) => {
 }
 const profileUnfollow = async (req, res) => {
     const userToUnfollow = { ... req.body }
-    const sessionUser = req.session.user_id
+    const sessionUserId = req.session.user_id
 
-    await User.findByIdAndUpdate(sessionUser, {$pull: {follows: userToUnfollow.userid}})
-    await User.findByIdAndUpdate(userToUnfollow.userid, {$pull: {followers: sessionUser}})
-    console.log(sessionUser + ' has unfollowed ' + userToUnfollow.username)
+    const sessionUser = await User.findByIdAndUpdate(sessionUserId, {$pull: {follows: userToUnfollow.userid}})
+    await User.findByIdAndUpdate(userToUnfollow.userid, {$pull: {followers: sessionUserId}})
+    console.log(sessionUser.username + ' has unfollowed ' + userToUnfollow.username)
     return res.redirect('/' + userToUnfollow.username)
 }
 

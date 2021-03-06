@@ -1,11 +1,15 @@
 const Image = require('../models/image')
 const User = require('../models/user')
+const ExpressError = require('../.utils/ExpressError')
+const Joi = require('joi') // schema validation
 const bcrypt = require('bcrypt')
 
 const login_feed = async (req, res) => {
     if (req.session.user_id) {
         let {follows} = await User.findById(req.session.user_id)
-        let feedImgs = await Image.find({user: {$in: follows}}).populate('user').populate('comments')
+        let feedImgs = await Image.find({user: {$in: follows}})
+            .populate('user')
+            .populate('comments')
         console.log(feedImgs)
         return res.render('feed', {feedImgs});
     }
@@ -22,13 +26,10 @@ const verifyLogin = async (req, res) => {
         req.flash('failedLogin', "Wrong username and/or password.")
         return res.redirect('/') // implement wrong username/pw message
     }
-    // match to password
     const validPw = await bcrypt.compare(password, searchUser.password)
-
     if (validPw) {
-        // if success login, store user._id in session
         req.session.user_id = searchUser._id
-        console.log("success login") // TO-DO: implement success login message
+        console.log("success login")
         return res.redirect('/')
     }
     console.log('Failed login')
@@ -69,6 +70,7 @@ const profile = async (req, res) => {
 const logout = (req, res) => {
     req.session.user_id = null
     req.session.destroy() // completely any information stored in session
+    console.log('User has logout.')
     res.redirect('/')
 }
 module.exports = {

@@ -1,14 +1,14 @@
 const express = require('express')
 const router = express.Router()
-    // Error handling
-const ExpressError = require('../.utils/ExpressError')
+
+// Error handling
 const asyncErr = require('../.utils/asyncErr')
-const Joi = require('joi') // schema validation
-    // Other utils
+
 // Middlewares
 const isLogged = require('../.utils/isLogged')
 const whenLogged = require('../.utils/whenLogged')
-    // Controller
+
+// Controller
 const authController = require('../controllers/authController')
 const {logout} = authController
 
