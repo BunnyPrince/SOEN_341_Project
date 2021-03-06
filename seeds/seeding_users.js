@@ -4,7 +4,28 @@ const Comment = require('../models/comment')
 const User = require('../models/user')
 const userSeeds = require('./userSeeds') /* users to fill in db */
 const imageSeeds = require('./imageSeeds') /* images to fill db */
+// cloudinary
+if (process.env.NODE_ENV !== "production") {
+    require('dotenv').config()
+}
+const multer = require('multer')
+const cloudinary = require('cloudinary').v2
+const {CloudinaryStorage} = require('multer-storage-cloudinary')
+/* ============================== cloudinary, multer configuration ==========================*/
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_KEY,
+    api_secret: process.env.CLOUDINARY_SECRET
+})
+const storage = new CloudinaryStorage({
+    cloudinary,
+    params: {
+        folder: 'ig_photos',
+        allowedFormats: ['jpeg', 'png', 'jpg']
+    }
+})
 
+const upload = multer({storage})
 /* ------------------------------------------------ MongoDB connection ------------------------------------------------ */
 let db_name = 'ig_db'
 
@@ -24,6 +45,13 @@ db.once("open", () => {
 /* --------------------------------- Seeding db and closing --------------------------------- */
 const seedDB = async () => {
     await Comment.deleteMany({})
+    const imgs = await Image.find()
+    for (let i of imgs) {
+        if (i.filename) {
+            await cloudinary.uploader.destroy(i.filename)
+        }
+        await i.save()
+    }
     await Image.deleteMany({})
     await User.deleteMany({})
     for (let i = 0; i < userSeeds.length; i++) {

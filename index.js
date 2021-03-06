@@ -11,7 +11,7 @@ const methodOverride = require('method-override')
     // schemas
 // const Image = require('./models/image')
 // const Comment = require('./models/comment')
-// const User = require('./models/user')
+const User = require('./models/user')
 // const bcrypt = require('bcrypt')
     // Routers
 const imgRouter = require('./routes/imgRouter')
@@ -90,6 +90,15 @@ const whenLogged = (req, res, next) => {
     next()
 }) */
 
+// pfp on navbar middleware
+app.use(async (req, res, next) => {
+    const {user_id} = req.session
+    if (user_id) {
+        const { pfp } = await User.findById(user_id)
+        res.locals.pfp = pfp
+    }
+    next()
+})
 
 
 /* ---------------------------------------------------- MongoDB connection ---------------------------------------------------- */
@@ -130,7 +139,6 @@ app.use('/images', imgRouter)
 // delete comment
 
 
-/* ====== end images router ====== */
 /* ====== user router ==== */
 app.use('/', usrRouter)
 // user profile
