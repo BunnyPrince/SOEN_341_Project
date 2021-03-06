@@ -47,6 +47,9 @@
                     <div class="line1">
                         <p class="description"><%= image.caption %></p></div>
                 </div>
+                <div class="more">
+                    <button onclick="location.href ='/images/<%= image._id %>';" class="feed-btn btn btn-light" type="button">View all comments</button>
+                </div>
                 <% if (image.comments[image.comments.length - 2]) { %>
                 <% const { username, comment } = image.comments[image.comments.length - 2] %>
                     <div class="comments">
@@ -71,9 +74,6 @@
                         </div><!---place it in a box---->
                     </div>
                 <% } %>
-                <div class="more">
-                    <button onclick="location.href ='/images/<%= image._id %>';" class="feed-btn btn btn-light" type="button">View all comments</button>
-                </div>
                 <div class="new-comment">
                     <div class="input-comment line1">
                         <input size="50" class="input-comment" placeholder="Add a comment..." name="comment" required>

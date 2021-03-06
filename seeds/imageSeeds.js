@@ -3,23 +3,23 @@ module.exports = [
     [
         {
             url: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/rihanna1-1525756866.jpg?resize=480:*",
-            caption: ''
+            caption: 'Met Gala 2019'
         },
         {
             url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjBxZURopzpB6AMcmpjQiJv8Bv9GquDCrDDw&usqp=CAU",
-            caption: ''
+            caption: 'Award seasons!'
         },
         {
             url: "https://upload.wikimedia.org/wikipedia/commons/c/c2/Rihanna_Fenty_2018.png",
-            caption: ''
+            caption: ':)'
         },
         {
             url: "https://data.whicdn.com/images/312031597/original.jpg",
-            caption: ''
+            caption: "Just drinking' my beer"
         },
         {
             url: "https://estaticos.elperiodico.com/resources/jpg/3/2/1504886858323.jpg",
-            caption: ''
+            caption: 'What u looking at'
         }
     ],
    // User "John Smith" images
@@ -70,5 +70,24 @@ module.exports = [
     {
         url: "https://randomwordgenerator.com/img/picture-generator/52e8d5434d56af14f1dc8460962e33791c3ad6e04e5074417d2d73dc924cc4_640.jpg",
         caption: "Owls are cute <3"
-    }]
+    }],
+    [{
+        url: "https://cdn-wp.thesportsrush.com/2020/09/Screenshot-127.png",
+        cation: "Manipulating my friends on Among Us"
+    },
+    {
+        url: "https://cdn1.dotesports.com/wp-content/uploads/2019/11/18102958/disguisedtoast.jpg",
+        caption: "cool merch coming soon"
+    }],
+    [
+        {
+            url: "https://www.indiewire.com/wp-content/uploads/2020/11/alien-covenant.jpg",
+            caption: "aliens are weaker than me"
+        },
+        {
+            url: "https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fblogs-images.forbes.com%2Fmarkhughes%2Ffiles%2F2016%2F01%2FTerminator-2-1200x873.jpg",
+            caption: "little sun burnt"
+
+        }
+    ]
 ]
