@@ -41,8 +41,8 @@ const whenLogged = (req, res, next) => {
 router.get('/', asyncErr(async (req, res) => {
     if (req.session.user_id) {
         let {follows} = await User.findById(req.session.user_id)
-        let feedImgs = await Image.find({user: {$in: follows}})
-        // console.log(feedImgs)
+        let feedImgs = await Image.find({user: {$in: follows}}).populate('user').populate('comments')
+        console.log(feedImgs)
         return res.render('feed', {feedImgs});
     }
     res.render('login', {

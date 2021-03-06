@@ -1,23 +1,11 @@
 
-.username{
-font-size: 35px;
-    font-family: 'Brush Script MT', cursive;
-
-}
-
-.user-friends{
+.username, .user-friends{
 font-size: 20px;
+    font-weight: bold;
 }
 
-.comments{
+.comments, .description {
 font-size: 20px;
-    font-family: Georgia, serif;
-
-}
-
-.description{
-font-size: 18px;
-    font-family: Georgia, serif;
 
 }
 
@@ -84,6 +72,7 @@ div.input-comment {
 }
 input.input-comment{
     border:0;
+    outline:none;
 }
 .submit-btn{
     position: absolute;
