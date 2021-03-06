@@ -73,7 +73,7 @@ module.exports = [
     }],
     [{
         url: "https://cdn-wp.thesportsrush.com/2020/09/Screenshot-127.png",
-        cation: "Manipulating my friends on Among Us"
+        caption: "Manipulating my friends on Among Us"
     },
     {
         url: "https://cdn1.dotesports.com/wp-content/uploads/2019/11/18102958/disguisedtoast.jpg",
