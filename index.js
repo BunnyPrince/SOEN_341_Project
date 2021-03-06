@@ -1,11 +1,10 @@
 if (process.env.NODE_ENV !== "production") {
     require('dotenv').config()
 } // current env: "development"
-
-const session = require('express-session')
-const flash = require('connect-flash')
 const express = require('express')
 const app = express()
+const session = require('express-session')
+const flash = require('connect-flash')
 const path = require('path')
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
@@ -16,10 +15,13 @@ const bcrypt = require('bcrypt')
 const multer = require('multer')
 const cloudinary = require('cloudinary').v2
 const {CloudinaryStorage} = require('multer-storage-cloudinary')
+// Routers
+// const imgRouter = require('./routes/imgRouter')
 // Error handling
 const ExpressError = require('./.utils/ExpressError')
 const asyncErr = require('./.utils/asyncErr')
 const Joi = require('joi') // schema validation
+// Other utils
 
 /* ----------------------- configuration of dir, templates, EJS, encoding & route overriding ------------------------- */
 app.set('view engine', 'ejs')
@@ -176,6 +178,8 @@ app.post('/logout', (req, res) => {
     req.session.destroy() // completely any information stored in session
     res.redirect('/')
 })
+/* ===== images routes =====*/
+// app.use('/images', imgRouter)
 /* explore */
 app.get('/images', isLogged, asyncErr(async (req, res) => {
     const images = await Image.find({}).sort({createdAt: 'desc'});
@@ -247,7 +251,7 @@ app.delete('/images/:id', asyncErr(async (req, res) => {
         return res.send('Error: trying to delete image when not logged in')
     const {id} = req.params
     const {filename} = await Image.findById(id)
-    await User.findByIdAndUpdate(user_id, {$pull: {images: id}})/* delete reference to image */
+    await User.findByIdAndUpdate(user_id, {$pull: {images: id}}) /* delete reference to image */
     if (filename)
         await cloudinary.uploader.destroy(filename) // delete image from cloud storage with filename
     await Image.findByIdAndDelete(id) // delete image from db
@@ -265,10 +269,11 @@ app.post('/images/:id/comments', asyncErr(async (req, res) => {
 /* delete comment */
 app.delete('/images/:imageId/comments/:commentId', asyncErr(async (req, res) => {
     const {imageId, commentId} = req.params
-    const image = await Image.findByIdAndUpdate(imageId, {$pull: {comments: commentId}})/* delete reference to comment */
+    const image = await Image.findByIdAndUpdate(imageId, {$pull: {comments: commentId}}) /* delete reference to comment */
     await Comment.findByIdAndDelete(req.params.commentId)
     res.redirect(`/images/${image._id}`)
 }))
+/* ====== end images router ====== */
 /* user profile */
 app.get('/:username', isLogged, asyncErr(async (req, res, next) => {
     const {username} = req.params
