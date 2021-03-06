@@ -8,7 +8,7 @@ const flash = require('connect-flash')
 const path = require('path')
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
-    // schemas
+    // Schemas
 // const Image = require('./models/image')
 // const Comment = require('./models/comment')
 const User = require('./models/user')
@@ -17,11 +17,11 @@ const User = require('./models/user')
 const imgRouter = require('./routes/imgRouter')
 const authRouter = require('./routes/authRouter')
 const usrRouter = require('./routes/usrRouter')
+const accRouter = require('./routes/accRouter')
     // Error handling
 const ExpressError = require('./.utils/ExpressError')
 const asyncErr = require('./.utils/asyncErr')
 // const Joi = require('joi') // schema validation
-    // Other utils
     // Middlewares
 const isLogged = require('./.utils/isLogged')
 const whenLogged = require('./.utils/whenLogged')
@@ -91,6 +91,8 @@ app.use('/images', isLogged, imgRouter)
 
 app.use('/', isLogged, usrRouter)
 
+// To-do: account setting routes
+app.use('/account', accRouter)
 
 // Error routes
 app.all('*', (req, res, next) => {

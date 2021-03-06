@@ -10,7 +10,7 @@ const login_feed = async (req, res) => {
         let feedImgs = await Image.find({user: {$in: follows}})
             .populate('user')
             .populate('comments')
-        console.log(feedImgs)
+        // console.log(feedImgs)
         return res.render('feed', {feedImgs});
     }
     res.render('login', {
