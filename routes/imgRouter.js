@@ -1,13 +1,61 @@
+if (process.env.NODE_ENV !== "production") {
+    require('dotenv').config()
+} // current env: "development"
 const express = require('express')
 const router = express.Router()
-const session = require('express-session')
-const flash = require('connect-flash')
+const Image = require('../models/image')
+const Comment = require('../models/comment')
+const User = require('../models/user')
+const multer = require('multer')
+const cloudinary = require('cloudinary').v2
+const {CloudinaryStorage} = require('multer-storage-cloudinary')
+const ExpressError = require('../.utils/ExpressError')
 const asyncErr = require('../.utils/asyncErr')
+const Joi = require('joi') // schema validation
 
-/* TO-DO: Setting up the images routes
-* Need to import related packages
-*
-* */
+// .utils
+// const isLogged = require('../.utils/isLogged')
+// const whenLogged = require('../.utils/whenLogged')
+
+/* This router file contains all routes starting with '/images' */
+
+/* ================================== middlewares ==================================*/
+
+// function to check if user is logged in
+const isLogged = (req, res, next) => {
+    const {user_id} = req.session
+    if (user_id)
+        return next() // allow user to see instagram
+    else
+        return res.redirect('/') // if not logged in, redirect to login
+}
+// function does not allow a logged in user to see the login or register page
+const whenLogged = (req, res, next) => {
+    const {user_id} = req.session
+    if (!user_id)
+        return next() // allow user to see registration and/or login forms
+    else
+        return res.redirect('/') // if logged in, redirect to FEED
+}
+
+/* ============================== cloudinary, multer configuration ==========================*/
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_KEY,
+    api_secret: process.env.CLOUDINARY_SECRET
+})
+const storage = new CloudinaryStorage({
+    cloudinary,
+    params: {
+        folder: 'ig_photos',
+        allowedFormats: ['jpeg', 'png', 'jpg']
+    }
+})
+
+const upload = multer({storage})
+
+
+/* ===================================================================================*/
 
 /* explore */
 router.get('/', isLogged, asyncErr(async (req, res) => {
