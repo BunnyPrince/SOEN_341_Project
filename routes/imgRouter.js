@@ -12,31 +12,11 @@ const {CloudinaryStorage} = require('multer-storage-cloudinary')
 const ExpressError = require('../.utils/ExpressError')
 const asyncErr = require('../.utils/asyncErr')
 const Joi = require('joi') // schema validation
-
-// .utils
+    // controllers
+const imgController = require('../controllers/imgController')
+    // .utils
 // const isLogged = require('../.utils/isLogged')
 // const whenLogged = require('../.utils/whenLogged')
-
-/* This router file contains all routes starting with '/images' */
-
-/* ================================== middlewares ==================================*/
-
-// function to check if user is logged in
-const isLogged = (req, res, next) => {
-    const {user_id} = req.session
-    if (user_id)
-        return next() // allow user to see instagram
-    else
-        return res.redirect('/') // if not logged in, redirect to login
-}
-// function does not allow a logged in user to see the login or register page
-const whenLogged = (req, res, next) => {
-    const {user_id} = req.session
-    if (!user_id)
-        return next() // allow user to see registration and/or login forms
-    else
-        return res.redirect('/') // if logged in, redirect to FEED
-}
 
 /* ============================== cloudinary, multer configuration ==========================*/
 cloudinary.config({
@@ -53,19 +33,12 @@ const storage = new CloudinaryStorage({
 })
 
 const upload = multer({storage})
-
-
 /* ===================================================================================*/
 
-/* explore */
-router.get('/', isLogged, asyncErr(async (req, res) => {
-    const images = await Image.find({}).sort({createdAt: 'desc'});
-    res.render('images/explore', {images})
-}))
-/* get and post routes for UPLOAD */
-router.get('/new', isLogged, (req, res) => {
-    res.render('images/upload');
-})
+router.get('/', asyncErr(imgController.explore))
+
+router.get('/new', imgController.newImgForm)
+
 router.post('/', upload.array('image'), asyncErr(async (req, res) => {
     const {user_id} = req.session
     if (!user_id)
@@ -82,29 +55,10 @@ router.post('/', upload.array('image'), asyncErr(async (req, res) => {
 
 }))
 /* show full post */
-router.get('/:id', isLogged, asyncErr(async (req, res) => {
-    const image = await Image.findById(req.params.id).populate('comments')
-    // check if image belongs to current user
-    let permission = false
-    const imageUserId = image.user.toString()
-    if (imageUserId === req.session.user_id)
-        permission = true
-    // get image user
-    const imgUser = await User.findById(imageUserId)
-    // get current user
-    const currentUser = await User.findById(req.session.user_id)
-    res.render('images/fullpost', {image, permission, imgUser, currentUser})
-}))
-/* get and put routes to update image */
-router.get('/:id/edit', isLogged, asyncErr(async (req, res) => {
-    const {user_id: user} = req.session
-    const image = await Image.findById(req.params.id)
-    // check if current user has permission to edit image
-    const imgUser = image.user.toString()
-    if (user === imgUser)
-        return res.render('images/edit', {image});
-    res.redirect('/') // redirect to homepage or login if user does not have permission
-}))
+router.get('/:id', asyncErr(imgController.fullPost))
+
+router.get('/:id/edit', asyncErr(imgController.editPostForm))
+
 router.put('/:id', upload.array('image'), asyncErr(async (req, res) => {
     const {id} = req.params
     const caption = req.body.caption
@@ -134,21 +88,9 @@ router.delete('/:id', asyncErr(async (req, res) => {
     await Image.findByIdAndDelete(id) // delete image from db
     res.redirect('/images')
 }))
-/* new comment post route */
-router.post('/:id/comments', asyncErr(async (req, res) => {
-    const image = await Image.findById(req.params.id)
-    const comment = new Comment(req.body.comment)
-    image.comments.push(comment)
-    await comment.save()
-    await image.save()
-    res.redirect(`/images/${image._id}`)
-}))
-/* delete comment */
-router.delete('/:imageId/comments/:commentId', asyncErr(async (req, res) => {
-    const {imageId, commentId} = req.params
-    const image = await Image.findByIdAndUpdate(imageId, {$pull: {comments: commentId}})/* delete reference to comment */
-    await Comment.findByIdAndDelete(req.params.commentId)
-    res.redirect(`/images/${image._id}`)
-}))
+
+// Comments
+router.post('/:id/comments', asyncErr(imgController.commentPost))
+router.delete('/:imageId/comments/:commentId', asyncErr(imgController.deleteCommentPost))
 
 module.exports = router

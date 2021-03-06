@@ -22,6 +22,9 @@ const ExpressError = require('./.utils/ExpressError')
 const asyncErr = require('./.utils/asyncErr')
 // const Joi = require('joi') // schema validation
     // Other utils
+    // Middlewares
+const isLogged = require('./.utils/isLogged')
+const whenLogged = require('./.utils/whenLogged')
 
 /* ----------------------- configuration of dir, templates, EJS, encoding & route overriding ------------------------- */
 app.set('view engine', 'ejs')
@@ -65,31 +68,6 @@ app.use((req, res, next) => {
         console.log('Not logged in')
     next()
 })
-// function to check if user is logged in
-const isLogged = (req, res, next) => {
-    const {user_id} = req.session
-    if (user_id)
-        return next() // allow user to see instagram
-    else
-        return res.redirect('/') // if not logged in, redirect to login
-}
-// function does not allow a logged in user to see the login or register page
-const whenLogged = (req, res, next) => {
-    const {user_id} = req.session
-    if (!user_id)
-        return next() // allow user to see registration and/or login forms
-    else
-        return res.redirect('/') // if logged in, redirect to FEED
-}
-
-// testing middleware to get flash object
-/* app.use((req, res, next) => {
-    const msg = req.flash('success') || ''
-    res.locals.messages = msg
-    console.log('message', msg)
-    next()
-}) */
-
 // pfp on navbar middleware
 app.use(asyncErr(async (req, res, next) => {
     const {user_id} = req.session
@@ -116,36 +94,18 @@ db.once("open", () => {
     console.log("Database connected");
 })
 
-/* ==================================================== RESTFUL ROUTES & MONGOOSE CRUD  ====================================================  */
-/* ===== start authentication routes =====*/
+/* ===================================== RESTFUL ROUTES   ====================================  */
+/* ===== start authentication routes: feed or login, register, profile redirect, logout =====*/
 app.use('/', authRouter)
-// feed
-// login
-// register
-// my profile
-// logout*/
-/* ===== end authentication routes =====*/
+
 app.get('/search', (req, res) => {
     res.render('search')
 })
-/* ===== images routes =====*/
-app.use('/images', imgRouter)
-// explore
-// get and post routes for UPLOAD
-// show full post
-// get and put routes to update image
-// delete image
-// new comment post route
-// delete comment
+/* ===== images and comment routes: explore, upload, fullpost, update, delete, new and delete comment =====*/
+app.use('/images', isLogged, imgRouter)
 
-
-/* ====== user router ==== */
+/* ====== user router: profile, follows and followers 'popup' post routes, follow/unfollow put routes ==== */
 app.use('/', usrRouter)
-// user profile
-// Show follows and followers list (same route)
-// follow someone
-// unfollow someone
-
 
 /* ------------------------------------------------ Error Handling ------------------------------------------------ */
 // Testing the error route

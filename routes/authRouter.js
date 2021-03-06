@@ -1,9 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const session = require('express-session')
-const flash = require('connect-flash')
-const path = require('path')
-const methodOverride = require('method-override')
 const Image = require('../models/image')
 const User = require('../models/user')
 const bcrypt = require('bcrypt')
@@ -12,31 +8,15 @@ const ExpressError = require('../.utils/ExpressError')
 const asyncErr = require('../.utils/asyncErr')
 const Joi = require('joi') // schema validation
     // Other utils
-// const isLogged = require('../.utils/isLogged')
-// const whenLogged = require('../.utils/whenLogged')
+// Middlewares
+const isLogged = require('../.utils/isLogged')
+const whenLogged = require('../.utils/whenLogged')
 
 
 /* This router file contains all routes related to login, registration, feed, logout  */
 
 /* -------------------------------------------------- Setting up middleware -------------------------------------------------- */
-// middleware that prints logs about the session object
 
-// function to check if user is logged in
-const isLogged = (req, res, next) => {
-    const {user_id} = req.session
-    if (user_id)
-        return next() // allow user to see instagram
-    else
-        return res.redirect('/') // if not logged in, redirect to login
-}
-// function does not allow a logged in user to see the login or register page
-const whenLogged = (req, res, next) => {
-    const {user_id} = req.session
-    if (!user_id)
-        return next() // allow user to see registration and/or login forms
-    else
-        return res.redirect('/') // if logged in, redirect to FEED
-}
 /* ======================================== Routes =========================================*/
 router.get('/', asyncErr(async (req, res) => {
     if (req.session.user_id) {
