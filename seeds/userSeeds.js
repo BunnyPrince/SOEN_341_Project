@@ -2,10 +2,11 @@
 
 // The login infos for these users are:
 /*
-* username: Rihanna password: f4k3Pa2sW0rd
-* username: John Smith password: hello
-* username: Terminator password: kill
+* username: Rihanna password: grammy
+* username: john_smith password: hello
+* username: gabriel_dubois password: freelance
 * username: DisguisedToast password: bigbrain
+* username: danielSchwartz password: europe
 * */
 
 
@@ -13,7 +14,7 @@
 module.exports = [
     {
         username: 'Rihanna',
-        password: "$2b$12$c37vGjq49Q1wrJRmsGDxauqLP2fvnzhmihgeQHgbN8bdqgwPlDEXu",
+        password: "$2b$12$HvRApsCfpZ4AYIAQ803zv.aeGDkNc6gMrwyYAddF3KWgyPVO7idoW",
         email: "rihanna@fake.com",
         images: [],
         follows: [],
@@ -24,7 +25,7 @@ module.exports = [
         }
     },
     {
-        username: 'John Smith',
+        username: 'john_smith',
         password: '$2b$12$c/iK7k.RVagXW6AubwSAPuhW.dpPaZDX5r1li5yKBO38nI4Kq92Am',
         email: "john@mail.com",
         images: [],
@@ -48,14 +49,26 @@ module.exports = [
         }
     },
     {
-    username: 'Terminator',
-        password: '$2b$12$gEEELgz6VVNwfMQVIjtvduGTLRL41eMFaLuzZjo81yucmUuHWE1AG',
+    username: 'gabriel_dubois',
+        password: '$2b$12$TxFpv4mRgnwBIh6Zcl.z2OxDY.UMeNMm5Ss.fm2Cat1SfbhQFy9N2',
         email: "kill@gmail.co",
         images: [],
         follows: [],
         followers: [],
         pfp: {
-            url: "https://www.denofgeek.com/wp-content/uploads/2019/10/header_main_image_2.jpg?resize=768%2C432",
+            url: "https://images.unsplash.com/profile-1512845841426-1f3d675ab10d?dpr=2&auto=format&fit=crop&w=150&h=150&q=60&crop=faces&bg=fff",
+            filename: ''
+        }
+    },
+    {
+        username: 'danielSchwartz',
+        password: "$2b$12$zBbJ3Qes2IzusDFnQ8zl4.FiKW4yXjqg8slpAg0XqKYPfdyShgz9q",
+        email: "dan@email.eu",
+        images: [],
+        follows: [],
+        followers: [],
+        pfp: {
+            url: "https://images.unsplash.com/profile-1592075917894-c9ecc4905c2aimage?dpr=2&auto=format&fit=crop&w=150&h=150&q=60&crop=faces&bg=fff",
             filename: ''
         }
     }

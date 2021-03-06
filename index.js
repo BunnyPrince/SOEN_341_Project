@@ -19,7 +19,7 @@ const authRouter = require('./routes/authRouter')
 const usrRouter = require('./routes/usrRouter')
     // Error handling
 const ExpressError = require('./.utils/ExpressError')
-// const asyncErr = require('./.utils/asyncErr')
+const asyncErr = require('./.utils/asyncErr')
 // const Joi = require('joi') // schema validation
     // Other utils
 
@@ -91,14 +91,14 @@ const whenLogged = (req, res, next) => {
 }) */
 
 // pfp on navbar middleware
-app.use(async (req, res, next) => {
+app.use(asyncErr(async (req, res, next) => {
     const {user_id} = req.session
     if (user_id) {
         const { pfp } = await User.findById(user_id)
         res.locals.pfp = pfp
     }
     next()
-})
+}))
 
 
 /* ---------------------------------------------------- MongoDB connection ---------------------------------------------------- */

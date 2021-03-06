@@ -22,7 +22,7 @@ module.exports = [
             caption: 'What u looking at'
         }
     ],
-   // User "John Smith" images
+   // User john_smith images
     [{
         url: "https://randomwordgenerator.com/img/picture-generator/55e5d24b4953ac14f1dc8460962e33791c3ad6e04e50744172277fd79e4ac4_640.jpg",
         caption: "scary!"
@@ -71,6 +71,7 @@ module.exports = [
         url: "https://randomwordgenerator.com/img/picture-generator/52e8d5434d56af14f1dc8460962e33791c3ad6e04e5074417d2d73dc924cc4_640.jpg",
         caption: "Owls are cute <3"
     }],
+    // User DisguisedToast's images
     [{
         url: "https://cdn-wp.thesportsrush.com/2020/09/Screenshot-127.png",
         caption: "Manipulating my friends on Among Us"
@@ -78,16 +79,58 @@ module.exports = [
     {
         url: "https://cdn1.dotesports.com/wp-content/uploads/2019/11/18102958/disguisedtoast.jpg",
         caption: "cool merch coming soon"
-    }],
+    }, {
+        url: "https://img.redbull.com/images/c_fill,g_auto,w_860,h_573/q_auto,f_auto/redbullcom/2016/08/29/1331814758881_2/this-crispy-piece-of-bread-is-a-great-hs-theorist",
+        caption: "throwback time"
+    },
+        {
+            url: "https://cdn.vox-cdn.com/thumbor/kLPGoVN3sKFNmp9QOTMdj7-tgrA=/0x0:1696x1077/1200x800/filters:focal(1099x322:1369x592)/cdn.vox-cdn.com/uploads/chorus_image/image/65753661/toast.0.jpg",
+            caption: "Hearthstone stream"
+        }],
+    // User gabriel_dubois' images
     [
         {
-            url: "https://www.indiewire.com/wp-content/uploads/2020/11/alien-covenant.jpg",
-            caption: "aliens are weaker than me"
+            url: "https://images.unsplash.com/photo-1585974738771-84483dd9f89f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2766&q=80",
+            caption: "Busy, got lots of zoom meetings!!"
         },
         {
-            url: "https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fblogs-images.forbes.com%2Fmarkhughes%2Ffiles%2F2016%2F01%2FTerminator-2-1200x873.jpg",
-            caption: "little sun burnt"
-
+            url: "https://images.unsplash.com/photo-1588561938649-a90e31e2c04a?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=976&q=80",
+            caption: "pic of my new cat"
+        },
+        {
+            url: "https://images.unsplash.com/photo-1583006006170-8d8c054d4a19?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=976&q=80",
+            caption: "nice shoes"
+        },
+        {
+            url: "https://images.unsplash.com/photo-1614174485814-33e6d5540868?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80",
+            caption: "jewelry in water"
+        },
+        {
+            url: "https://images.unsplash.com/photo-1611747581637-a4c0993020ad?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=668&q=80",
+            caption: "Kyiv, Ukraine"
+        },
+        {
+            url: "https://images.unsplash.com/photo-1592506924934-c4b9f06d2384?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1515&q=80",
+            caption: "black and white pic of me"
+        },
+        {
+            url: "https://images.unsplash.com/photo-1566939658330-dd5881e515ef?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=975&q=80",
+            caption: "Venice hideaway"
+        }
+    ],
+    // User danielSchwartz' images
+    [
+        {
+            url: "https://images.unsplash.com/photo-1612999296955-c644d3143320?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1650&q=80",
+            caption: "Hallstatt, Österreich"
+        },
+        {
+            url: "https://images.unsplash.com/photo-1599703170453-e0faceaa79ef?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1000&q=80",
+            caption: "Elzt Schloss, in Deutschland"
+        },
+        {
+            url: "https://images.unsplash.com/photo-1596775631931-89aa30f892c7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1567&q=80",
+            caption: "Good ol' famous lake Braies"
         }
     ]
 ]
