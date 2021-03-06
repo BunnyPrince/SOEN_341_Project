@@ -105,7 +105,7 @@ app.get('/search', (req, res) => {
 app.use('/images', isLogged, imgRouter)
 
 /* ====== user router: profile, follows and followers 'popup' post routes, follow/unfollow put routes ==== */
-app.use('/', usrRouter)
+app.use('/', isLogged, usrRouter)
 
 /* ------------------------------------------------ Error Handling ------------------------------------------------ */
 // Testing the error route
