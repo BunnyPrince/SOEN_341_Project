@@ -16,7 +16,10 @@ const bcrypt = require('bcrypt')
 const multer = require('multer')
 const cloudinary = require('cloudinary').v2
 const {CloudinaryStorage} = require('multer-storage-cloudinary')
-
+// Error handling
+const ExpressError = require('./.utils/ExpressError')
+const asyncErr = require('./.utils/asyncErr')
+const Joi = require('joi') // schema validation
 
 /* ----------------------- configuration of dir, templates, EJS, encoding & route overriding ------------------------- */
 app.set('view engine', 'ejs')
@@ -85,14 +88,6 @@ const whenLogged = (req, res, next) => {
 }) */
 
 
-// Error Handling function
-const asyncErr = (fn) => {
-    return (req, res, next) => {
-        fn(req, res, next).catch(e => {
-            next(e)
-        })
-    }
-}
 
 /* ---------------------------------------------------- MongoDB connection ---------------------------------------------------- */
 let db_name = 'ig_db'
@@ -112,20 +107,19 @@ db.once("open", () => {
 /* ==================================================== RESTFUL ROUTES & MONGOOSE CRUD  ====================================================  */
 
 /* profile page (redirect to login if not logged in) */
-app.get('/', async (req, res) => {
+app.get('/', asyncErr(async (req, res) => {
     if (req.session.user_id) {
         let {follows} = await User.findById(req.session.user_id)
         let feedImgs = await Image.find({user: {$in: follows}})
         // console.log(feedImgs)
         return res.render('feed', {feedImgs});
-    } // else {
+    }
     res.render('login', {
         msg:
             [req.flash('failedLogin'), req.flash('successRegister')]
     })
-    //}
-})
-app.post('/login', async (req, res) => {
+}))
+app.post('/login', asyncErr(async (req, res) => {
     const {username, password} = req.body
     const searchUser = await User.findOne({username})
     if (!searchUser) {
@@ -146,14 +140,14 @@ app.post('/login', async (req, res) => {
     req.flash('failedLogin', "Wrong username and/or password.")
     res.redirect('/')
 
-})
+}))
 app.get('/search', (req, res) => {
-    res.render('search');
+    res.render('search')
 })
 app.get('/register', whenLogged, (req, res) => {
-    res.render('register', {msg: req.flash('taken')});
+    res.render('register', {msg: req.flash('taken')})
 })
-app.post('/register', async (req, res) => {
+app.post('/register', asyncErr(async (req, res) => {
     const {username, email, password} = req.body
     const db_user = await User.findOne({username})
     const db_email = await User.findOne({email})
@@ -171,27 +165,27 @@ app.post('/register', async (req, res) => {
     req.flash('successRegister', 'Registration successful!')
     res.redirect('/')
 
-})
-app.get('/profile', isLogged, async (req, res) => {
+}))
+app.get('/profile', isLogged, asyncErr(async (req, res) => {
     const {user_id} = req.session
     const user = await User.findById(user_id)
     res.redirect(`/${user.username}`); // redirect to '/<username>'
-})
+}))
 app.post('/logout', (req, res) => {
     req.session.user_id = null
     req.session.destroy() // completely any information stored in session
     res.redirect('/')
 })
 /* explore */
-app.get('/images', isLogged, async (req, res) => {
+app.get('/images', isLogged, asyncErr(async (req, res) => {
     const images = await Image.find({}).sort({createdAt: 'desc'});
     res.render('images/explore', {images})
-})
+}))
 /* get and post routes for UPLOAD */
 app.get('/images/new', isLogged, (req, res) => {
     res.render('images/upload');
 })
-app.post('/images', upload.array('image'), async (req, res) => {
+app.post('/images', upload.array('image'), asyncErr(async (req, res) => {
     const {user_id} = req.session
     if (!user_id)
         return res.send('Error: trying to post image when not logged in')
@@ -205,9 +199,9 @@ app.post('/images', upload.array('image'), async (req, res) => {
     await user.save()
     res.redirect(`/images/${image._id}`)
 
-})
+}))
 /* show full post */
-app.get('/images/:id', isLogged, async (req, res) => {
+app.get('/images/:id', isLogged, asyncErr(async (req, res) => {
     const image = await Image.findById(req.params.id).populate('comments')
     // check if image belongs to current user
     let permission = false
@@ -219,9 +213,9 @@ app.get('/images/:id', isLogged, async (req, res) => {
     // get current user
     const currentUser = await User.findById(req.session.user_id)
     res.render('images/fullpost', {image, permission, imgUser, currentUser})
-})
+}))
 /* get and put routes to update image */
-app.get('/images/:id/edit', isLogged, async (req, res) => {
+app.get('/images/:id/edit', isLogged, asyncErr(async (req, res) => {
     const {user_id: user} = req.session
     const image = await Image.findById(req.params.id)
     // check if current user has permission to edit image
@@ -229,8 +223,8 @@ app.get('/images/:id/edit', isLogged, async (req, res) => {
     if (user === imgUser)
         return res.render('images/edit', {image});
     res.redirect('/') // redirect to homepage or login if user does not have permission
-})
-app.put('/images/:id', upload.array('image'), async (req, res) => {
+}))
+app.put('/images/:id', upload.array('image'), asyncErr(async (req, res) => {
     const {id} = req.params
     const caption = req.body.caption
     // if only the caption is edited
@@ -245,9 +239,9 @@ app.put('/images/:id', upload.array('image'), async (req, res) => {
     const updatedImg = req.files.map(f => ({url: f.path, filename: f.filename, caption}))[0]
     await Image.findByIdAndUpdate(id, {...updatedImg})
     res.redirect(`/images/${id}`)
-})
+}))
 /* delete image */
-app.delete('/images/:id', async (req, res) => {
+app.delete('/images/:id', asyncErr(async (req, res) => {
     const {user_id} = req.session
     if (!user_id)
         return res.send('Error: trying to delete image when not logged in')
@@ -258,25 +252,25 @@ app.delete('/images/:id', async (req, res) => {
         await cloudinary.uploader.destroy(filename) // delete image from cloud storage with filename
     await Image.findByIdAndDelete(id) // delete image from db
     res.redirect('/images')
-})
+}))
 /* new comment post route */
-app.post('/images/:id/comments', async (req, res) => {
+app.post('/images/:id/comments', asyncErr(async (req, res) => {
     const image = await Image.findById(req.params.id)
     const comment = new Comment(req.body.comment)
     image.comments.push(comment)
     await comment.save()
     await image.save()
     res.redirect(`/images/${image._id}`)
-})
+}))
 /* delete comment */
-app.delete('/images/:imageId/comments/:commentId', async (req, res) => {
+app.delete('/images/:imageId/comments/:commentId', asyncErr(async (req, res) => {
     const {imageId, commentId} = req.params
     const image = await Image.findByIdAndUpdate(imageId, {$pull: {comments: commentId}})/* delete reference to comment */
     await Comment.findByIdAndDelete(req.params.commentId)
     res.redirect(`/images/${image._id}`)
-})
+}))
 /* user profile */
-app.get('/:username', isLogged, async (req, res, next) => {
+app.get('/:username', isLogged, asyncErr(async (req, res, next) => {
     const {username} = req.params
     const user = await User.findOne({username}).populate('images')
     if (!user) // if profile page does not exist, send to error page
@@ -299,16 +293,15 @@ app.get('/:username', isLogged, async (req, res, next) => {
     // console.log(userSession.username + userSession._id + ' same as ' + user.username + user._id + '? ' + duplicateUser)
     return res.render('profile', {user, isBeingFollowed, duplicateUser, overlay: false, usersList: []})
 
-})
+}))
 /* Show follows and followers list (same route) */
-app.post('/:username/:f', async (req, res, next) => {
+app.post('/:username/:f', asyncErr(async (req, res, next) => {
     const {f} = req.params
     if (f !== 'followers' && f !== 'follows')
         return next()
     const user = await User.findById(req.body.userid).populate('images')
     console.log(user[f])
     const usersList = await User.find({_id: {$in: user[f]}})
-    // console.log(usersList)
     return res.render('profile', {
         user,
         duplicateUser: req.body.duplicateUser,
@@ -317,35 +310,30 @@ app.post('/:username/:f', async (req, res, next) => {
         usersList
     })
 
-})
+}))
 /* follow someone */
-app.put('/follow', async (req, res) => {
+app.put('/follow', asyncErr(async (req, res) => {
     const userToFollow = await User.findById(req.body.userid)
-    const userFollowing = await User.findById(req.session.user_id)
-    // Users cannot follow themselves
-    if (userToFollow.username === userFollowing.username) {
-        console.log('same person')
-        return res.redirect('/' + userFollowing.username)
-    }
-    // Check if sessionUser already follows user
-    // const users = await User.find({follows: {$in: [userToFollow._id]}})
+    const sessionUser = await User.findById(req.session.user_id)
+
+    // Prevent following someone multiple times
     for (let u of userToFollow.followers) {
-        if (u.username === userFollowing.username) {
+        if (u.username === sessionUser.username) {
             console.log('duplicate follow')
             return res.redirect('/' + userToFollow.username)
         }
     }
-    userFollowing.follows.push(userToFollow)
-    await userFollowing.save()
-    userToFollow.followers.push(userFollowing)
+    sessionUser.follows.push(userToFollow)
+    await sessionUser.save()
+    userToFollow.followers.push(sessionUser)
     await userToFollow.save()
 
-    console.log(userFollowing.username + ' is now following ' + userToFollow.username)
+    console.log(sessionUser.username + ' is now following ' + userToFollow.username)
     res.redirect('/' + userToFollow.username)
 
-})
+}))
 /* unfollow someone */
-app.put('/unfollow', async (req, res) => {
+app.put('/unfollow', asyncErr(async (req, res) => {
     const userToUnfollow = { ... req.body }
     const sessionUser = req.session.user_id
 
@@ -354,21 +342,32 @@ app.put('/unfollow', async (req, res) => {
     console.log(sessionUser + ' has unfollowed ' + userToUnfollow.username)
     return res.redirect('/' + userToUnfollow.username)
 
-})
+}))
 
 /* ------------------------------------------------ Error Handling ------------------------------------------------ */
 // Testing the error route
-/* app.get('*', (req, res) => {
-    res.send('<div style=margin:100px auto;">' +
+app.all('*', (req, res, next) => {
+   /* res.send('<div style=margin:100px auto;">' +
         '<h1>404: page not found.</h1>' +
         '</div>')
-})*/
-app.use((err, req, res, next) => {
-    const {status = '404', message = 'Page Not Found'} = err
-    res.status(status).send(message)
+    */
+    next(new ExpressError('404', 'Page Not Found'))
 })
-app.use((req, res) => {
-    res.send("PAGE NOT FOUND")
+// Error template
+app.use((err, req, res, next) => {
+    if (!err.message)
+        err.message = 'Something went wrong!'
+    if (!err.status)
+        err.status = 500
+    res.status(err.status).render('errorPage', {err})
+    next(err)
+})
+// Error logger (for development)
+app.use((err, req, res, next) => {
+    console.log('=========================================================================================================================')
+    console.log(err.status, err.message)
+    console.log("Stack trace: ", err.stack)
+    console.log('=========================================================================================================================')
 })
 
 /* ============================================= connection to the port/localhost ============================================= */
