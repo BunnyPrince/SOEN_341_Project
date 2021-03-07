@@ -95,14 +95,15 @@ app.use('/', isLogged, usrRouter)
 app.use('/account', accRouter)
 
 // Error routes
-app.all('*', (req, res, next) => {
+/*app.all('*', (req, res, next) => {
     next(new ExpressError('404', 'Page Not Found'))
-})
+})*/
+
 app.use((err, req, res, next) => {
-    if (!err.message)
-        err.message = 'Something went wrong!'
-    if (!err.status)
+    if (!err.status) {
         err.status = 500
+        err.message = 'Internal error'
+    }
     res.status(err.status).render('errorPage', {err})
     next(err)
 })
@@ -112,6 +113,11 @@ app.use((err, req, res, next) => {
     console.log(err.status, err.message)
     console.log("Stack trace: ", err.stack)
     console.log('=========================================================================================================================')
+})
+// Some invalid get routes don't throw errors. They should be captured here.
+app.get('*', (req, res, next) => {
+    const err = {status: 404, message: 'Page not found.'}
+    res.status(404).render('errorPage', {err})
 })
 
 /* ============================================= connection to the port/localhost ============================================= */
