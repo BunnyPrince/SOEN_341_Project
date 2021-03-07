@@ -8,12 +8,14 @@
     display: flex;
     flex-wrap: wrap;
 }
-.thumbnail {
+div.thumbnail {
     width: 350px;
     object-fit: cover; /* makes img match the width by cropping */
     overflow-x: hidden;
-    padding: 10px;
-
+    margin: 10px; /* or padding*/
+    /*
+    background-color: white;
+    border: 1px solid #f0f0f0; */
 }
 
 /*----------image--------*/

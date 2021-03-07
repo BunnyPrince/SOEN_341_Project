@@ -1,27 +1,29 @@
-
 /*make the footer in too a sticky footer*/
 html, body {
-  /*
-  height: 100%;
-  margin: 0; */
+    /*
+    height: 100%;
+    margin: 0; */
+    background-color: #f9f9f9; /* get rid of weird stripe over feed-container*/
 }
+
 main {
 
-  min-height: 100%;
-  margin: 0 auto -50px;
-  padding-bottom: 80px;
-  background-color: #f9f9f9;
+    min-height: 100%;
+    margin: 0 auto -50px;
+    padding-bottom: 80px;
+    background-color: #f9f9f9;
 
 }
+
 /*this is a comment*/
 /*putting the height of the footer*/
 .footer,
 .push {
-  height: 50px;
+    height: 50px;
 }
 
 
-.nav-div{
+.nav-div {
     border: #dbdbdb;
 }
 
