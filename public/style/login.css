@@ -1,0 +1,40 @@
+/*
+in similar.css
+-html
+-btn-background
+-card
+-btn-card
+-btn-button
+-article_centering
+ */
+
+
+/*---------div-----------*/
+.input1{
+    margin-bottom: 20px;
+    width: 300px;
+}
+
+.input2{
+    margin-bottom: 20px;
+    width: 300px;
+}
+
+/*---------form-------*/
+form{
+    align-items: center;
+}
+
+/*---------input-----------*/
+.login-input{
+    margin-bottom: 10px;
+    background-color: #e4e7eb;
+    alignment: center;
+    width: 300px;
+}
+
+/*----------p--------------*/
+p{
+    margin: 15px;
+    text-align: center;
+}

@@ -1,0 +1,40 @@
+/*
+in similar.css
+-html
+-btn-background
+-card
+-btn-card
+-btn-button
+-article_centering
+ */
+
+
+
+/*---------label-------*/
+.register-label {
+    float: left;
+    width: 40%;
+    text-align: left;
+    color: black;
+    alignment: center;
+}
+
+/*----------input--------*/
+input {
+    margin-bottom: 10px;
+    background-color: #e4e7eb;
+    alignment: center;
+    width: 300px;
+}
+
+.text{
+    background-color: royalblue;
+    color: white;
+    width: 300px;
+    alignment: center;
+}
+/*----------p--------------*/
+p{
+    margin: 15px;
+    text-align: center;
+}

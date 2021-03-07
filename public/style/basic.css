@@ -10,6 +10,7 @@ main {
   min-height: 100%;
   margin: 0 auto -50px;
   padding-bottom: 80px;
+  background-color: #f9f9f9;
 
 }
 /*this is a comment*/
@@ -19,17 +20,9 @@ main {
   height: 50px;
 }
 
-.navbar{
-  background-color: white;
-}
-.navbar a{
-  color: black;
-}
+
 .nav-div{
     border: #dbdbdb;
-}
-main{
-background-color: #f9f9f9;
 }
 
 

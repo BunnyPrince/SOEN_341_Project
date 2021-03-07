@@ -1,27 +1,20 @@
 /*the style for the navbar buttons*/
-.btn-navbar-button{
-   /* outline: black auto 5px; */
-    background-color: #ffffff;
-    visibility: visible;
-}
-.login-input{
-    margin-bottom: 10px;
-    background-color: #e4e7eb;
-    alignment: center;
-    width: 300px;
-}
 
-.btn-login-card {
+/*---------div-----------*/
+.btn-card {
     background-color: white;
     padding-top: 20px;
     width: 350px;
-    alignment: center;
+    align-items: center;
 }
-.btn-login-background{
-    background-color: #f1f3f5;
-    alignment: center;
+.card {
+    max-width: 1100px;
+    padding: 20px 0;
+    align-self: flex-end;
+    margin-bottom: 20px;
+    align-items: center;
 }
-
+/*-------button-------*/
 .btn-button{
     background-color: royalblue;
     color: white;
@@ -29,60 +22,4 @@
     alignment: center;
 }
 
-.register-label {
-    float: left;
-    width: 40%;
-    text-align: left;
-    color: #c9cfd6;
-    alignment: center;
-}
 
-.register-input {
-    float: left;
-    width: 60%;
-    alignment: center;
-}
-
-.card {
-    max-width: 1100px;
-    padding: 20px 0;
-    align-self: flex-end;
-    margin-bottom: 20px;
-    alignment: center;
-    /*
-    background: #a9f5ef;
-    border-inline-color: #a9f5ef;
-    border-color: #a9f5ef; */
-}
-
-.gallery{
-    margin: 5px;
-    border: 1px solid #ccc;
-    float: left;
-}
-
-.galleryimage{
-    height: 150px;
-    width: 150px;
-}
-
-.input1{
-    margin-bottom: 20px;
-    width: 300px;
-}
-
-.input2{
-    margin-bottom: 20px;
-    width: 300px;
-}
-.register{
-    padding-top: 20px;
-    width: 350px;
-    alignment: center;
-}
-.text{
-    background-color: royalblue;
-    color: white;
-    width: 300px;
-    alignment: center;
-}

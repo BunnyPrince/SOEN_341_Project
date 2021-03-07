@@ -1,4 +1,5 @@
 
+
 .username, .user-friends{
 font-size: 20px;
     font-weight: bold;
@@ -78,3 +79,4 @@ input.input-comment{
     position: absolute;
     right: 0;
 }
+

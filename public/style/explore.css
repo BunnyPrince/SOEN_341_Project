@@ -1,3 +1,4 @@
+/*-----------div----------*/
 .explore-container {
     padding: 15px;
 }
@@ -14,6 +15,8 @@
     padding: 10px;
 
 }
+
+/*----------image--------*/
 img.image-explore {
     height: 350px; /* fix img height */
     object-position: 50% 50%;
