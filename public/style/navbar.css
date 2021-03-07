@@ -1,29 +1,88 @@
-
-.dropmenu-options {
-    display: inline-block;
-    background: white;
-    color: black;
+#header-navbar {
+  background-color: white;
+  min-height: 60px;
 }
 
-.nav-insta-logo {
-    margin-left: 150px;
-    margin-right: 225px;
+#nav-user .dropdown-toggle {
+  padding: 0;
+  color: black;
+  text-decoration: none;
 }
 
-.nav-search {
-    margin-right: 150px;
-    margin-bottom: 1px;
+@media (min-width: 768px) {
+  #header-navbar-links {
+    display: flex !important;
+    justify-content: space-between !important;
+  }
 }
 
 .input-searchbar {
-    background-color: #f9f9f9;
-    height: 25px;
+  background-color: #f9f9f9;
+  /*height: 25px;*/
+  min-width: 206px;
 }
 
-.search-icon {
-    margin-top: 10px;
-}
 
-.nav-icons {
-    margin-right: 10px;
-}
+
+/*nav {*/
+/*    background-color: white;*/
+/*}*/
+
+/*!*---------button-----------*!*/
+/*.btn-navbar-button {*/
+/*    background-color: #ffffff;*/
+/*    visibility: visible;*/
+/*}*/
+
+/*.dropmenu-options {*/
+/*    display: inline-block;*/
+/*    background: white;*/
+/*    color: black;*/
+
+/*}*/
+
+/*!*---------input-----------*!*/
+/*.input-searchbar {*/
+/*    background-color: #f9f9f9;*/
+/*    height: 25px;*/
+/*    !*width: 100%;*!*/
+/*    width: 206px;*/
+
+/*}*/
+
+/*!*---------placement---------*!*/
+/*.flex-boxx {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*}*/
+
+/*!*.search-icon {*!*/
+/*!*    margin-right: 60%;*!*/
+/*!*}*!*/
+
+/*.insta-logo {*/
+/*    margin-right: 20%;*/
+/*    margin-left: 10%;*/
+/*}*/
+
+/*.searchbar {*/
+/*    padding-top: 15px;*/
+/*}*/
+
+/*.btn-sm {*/
+/*    padding: 0px;*/
+/*}*/
+
+/*!*-------other-----*!*/
+/*.navbar {*/
+/*    min-height: 60px;*/
+/*}*/
+
+/*.dropdown-menu {*/
+/*    right: 0;*/
+/*    left: auto;*/
+/*}*/
+
+
+
+

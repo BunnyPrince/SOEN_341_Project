@@ -1,39 +1,11 @@
-
-.username{
-font-size: 35px;
-    font-family: 'Brush Script MT', cursive;
-
-}
-
-.user-friends{
-font-size: 20px;
-}
-
-.comments{
-font-size: 20px;
-    font-family: Georgia, serif;
-
-}
-
-.description{
-font-size: 18px;
-    font-family: Georgia, serif;
-
-}
-
-.feed-btn{
-    /* outline: black auto 5px; */
-    background-color: #ffffff;
-}
-
+/*---------div-----------*/
 .feed-container{
-       /*  display: flex;*/
-       /* padding: 0 30% 100px; */
         background-color: #fafafa;
         align-items: center;
         justify-content: center;
 
 }
+
 .feed-content {
     display: flex;
     padding: 20px;
@@ -44,27 +16,21 @@ font-size: 18px;
     justify-content: center; /* center horizontally */
     background-color: #ffffff;
 }
+
 .post-container {
     position: relative;
-}
-div.post {
-    width: auto;
-    object-fit: cover; /* makes img match the width by cropping */
-    overflow-x: hidden;
-}
-img.post {
-    width: 500px;
-    object-position: 50% 50%;
-    margin: 0 auto; /* center img in div */
-    display: block; /* center img in div */
 }
 
 .line1{
     display: inline-block;
 }
-div.comments {
-    padding:10px;
+
+.comments{
+font-size: 20px;
+    font-family: Georgia, serif;
+
 }
+
 .more {
     padding:10px;
     margin-left:auto;
@@ -73,6 +39,7 @@ div.comments {
     align-self: center;
     text-align: center;
 }
+
 .new-comment{
     border-top: 1px solid #dbdbdb;
     width: inherit;
@@ -80,12 +47,51 @@ div.comments {
     padding:10px;
     /* margin: 1px; */
 }
-div.input-comment {
+/*---------button-----------*/
+.feed-btn{
+    background-color: #ffffff;
 }
-input.input-comment{
-    border:0;
-}
+
 .submit-btn{
     position: absolute;
     right: 0;
+}
+/*---------image-----------*/
+img.post {
+    width: 500px;
+    object-position: 50% 50%;
+    margin: 0 auto; /* center img in div */
+    display: block; /* center img in div */
+}
+
+/*--------input---------*/
+input.input-comment{
+    border:0;
+}
+
+div.comments {
+    padding:10px;
+}
+/*---------p-----------*/
+.username{
+font-size: 35px;
+    font-family: 'Brush Script MT', cursive;
+
+}
+
+.description{
+font-size: 18px;
+    font-family: Georgia, serif;
+
+}
+
+/*--------other-------*/
+.user-friends{
+font-size: 20px;
+}
+
+div.post {
+    width: auto;
+    object-fit: cover; /* makes img match the width by cropping */
+    overflow-x: hidden;
 }

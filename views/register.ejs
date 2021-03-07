@@ -1,29 +1,29 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-<link href="/style/basic.css" rel="stylesheet" type="text/css">
-<link href="/style/custom.css" rel="stylesheet" type="text/css">
 
 
+<link href="/style/register.css" rel="stylesheet" type="text/css">
+<link href="/style/similar.css" rel="stylesheet" type="text/css">
 
-<main>
-    <div  align="center" >
-      <div class="col-sm-6 p-5">
-           <div class="card btn-login-card">
+
+<main class="btn-background">
+    <div align="center" >
+        <article class="article_centering">
+            <div class="card btn-card">
+                <h1 class="name-inst">
+                    <img src="/images/logo.png" width=170px height=70px alt="">
+                </h1>
                 <div class="card-body">
                     <h3><%= msg %></h3>
                      <form action="/register" method="post" class="clearfix">
 
-                         <label class="register-label" aria-label="left">Username</label>
-                         <input type="text" name="username" class="register-input" placeholder="Enter Username" required autocomplete="off">
+                         <div class="spacing-input">
+                             <input type="text" name="username" placeholder="Enter Username" required autocomplete="off">
+                             <input type="email" name="email" placeholder="Enter Email" required autocomplete="off chrome-off" >
+                             <input id="password" type="password" name="password"placeholder="Enter password" required autocomplete="off">
+                             <input type="password" name="validate_password" oninput="check(this)" placeholder="Reenter password" required autocomplete="off">
+                         </div>
 
-                         <label class="register-label">Email</label>
-                         <input type="email" name="email" class="register-input" placeholder="Enter Email" required autocomplete="off chrome-off" >
-
-                         <label class="register-label">Password</label>
-                         <input id="password" type="password" name="password" class="register-input" placeholder="Enter password" required autocomplete="off">
-
-                         <label class="register-label">Reenter Password</label>
-                         <input type="password" name="validate_password" oninput="check(this)" class="register-input" placeholder="Reenter password" required autocomplete="off">
 
                          <script language='javascript' type='text/javascript'>
                              function check(input) {
@@ -43,7 +43,12 @@
                     </form>
                 </div>
             </div>
-      </div>
+            <div class="card btn-card">
+                <p style="vertical-align: inherit">Do you have an account?
+                <a href ='/';>Log in</a>
+                </p>
+            </div>
+        </article>
     </div>
 </main>
 
