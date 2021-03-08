@@ -1,3 +1,6 @@
+
+<title> soen 341 - insta clone </title>
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 
@@ -10,7 +13,7 @@
           <!-- <a class="navbar-brand" href="#">Container</a> -->
           <!-- Logo - Mobile -->
           <a class="navbar-brand d-md-none" href="/">
-            <img src="./images/logo.png" width="110" height="40" alt="Instagram" title="Instagram" />
+            <img src="/images/logo.png" width="110" height="40" alt="Instagram" title="Instagram" />
           </a>
           <!-- /Logo - Mobile -->
 
@@ -24,7 +27,7 @@
           <div class="collapse navbar-collapse" id="header-navbar-links">
             <!-- Logo - Desktop -->
             <a class="navbar-brand d-none d-md-inline-block" href="/">
-              <img src="./images/logo.png" width="110" height="40" alt="Instagram" title="Instagram" />
+              <img src="/images/logo.png" width="110" height="40" alt="Instagram" title="Instagram" />
             </a>
             <!-- /Logo - Desktop -->
 
@@ -77,9 +80,11 @@
                 <!-- User & User Menu dropdown -->
                 <div class="nav-link btn-group" id="nav-user">
                   <button type="button" class="btn btn-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="nav-profile">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjBxZURopzpB6AMcmpjQiJv8Bv9GquDCrDDw&usqp=CAU" width="25" height="25" />
-                  </button>
+                   <div class="nav-user in-line">
+                      <img src="<%= locals.pfp.url %>" width="25" height="25"/>
+                   </div>
 
+                  </button>
                   <ul class="dropdown-menu dropdown-menu-end">
                     <li>
                       <a class="dropdown-item" href="/profile">
@@ -226,4 +231,6 @@
         form.submit();
     }
 </script>
+
+
 

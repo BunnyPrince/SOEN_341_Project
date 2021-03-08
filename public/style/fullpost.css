@@ -62,6 +62,9 @@
     bottom:0;
     z-index: 15; /* buttons are "behind" sticky .caption and .new-comment */
 }
+input.new-comment {
+  /*  overflow-wrap: break-word */
+}
 div.oneline {
     display:inline-block;
 }

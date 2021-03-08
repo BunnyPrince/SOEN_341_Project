@@ -1,16 +1,18 @@
 
 <link href="/style/styles.css" rel="stylesheet" type="text/css">
-<link href="/style/Profile.css" rel="stylesheet" type="text/css">
+<link href="/style/profile.css" rel="stylesheet" type="text/css">
 
 <%- include('partials/header') %>
 
+
 <main>
     <!-- Listing of the posts from the user -->
+
     <div class="profile-container">
         <div class="profile-header">
             <div class="user-container" id="user-pic">
                 <div class="pic">
-                    <img class ="round-img" src="<%= user.pfp.url %>" width="150" alt="">
+                    <img src="<%= user.pfp.url %>" width="150" alt="">
                 </div>
             </div>
             <div class="user-container" id="user-info">
@@ -21,17 +23,17 @@
                     <button class="button" type="button"
 
                     <% if (isBeingFollowed || duplicateUser) { %>
-                        style="display: none"
-                        <% } %>
+                            style="display: none"
+                            <% } %>
 
-                        onclick="editFollow('<%= user._id %>', 'follow')">Follow
+                            onclick="editFollow('<%= user._id %>', 'follow', '<%= user.username %>')">Follow
                     </button>
                     <button class="button" type="button"
                     <% if (!isBeingFollowed || duplicateUser) { %>
-                        style="display: none"
-                        <% } %>
+                            style="display: none"
+                            <% } %>
 
-                        onclick="editFollow('<%= user._id %>', 'unfollow')">Unfollow
+                            onclick="editFollow('<%= user._id %>', 'unfollow', '<%= user.username %>')">Unfollow
                     </button>
 
                 </h2>
@@ -62,18 +64,22 @@
             <% for (const image of user.images) { %>
                 <% if (i % 3 === 0) { %>
                 <div class="group-of-three">
-                <% } %>
+                    <% } %>
                     <div class="img-per-row">
                         <a href="/images/<%= image._id %>">
-                            <img class="galleryimage" src="<%= image.url %>" alt="">
+                            <img class="galleryimage"
+                                 src="<%= image.url %>" alt="">
                         </a>
+
                     </div>
-                <% if (i % 3 === 2) { %>
+                    <% if (i % 3 === 2) { %>
                 </div>
                 <% } %>
                 <% i++ %>
             <% } %>
+
         </div>
+
     </div>
 
     <div id="overlay"
@@ -100,11 +106,12 @@
             </div>
         </div>
     </div>
+
+
 </main>
 
-
 <script>
-    function editFollow(userid, type) {
+    function editFollow(userid, type, username) {
         console.log('clicked ' + type);
         let form = document.createElement('form');
         form.setAttribute('method', 'post');
@@ -112,8 +119,12 @@
         let input = document.createElement('input');
         input.setAttribute('name', 'userid');
         input.setAttribute('value', userid);
+        let input2 = document.createElement('input')
+        input2.setAttribute('name', 'username')
+        input2.setAttribute('value', username)
         form.style.display = 'hidden';
         form.appendChild(input);
+        form.appendChild(input2)
         document.body.appendChild(form);
         form.submit();
     }
@@ -142,4 +153,3 @@
 </script>
 
 <%- include('./partials/footer') %>
-

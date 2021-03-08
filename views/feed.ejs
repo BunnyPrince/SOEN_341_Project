@@ -1,9 +1,8 @@
-
-
+<link href="/style/basic.css" rel="stylesheet" type="text/css">
 <link href="/style/feed.css" rel="stylesheet" type="text/css">
 
-
 <%- include('partials/header') %>
+
 <main>
     <div class="feed-container">
 
@@ -12,11 +11,17 @@
             <div class="feed-content shadow">
                 <div class="post-container">
                     <!-- User profilePic---name----unfollowOption---->
-                    <div class="line1">
-                        <img src="https://estaticos.elperiodico.com/resources/jpg/3/2/1504886858323.jpg" width="70">
-                    </div>
-                    <div class="line1">
-                        <p class="username"> Rihanna (static..) <% image.user %></p>
+                    <div>
+                        <div class="line1 post-pfp poster">
+                            <img class="post-pfp" src="<%= image.user.pfp.url %>"
+                                 width="40">
+                        </div>
+                        <div class="line1 poster">
+                            <a href="/<%= image.user.username %>" class="username text-decoration-none text-reset">
+                                <%= image.user.username %>
+                                <% image.user %>
+                            </a>
+                        </div>
                     </div>
                     <div class="post">
                         <!---post----likeButton-----caption--->
@@ -24,34 +29,60 @@
                     </div>
                     <div>
                         <button class="feed-btn btn" type="submit">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-heart" viewBox="0 0 16 16">
                                 <path d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
                             </svg>
                         </button>
                     </div>
                     <div class="comments">
-                        <div class="line1"><b class="user-friends"> Rihanna (static..) <% image.user %> </b> </div>
                         <div class="line1">
-                            <p class="description"><%= image.caption %></p>
+                            <a href="/<%= image.user.username %>" class="username text-decoration-none text-reset">
+                                <%= image.user.username %>
+                            </a>
                         </div>
-                    </div>
-                    <div class="comments">
-                        <!---posted comments section-------->
-                        <!---users profile pic----username-----comment--more comments button----->
                         <div class="line1">
-                            <img src="https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTQ3NTI2OTA4NzY5MjE2MTI4/drake_photo_by_prince_williams_wireimage_getty_479503454.jpg" width="30" height="30"></div>
-                        <div class="line1"><b class="user-friends"> Drake</b></div>
-                        <div class="line1"><p class="comments"> cute 😍 </p></div><!---place it in a box---->
+                            <p class="description"><%= image.caption %></p></div>
                     </div>
                     <div class="more">
-                        <button class="feed-btn btn btn-light" type="button">View all comments</button>
+                        <button onclick="location.href ='/images/<%= image._id %>';" class="feed-btn btn btn-light"
+                                type="button">View all comments
+                        </button>
                     </div>
+                    <% if (image.comments[image.comments.length - 2]) { %>
+                        <% const {username, comment} = image.comments[image.comments.length - 2] %>
+                        <div class="comments">
+                            <!---posted comments section-------->
+                            <div class="line1">
+                                <a href="/<%= username %>"
+                                   class="user-friends text-decoration-none text-reset"> <%= username %></a>
+                            </div>
+                            <div class="line1">
+                                <p class="comments"> <%= comment %> </p>
+                            </div><!---place it in a box---->
+                        </div>
+                    <% } %>
+                    <% if (image.comments[image.comments.length - 1]) { %>
+                        <% const {username, comment} = image.comments[image.comments.length - 1] %>
+                        <div class="comments">
+                            <!---posted comments section-------->
+                            <div class="line1">
+                                <a href="/<% username %>"
+                                   class="user-friends  text-decoration-none text-reset"> <%= username %></a>
+                            </div>
+                            <div class="line1">
+                                <p class="comments"> <%= comment %> </p>
+                            </div><!---place it in a box---->
+                        </div>
+                    <% } %>
                     <div class="new-comment">
                         <div class="input-comment line1">
-                            <input size="50"  class="input-comment" placeholder="Add a comment..." name="comment" required>
+                            <input size="50" class="input-comment" placeholder="Add a comment..." name="comment"
+                                   required>
                         </div>
                         <div class="submit-btn line1">
-                            <button class="feed-btn btn btn-link btn-sm text-decoration-none" type="submit">Post</button>
+                            <button class="feed-btn btn btn-link btn-sm text-decoration-none" type="submit">Post
+                            </button>
                         </div>
                     </div>
                 </div>
