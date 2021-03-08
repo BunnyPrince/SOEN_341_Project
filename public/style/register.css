@@ -9,7 +9,6 @@ in similar.css
  */
 
 
-
 /*---------label-------*/
 .register-label {
     float: left;
@@ -29,7 +28,7 @@ input {
 
 .text{
     background-color: royalblue;
-    color: white;
+    color: #ffffff;
     width: 300px;
     alignment: center;
 }

@@ -80,9 +80,11 @@
                 <!-- User & User Menu dropdown -->
                 <div class="nav-link btn-group" id="nav-user">
                   <button type="button" class="btn btn-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="nav-profile">
-                    <img src="<%= locals.pfp.url %>" width="25" height="25" />
-                  </button>
+                   <div class="nav-user in-line">
+                      <img src="<%= locals.pfp.url %>" width="25" height="25"/>
+                   </div>
 
+                  </button>
                   <ul class="dropdown-menu dropdown-menu-end">
                     <li>
                       <a class="dropdown-item" href="/profile">

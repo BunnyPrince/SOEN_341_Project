@@ -3,7 +3,7 @@ everything in this css file applies to the login.ejs and the register.ejs files
  */
 
 html {
-    background-color: #f1f3f5;
+    /* background-color: #f1f3f5;*/ /* doesn't work... */
 }
 /*---------main-----------*/
 .btn-background{
@@ -19,7 +19,7 @@ html {
     align-items: center;
 }
 .btn-card {
-    background-color: white;
+    background-color: #ffffff;
     padding-top: 20px;
     width: 350px;
     align-items: center;
@@ -37,7 +37,7 @@ html {
 /*-------button------------*/
 .btn-button{
     background-color: royalblue;
-    color: white;
+    color: #ffffff;
     width: 300px;
     alignment: center;
 }

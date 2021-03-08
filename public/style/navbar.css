@@ -1,27 +1,33 @@
 #header-navbar {
-  background-color: white;
-  min-height: 60px;
+    background-color: white;
+    min-height: 60px;
 }
 
 #nav-user .dropdown-toggle {
-  padding: 0;
-  color: black;
-  text-decoration: none;
-}
+    padding: 0;
+    color: black;
+    text-decoration: none;
 
+}
+/* div makes pfp in navbar a circle */
+div.nav-user {
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
 @media (min-width: 768px) {
-  #header-navbar-links {
-    display: flex !important;
-    justify-content: space-between !important;
-  }
+    #header-navbar-links {
+        display: flex !important;
+        justify-content: space-between !important;
+    }
 }
 
 .input-searchbar {
-  background-color: #f9f9f9;
-  /*height: 25px;*/
-  min-width: 206px;
+    background-color: #f9f9f9;
+    /*height: 25px;*/
+    min-width: 206px;
 }
-
 
 
 /*nav {*/

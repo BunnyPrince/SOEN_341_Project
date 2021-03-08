@@ -27,7 +27,7 @@ font-size: 20px;
     display: flex;
     padding: 20px;
     border: 1px solid #dbdbdb;
-    width: 505px;
+    width: 502px;
     margin: 50px auto; /* center horizontally; 50px margin on top+bottom */
     align-items: center; /* center horizontally */
     justify-content: center; /* center horizontally */
@@ -36,10 +36,22 @@ font-size: 20px;
 .post-container {
     position: relative;
 }
+div.poster {
+
+}
 div.post {
     width: auto;
     object-fit: cover; /* makes img match the width by cropping */
     overflow-x: hidden;
+}
+div.post-pfp {
+    /* round pfp for user of each post */
+    margin:5px;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+
 }
 img.post {
     width: 500px;
@@ -50,6 +62,10 @@ img.post {
 
 .line1{
     display: inline-block;
+}
+.poster {
+    display: inline-block;
+    vertical-align: middle;
 }
 div.comments {
     padding:10px;
@@ -74,6 +90,7 @@ div.input-comment {
 input.input-comment{
     border:0;
     outline:none;
+    /* overflow-wrap: break-word */
 }
 .submit-btn{
     position: absolute;
