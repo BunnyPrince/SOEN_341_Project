@@ -2,7 +2,7 @@ const User = require('../models/user')
 const ExpressError = require('../.utils/ExpressError')
 const Joi = require('joi') // schema validation
 
-console.log('DEBUGGING usrController!!!')
+
 
 const userProfile = async (req, res, next) => {
     const {username} = req.params
