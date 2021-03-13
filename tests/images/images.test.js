@@ -10,5 +10,5 @@ app.use('/images', imgRouter)
 test("image router: explore,", (doneCallback) => {
     request(app)
         .get("/images")
-        .expect(500, doneCallback)
+        .expect(200, doneCallback)
 })
