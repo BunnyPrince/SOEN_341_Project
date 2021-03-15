@@ -10,12 +10,15 @@
            <div class="card btn-card">
                 <div class="card-body">
                     <form action="/images/<%=image._id%>?_method=PUT" method="POST" enctype="multipart/form-data" class="clearfix">
-                        <img id="file" src="<%=image.url %>" height="200px">
-                        <br>
-                        <input type="file" name="image" id="file-ip-1" accept="image/*" onchange="showPreviewOne(event);">
-
-                        <label for="caption" class="card-label">Add Caption</label>
-                        <input class="card-input" type="text" value="<%= image.caption%>" id="caption" name="caption">
+                        <div style="padding: 10px">
+                            <img id="file" src="<%=image.url %>" height="200px">
+                        </div>
+                        <div style="padding: 10px">
+                            <input type="file" name="image" id="file-ip-1" accept="image/*" onchange="showPreviewOne(event);">
+                        </div>
+                        <div style="padding: 10px; padding-bottom: 0px">
+                            <input class="card-input w-100" type="text" value="<%= image.caption%>" id="caption" name="caption" placeholder="Add Caption" >
+                        </div>
 
                         <div class="float-container" style="padding-top: 25px">
                             <div class="float-child">
