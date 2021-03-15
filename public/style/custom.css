@@ -16,10 +16,23 @@
 }
 /*-------button-------*/
 .btn-button{
-    background-color: royalblue;
-    color: white;
+    background-color: royalblue !important;
+    color: white !important;
     width: 300px;
     alignment: center;
+}
+
+
+.float-container {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.float-child {
+    width: 50%;
+    float: left;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 
