@@ -5,21 +5,39 @@
 
 <%- include('../partials/header')  %>
 <main>
-    <h1>Edit page</h1>
-    <form action="/images/<%=image._id%>?_method=PUT" method="POST" enctype="multipart/form-data" class="clearfix">
-        <img id="file" src="<%=image.url %>" height="200px">
-        <br>
-        <input type="file" name="image" id="file-ip-1" accept="image/*" onchange="showPreviewOne(event);">
+     <div  align="center" >
+      <div class="col-sm-6 p-5">
+           <div class="card btn-card">
+                <div class="card-body">
+                    <form action="/images/<%=image._id%>?_method=PUT" method="POST" enctype="multipart/form-data" class="clearfix">
+                        <div style="padding: 10px">
+                            <img id="file" src="<%=image.url %>" height="200px">
+                        </div>
+                        <div style="padding: 10px">
+                            <input type="file" name="image" id="file-ip-1" accept="image/*" onchange="showPreviewOne(event);">
+                        </div>
+                        <div style="padding: 10px; padding-bottom: 0px">
+                            <input class="card-input w-100" type="text" value="<%= image.caption%>" id="caption" name="caption" placeholder="Add Caption" >
+                        </div>
 
-        <label for="caption" class="card-label">Add Caption</label>
-        <input class="card-input" type="text" value="<%= image.caption%>" id="caption" name="caption">
+                        <div class="float-container" style="padding-top: 25px">
+                            <div class="float-child">
+                                <div>
+                                    <button class=" btn btn-primary">Edit post</button>
+                                </div>
+                            </div>
+                            <div class="float-child">
+                                <div>
+                                    <button onclick="location.href ='/images';" class="btn btn-primary">Cancel</button>
+                                </div>
+                            </div>
 
-        <div>
-            <button class="btn btn-button">Edit post</button>
-        </div>
-    </form>
-    <button onclick="location.href ='/images';" class="btn btn-button">Cancel</button>
-
+                        </div>
+                    </form>
+                </div>
+           </div>
+      </div>
+    </div>
 </main>
 
 <%- include('../partials/footer') %>
