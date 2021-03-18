@@ -4,7 +4,6 @@ function showPreviewOne(event){
         let preview = document.getElementById("file");
         preview.src = src;
         preview.style.display = "block";
-        preview.style.height = '200px'
           return true;
       }
       return false;
