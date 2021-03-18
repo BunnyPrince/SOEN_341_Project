@@ -1,4 +1,5 @@
 const User = require('../models/user')
+const Image = require('../models/image')
 const ExpressError = require('../.utils/ExpressError')
 const Joi = require('joi') // schema validation
 
@@ -59,7 +60,7 @@ const profileFollow = async (req, res) => {
     await userToFollow.save()
 
     console.log(sessionUser.username + ' is now following ' + userToFollow.username)
-    res.redirect('/' + userToFollow.username)
+    return res.redirect('/' + userToFollow.username)
 
 }
 const profileUnfollow = async (req, res) => {
@@ -73,7 +74,11 @@ const profileUnfollow = async (req, res) => {
 }
 
 const profileLikeImage = async (req, res) => {
-    console.log('liked');
+    const imageToLikeId = req.body.image
+    const sessionUserId = req.session.user_id
+
+    const imageToLike = await Image.findByIdAndUpdate(imageToLikeId, {$push: {likes: sessionUserId}})
+    return res.redirect('/')
 }
 
 module.exports = {

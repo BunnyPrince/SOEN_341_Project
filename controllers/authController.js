@@ -11,7 +11,7 @@ const login_feed = async (req, res) => {
             .populate('user')
             .populate('comments')
         // console.log(feedImgs)
-        return res.render('feed', {feedImgs, sessionUser:req.session.user_id});
+        return res.render('feed', {feedImgs});
     }
     res.render('login', {
         msg:
