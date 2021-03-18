@@ -72,9 +72,14 @@ const profileUnfollow = async (req, res) => {
     return res.redirect('/' + userToUnfollow.username)
 }
 
+const profileLikeImage = async (req, res) => {
+    console.log('liked');
+}
+
 module.exports = {
     userProfile,
     showListFollows,
     profileFollow,
-    profileUnfollow
+    profileUnfollow,
+    profileLikeImage
 }
