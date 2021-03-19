@@ -90,9 +90,13 @@ const profileLikeImage = async (req, res) => {
     if (!duplicateLike) {
         imageToLike.likes.push(sessionUserId)
         await imageToLike.save()
-        imageToLike.likes.forEach(u => console.log(u))
+        // imageToLike.likes.forEach(u => console.log(u))
+        console.log('image ' + imageToLikeId + ' has ' + imageToLike.likes.length + ' like(s)')
     }
-    console.log('image ' + imageToLikeId + ' has ' + imageToLike.likes.length + ' like(s)')
+}
+
+const profileUnlikeImage = async(req, res) => {
+    console.log('unliked')
 }
 
 module.exports = {
@@ -100,5 +104,6 @@ module.exports = {
     showListFollows,
     profileFollow,
     profileUnfollow,
-    profileLikeImage
+    profileLikeImage,
+    profileUnlikeImage
 }

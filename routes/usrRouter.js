@@ -17,5 +17,7 @@ router.put('/unfollow', asyncErr(usrController.profileUnfollow))
 
 router.put('/like', asyncErr(usrController.profileLikeImage))
 
+router.put('/unlike', asyncErr(usrController.profileUnlikeImage))
+
 module.exports = router
 
