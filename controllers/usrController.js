@@ -13,8 +13,8 @@ const userProfile = async (req, res, next) => {
     if (!user) {
         return next(new ExpressError(404, 'Sorry, this page isn\'t available.'))
     }
-    const { followers } = user
-    const { user_id:sessionUserId } = req.session
+    const {followers} = user
+    const {user_id: sessionUserId} = req.session
     let duplicateUser = (sessionUserId === user._id.toString())
 
     let isBeingFollowed = false
@@ -64,7 +64,7 @@ const profileFollow = async (req, res) => {
 
 }
 const profileUnfollow = async (req, res) => {
-    const userToUnfollow = { ... req.body }
+    const userToUnfollow = {...req.body}
     const sessionUserId = req.session.user_id
 
     const sessionUser = await User.findByIdAndUpdate(sessionUserId, {$pull: {follows: userToUnfollow.userid}})
@@ -77,8 +77,22 @@ const profileLikeImage = async (req, res) => {
     const imageToLikeId = req.body.image
     const sessionUserId = req.session.user_id
 
-    const imageToLike = await Image.findByIdAndUpdate(imageToLikeId, {$push: {likes: sessionUserId}})
-    return res.redirect('/')
+    const imageToLike = await Image.findById(imageToLikeId)
+    let duplicateLike = false
+    for (let like of imageToLike.likes) {
+        if (like == sessionUserId) {
+            console.log('duplicate like')
+            duplicateLike = true
+            break
+        }
+    }
+
+    if (!duplicateLike) {
+        imageToLike.likes.push(sessionUserId)
+        await imageToLike.save()
+        imageToLike.likes.forEach(u => console.log(u))
+    }
+    console.log('image ' + imageToLikeId + ' has ' + imageToLike.likes.length + ' like(s)')
 }
 
 module.exports = {
