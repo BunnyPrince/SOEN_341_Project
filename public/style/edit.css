@@ -24,6 +24,6 @@
 .gray-scale{
     filter: grayscale(50%);
 }
-.saturate{
+.image-filter-saturate{
     filter: saturate(50%);
 }
