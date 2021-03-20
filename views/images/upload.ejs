@@ -1,6 +1,5 @@
 
-<link href="/style/basic.css" rel="stylesheet" type="text/css">
-<link href="/style/custom.css" rel="stylesheet" type="text/css">
+
 <link href="/style/edit.css" rel="stylesheet" type="text/css">
 
 
@@ -13,23 +12,25 @@
                     <form action="/images" method="POST" enctype="multipart/form-data" class="clearfix">
                          <img id="file" height="200px" src="https://i.ibb.co/ZVFsg37/default.png">
                          <input type="file" name="image" id="file-ip-1" accept="image/*" onchange="showPreviewOne(event);" required>
-
                         <div class="filters">
                             <div class="filter1">
                                  <button class="button"> Crop Image </button>
-                                 <button class="button"> saturate </button>
                             </div>
                             <div class="filter2">
+                                <button class="button"> saturate </button>
+                            </div>
+                            <div class="filter3">
                                 <button class="button"> gray scale </button>
+                            </div>
+                            <div class="filter4">
                                 <button class="button"> sepia </button>
                             </div>
                         </div>
-
                             <label for="caption" class="card-label">Add Caption</label>
                             <input class="card-input" type="text" id="caption" name="caption">
 
                         <div class="float-end mt-4">
-                            <button class="btn btn-button">Add Image</button>
+                            <button class="button">Add Image</button>
                         </div>
 
                     </form>
