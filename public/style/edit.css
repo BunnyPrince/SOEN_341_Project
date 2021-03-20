@@ -7,22 +7,23 @@
     display: inline-block;
     font-max-size: 20px;
 }
-.card-body{
-    display: inline-block;
-}
-.crop{
-    padding-top: 10px;
-    alignment: left;
-    padding-bottom: 10px;
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    object-position: unset;
-}
 .filters{
     display: flex;
+    position: relative;
     justify-content: space-between;
     max-width: 400px;
     margin: 0 auto;
     padding: 10px 0;
+}
+.crop-image{
+
+}
+.sepia{
+    filter: sepia(50%);
+}
+.gray-scale{
+    filter: grayscale(50%);
+}
+.saturate{
+    filter: saturate(50%);
 }
