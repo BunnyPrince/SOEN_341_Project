@@ -1,1 +1,33 @@
-/*the style for the filter at the edit page */
+
+.button{
+    background-color: royalblue;
+    border-color: royalblue;
+    color: white;
+    alignment: left;
+    display: inline-block;
+    font-max-size: 20px;
+}
+
+.crop{
+    padding-top: 10px;
+    alignment: left;
+    padding-bottom: 10px;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    object-position: unset;
+}
+.filters{
+    padding-bottom: 10px;
+    padding-top: 10px;
+    display: inline-block;
+    position: relative;
+}
+.filter1{
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+.filter2{
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
