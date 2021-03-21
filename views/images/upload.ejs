@@ -1,63 +1,108 @@
-
-
 <link href="/style/edit.css" rel="stylesheet" type="text/css">
 
 
-<%- include('../partials/header')  %>
+<%- include('../partials/header') %>
 <main>
-    <div  align="center" >
-      <div class="col-sm-6 p-5">
-           <div class="card btn-card">
+    <div align="center">
+        <div class="col-sm-6 p-5">
+            <div class="card btn-card">
                 <div class="card-body">
+
                     <form action="/images" method="POST" enctype="multipart/form-data" class="clearfix">
-                         <img id="file" height="200px" src="https://i.ibb.co/ZVFsg37/default.png">
-                         <input type="file" name="image" id="file-ip-1" accept="image/*" onchange="showPreviewOne(event);" required>
+
+                        <img id="file" height="200px" src="https://i.ibb.co/ZVFsg37/default.png">
+                        <input type="file" name="image" id="file-ip-1" accept="image/*"
+                               onchange="showPreviewOne(event);" required>
+
+
                         <div class="filters">
+
+
+                            <label>Brightness</label>
+                            <input type="range" min="0" max="200" value="100" step="1" onchange="applyFilters()"
+                                   data-filter="brightness" data-scale="%"><br>
+
+                            <label>Saturation</label>
+                            <input type="range" min="0" max="100" value="0" step="1" onchange="applyFilters()"
+                                   data-filter="saturate" data-scale=""><br>
+
+                            <label>Contrast</label>
+                            <input type="range" min="0" max="200" value="100" step="1" onchange="applyFilters()"
+                                   data-filter="contrast" data-scale="%"><br>
+
+
+                            <!----
                             <div class="crop-image">
-                                 <button class="button"> Crop Image </button>
+                                <button class="button"> Crop Image</button>
                             </div>
                             <div class="saturate">
-                                <button class="button"> Saturate </button>
+                                <button class="button"> Saturate</button>
                                 <div class="image-filter-saturate">
-                                <!-- <form action="/images" method="POST" enctype="multipart/form-data" class="clearfix">
-                                      <input type="file" name="image" id="file-ip-1" accept="image/*" onchange="showPreviewOne(event);" required>
-                                --></div>
+                                    <form action="/images" method="POST" enctype="multipart/form-data" class="clearfix">
+                                          <input type="file" name="image" id="file-ip-1" accept="image/*" onchange="showPreviewOne(event);" required>
+                                    -->                            <!----
+</div>
                             </div>
+
+
                             <div class="gray-scale">
-                                <button class="button"> Gray Scale </button>
+                                <button class="button"> Gray Scale</button>
                             </div>
                             <div class="sepia">
-                                <button class="button"> Sepia </button>
+                                <button class="button"> Sepia</button>
                             </div>
                         </div>
-                            <label for="caption" class="card-label">Add Caption</label>
-                            <input class="card-input" type="text" id="caption" name="caption">
+                        <label for="caption" class="card-label">Add Caption</label>
+                        <input class="card-input" type="text" id="caption" name="caption">
 
                         <div class="float-end mt-4">
                             <button class="button">Add Image</button>
                         </div>
 
                     </form>
+                </div>--->
+
+                        </div>
+                    </form>
+
                 </div>
-           </div>
-      </div>
+            </div>
+
+        </div>
     </div>
 
 </main>
 
 <%- include('../partials/footer') %>
 
+<script type="text/javascript">
+    var image = document.querySelector('img');
+    var filterControls = document.querySelectorAll('input[type=range]');
+
+    function applyFilters() {
+        var computedFilters = '';
+        filterControls.forEach(function (item, index) {
+            computedFilters += item.getAttribute('data-filter') + '(' + item.value + item.getAttribute('data-scale') + ')';
+        });
+        image.style.filter = computedFilters;
+    };
+
+</script>
 <script>
-     function showPreviewOne(event){
-      if(event.target.files.length > 0){
-        let src = URL.createObjectURL(event.target.files[0]);
-        let preview = document.getElementById("file");
-        preview.src = src;
-        preview.style.display = "block";
-        preview.style.height = '200px'
-      }
+    function showPreviewOne(event) {
+        if (event.target.files.length > 0) {
+            let src = URL.createObjectURL(event.target.files[0]);
+            let preview = document.getElementById("file");
+            preview.src = src;
+            preview.style.display = "block";
+            preview.style.height = '200px'
+        }
     }
+
     function myImgRemoveFunctionOne() {
-      document.getElementById("file").src = "https://i.ibb.co/ZVFsg37/default.png";
+        document.getElementById("file").src = "https://i.ibb.co/ZVFsg37/default.png";
     }
 </script>
+
+<script>src = "https://cdnjs.cloudflare.com/ajax/libs/camanjs/4.1.2/caman.full.min.js"</script>
+<script>src = "imgController.js"</script>
