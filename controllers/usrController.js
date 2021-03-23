@@ -76,27 +76,15 @@ const profileUnfollow = async (req, res) => {
 const profileLikeImage = async (req, res) => {
     const imageToLikeId = req.body.image
     const sessionUserId = req.session.user_id
-
-    const imageToLike = await Image.findById(imageToLikeId)
-    let duplicateLike = false
-    for (let like of imageToLike.likes) {
-        if (like == sessionUserId) {
-            console.log('duplicate like')
-            duplicateLike = true
-            break
-        }
-    }
-
-    if (!duplicateLike) {
-        imageToLike.likes.push(sessionUserId)
-        await imageToLike.save()
-        // imageToLike.likes.forEach(u => console.log(u))
-        console.log('image ' + imageToLikeId + ' has ' + imageToLike.likes.length + ' like(s)')
-    }
+    await Image.findByIdAndUpdate(imageToLikeId, {$push: {likes: sessionUserId}})
+    console.log('liked')
 }
 
-const profileUnlikeImage = async(req, res) => {
-    console.log('unliked')
+const profileUnlikeImage = async (req, res) => {
+    const imageToUnlikeId = req.body.image
+    const sessionUserId = req.session.user_id
+    await Image.findByIdAndUpdate(imageToUnlikeId, {$pull: {likes: sessionUserId}})
+    console.log("unliked")
 }
 
 module.exports = {
