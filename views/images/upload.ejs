@@ -1,108 +1,133 @@
-<link href="/style/edit.css" rel="stylesheet" type="text/css">
+<link href="/style/basic.css" rel="stylesheet" type="text/css">
+<link href="/style/custom.css" rel="stylesheet" type="text/css">
+<link href="/style/testcaman.css" rel="stylesheet">
 
+<meta charset="UTF-8">
 
 <%- include('../partials/header') %>
 <main>
     <div align="center">
-        <div class="col-sm-6 p-5">
-            <div class="card btn-card">
-                <div class="card-body">
-
-                    <form action="/images" method="POST" enctype="multipart/form-data" class="clearfix">
-
-                        <img id="file" height="200px" src="https://i.ibb.co/ZVFsg37/default.png">
-                        <input type="file" name="image" id="file-ip-1" accept="image/*"
-                               onchange="showPreviewOne(event);" required>
 
 
-                        <div class="filters">
+        <div class="row">
+            <div class="col-md-8 m-auto">
+                <div class="card">
+                    <div class="card-body">
 
-
-                            <label>Brightness</label>
-                            <input type="range" min="0" max="200" value="100" step="1" onchange="applyFilters()"
-                                   data-filter="brightness" data-scale="%"><br>
-
-                            <label>Saturation</label>
-                            <input type="range" min="0" max="100" value="0" step="1" onchange="applyFilters()"
-                                   data-filter="saturate" data-scale=""><br>
-
-                            <label>Contrast</label>
-                            <input type="range" min="0" max="200" value="100" step="1" onchange="applyFilters()"
-                                   data-filter="contrast" data-scale="%"><br>
-
-
-                            <!----
-                            <div class="crop-image">
-                                <button class="button"> Crop Image</button>
+                        <form action="/images" method="POST" enctype="multipart/form-data" class="clearfix">
+                            <canvas id="canvas" style="background-color: #ececec"></canvas>
+                            <div class="custom-file mb-3">
+                            <input type="file"  name="image" id="upload-file">
                             </div>
-                            <div class="saturate">
-                                <button class="button"> Saturate</button>
-                                <div class="image-filter-saturate">
-                                    <form action="/images" method="POST" enctype="multipart/form-data" class="clearfix">
-                                          <input type="file" name="image" id="file-ip-1" accept="image/*" onchange="showPreviewOne(event);" required>
-                                    -->                            <!----
-</div>
+                            <h4 class="text-center my-3">Filters</h4>
+
+                            <div class="row my-4 text-center">
+                                <div class="col-md-3">
+                                    <div class="btn-group btn-group-sm">
+                                        <button class="filter-btn brightness-remove btn btn-info">-</button>
+                                        <button class="btn btn-secondary btn-disabled" disabled>Brightness</button>
+                                        <button class="filter-btn brightness-add btn btn-info">+</button>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="btn-group btn-group-sm">
+                                        <button class="filter-btn contrast-remove btn btn-info">-</button>
+                                        <button class="btn btn-secondary btn-disabled" disabled>Contrast</button>
+                                        <button class="filter-btn contrast-add btn btn-info">+</button>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="btn-group btn-group-sm">
+                                        <button class="filter-btn saturation-remove btn btn-info">-</button>
+                                        <button class="btn btn-secondary btn-disabled" disabled>Saturation</button>
+                                        <button class="filter-btn saturation-add btn btn-info">+</button>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="btn-group btn-group-sm">
+                                        <button class="filter-btn vibrance-remove btn btn-info">-</button>
+                                        <button class="btn btn-secondary btn-disabled" disabled>Vibrance</button>
+                                        <button class="filter-btn vibrance-add btn btn-info">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ./row -->
+
+                            <h4 class="text-center my-3">Effects</h4>
+
+                            <div class="row mb-3">
+                                <div class="col-md-3">
+                                    <button class="filter-btn vintage-add btn btn-dark btn-block">
+                                        Vintage
+                                    </button>
+                                </div>
+                                <div class="col-md-3">
+                                    <button class="filter-btn lomo-add btn btn-dark btn-block">
+                                        Lomo
+                                    </button>
+                                </div>
+                                <div class="col-md-3">
+                                    <button class="filter-btn clarity-add btn btn-dark btn-block">
+                                        Clarity
+                                    </button>
+                                </div>
+                                <div class="col-md-3">
+                                    <button class="filter-btn sincity-add btn btn-dark btn-block">
+                                        Sin City
+                                    </button>
+                                </div>
                             </div>
 
-
-                            <div class="gray-scale">
-                                <button class="button"> Gray Scale</button>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <button class="filter-btn crossprocess-add btn btn-dark btn-block">
+                                        Cross Process
+                                    </button>
+                                </div>
+                                <div class="col-md-3">
+                                    <button class="filter-btn pinhole-add btn btn-dark btn-block">
+                                        Pinhole
+                                    </button>
+                                </div>
+                                <div class="col-md-3">
+                                    <button class="filter-btn nostalgia-add btn btn-dark btn-block">
+                                        Nostalgia
+                                    </button>
+                                </div>
+                                <div class="col-md-3">
+                                    <button class="filter-btn hermajesty-add btn btn-dark btn-block">
+                                        Her Majesty
+                                    </button>
+                                </div>
                             </div>
-                            <div class="sepia">
-                                <button class="button"> Sepia</button>
+
+                            <div class="row mt-5">
+                                <div class="col-md-6">
+                                    <button id="download-btn" class="btn btn-primary btn-block">Download Image</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <button id="revert-btn" class="btn btn-danger btn-block">Remove Filters</button>
+                                </div>
                             </div>
-                        </div>
-                        <label for="caption" class="card-label">Add Caption</label>
-                        <input class="card-input" type="text" id="caption" name="caption">
 
-                        <div class="float-end mt-4">
-                            <button class="button">Add Image</button>
-                        </div>
-
-                    </form>
-                </div>--->
-
-                        </div>
-                    </form>
-
+                        </form>
+                    </div>
                 </div>
             </div>
 
+
         </div>
+    </div>
+    </div>
     </div>
 
 </main>
 
 <%- include('../partials/footer') %>
 
-<script type="text/javascript">
-    var image = document.querySelector('img');
-    var filterControls = document.querySelectorAll('input[type=range]');
+<script src="https://cdnjs.cloudflare.com/ajax/libs/camanjs/4.1.2/caman.full.min.js"></script>
+<script src="/filter/camantestfilter.js"></script>
 
-    function applyFilters() {
-        var computedFilters = '';
-        filterControls.forEach(function (item, index) {
-            computedFilters += item.getAttribute('data-filter') + '(' + item.value + item.getAttribute('data-scale') + ')';
-        });
-        image.style.filter = computedFilters;
-    };
-
-</script>
-<script>
-    function showPreviewOne(event) {
-        if (event.target.files.length > 0) {
-            let src = URL.createObjectURL(event.target.files[0]);
-            let preview = document.getElementById("file");
-            preview.src = src;
-            preview.style.display = "block";
-            preview.style.height = '200px'
-        }
-    }
-
-    function myImgRemoveFunctionOne() {
-        document.getElementById("file").src = "https://i.ibb.co/ZVFsg37/default.png";
-    }
-</script>
-
-<script>src = "https://cdnjs.cloudflare.com/ajax/libs/camanjs/4.1.2/caman.full.min.js"</script>
-<script>src = "imgController.js"</script>
