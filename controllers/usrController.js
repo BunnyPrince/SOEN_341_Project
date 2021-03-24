@@ -78,10 +78,10 @@ const profileLikeImage = async (req, res) => {
     await Image.findByIdAndUpdate(imageToLikeId, {$push: {likes: sessionUserId}})
     // console.log('liked')
 
-    // for debugging only
-    const image = await Image.findById(imageToLikeId)
-    image.likes.forEach(u => console.log(u))
-    console.log('')
+    // for debugging only, de-comment if needed
+    // const image = await Image.findById(imageToLikeId)
+    // image.likes.forEach(u => console.log(u))
+    // console.log('')
 }
 
 const profileUnlikeImage = async (req, res) => {
@@ -90,10 +90,10 @@ const profileUnlikeImage = async (req, res) => {
     await Image.findByIdAndUpdate(imageToUnlikeId, {$pull: {likes: sessionUserId}})
     // console.log("unliked")
 
-    // for debugging only
-    const image = await Image.findById(imageToUnlikeId)
-    image.likes.forEach(u => console.log(u))
-    console.log('')
+    // for debugging only, de-comment if needed
+    // const image = await Image.findById(imageToUnlikeId)
+    // image.likes.forEach(u => console.log(u))
+    // console.log('')
 }
 
 module.exports = {
