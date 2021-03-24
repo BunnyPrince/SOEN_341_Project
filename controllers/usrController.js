@@ -4,7 +4,6 @@ const ExpressError = require('../.utils/ExpressError')
 const Joi = require('joi') // schema validation
 
 
-
 const userProfile = async (req, res, next) => {
     const {username} = req.params
     const user = await User.findOne({username})
@@ -77,14 +76,24 @@ const profileLikeImage = async (req, res) => {
     const imageToLikeId = req.body.image
     const sessionUserId = req.session.user_id
     await Image.findByIdAndUpdate(imageToLikeId, {$push: {likes: sessionUserId}})
-    console.log('liked')
+    // console.log('liked')
+
+    // for debugging only
+    const image = await Image.findById(imageToLikeId)
+    image.likes.forEach(u => console.log(u))
+    console.log('')
 }
 
 const profileUnlikeImage = async (req, res) => {
     const imageToUnlikeId = req.body.image
     const sessionUserId = req.session.user_id
     await Image.findByIdAndUpdate(imageToUnlikeId, {$pull: {likes: sessionUserId}})
-    console.log("unliked")
+    // console.log("unliked")
+
+    // for debugging only
+    const image = await Image.findById(imageToUnlikeId)
+    image.likes.forEach(u => console.log(u))
+    console.log('')
 }
 
 module.exports = {
