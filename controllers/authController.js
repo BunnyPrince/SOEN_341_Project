@@ -35,7 +35,7 @@ const verifyLogin = async (req, res) => {
         console.log("success login")
         return res.redirect('/')
     }
-    console.log('Failed login')
+    // console.log('Failed login')
     req.flash('failedLogin', "Wrong username and/or password.")
     res.redirect('/')
 

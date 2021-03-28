@@ -2,6 +2,7 @@ const Image = require('../models/image')
 const User = require('../models/user')
 const Comment = require('../models/comment')
 const { cloudinary } = require('../cloudinary/cloudConfig')
+const { createImage } = require('../services/imgServices')
 
 const explore = async (req, res) => {
     const images = await Image.find({}).sort({createdAt: 'desc'});
@@ -23,19 +24,14 @@ const fullPost = async (req, res) => {
 const newImgForm = (req, res) => {
     res.render('images/upload')
 }
+
 const uploadNewPost = async (req, res) => {
-    const {user_id} = req.session
-    if (!user_id)
-        return res.send('Error: trying to post image when not logged in')
-    const user = await User.findById(user_id)
-    const caption = req.body.caption
-    // get url and filename from image stored in request (map creates an array; get first/only img)
-    const newImg = req.files.map(f => ({url: f.path, filename: f.filename, caption, user}))[0]
-    const image = new Image(newImg)
-    user.images.push(image)
-    await image.save()
-    await user.save()
-    res.redirect(`/images/${image._id}`)
+    const image = await createImage(req)
+    console.log('returned newImg:', image)
+    if (image) {
+        return res.redirect(`/images/${image._id}`)
+    }
+    res.send('Error: trying to post image when not logged in')
 }
 const editPostForm = async (req, res) => {
     const {user_id: user} = req.session
