@@ -7,7 +7,7 @@ const loadDoc = (mockDoc) => {
     }
 }
 
-const proceed = (mockDoc) => {
+const logoutButton = (mockDoc) => {
     const doc = loadDoc(mockDoc)
     let form = doc.createElement('form')
     form.setAttribute('id', 'logout')
@@ -26,5 +26,5 @@ const proceed = (mockDoc) => {
 }
 
 
-module.exports = proceed
+module.exports = logoutButton
 

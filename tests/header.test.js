@@ -1,4 +1,4 @@
-const proceed = require('../public/scripts/header')
+const logoutButton = require('../public/scripts/header')
 
 const jsdom = require("jsdom")
 const {JSDOM} = jsdom
@@ -7,7 +7,7 @@ jest.setTimeout(30000)
 const dom = new JSDOM(
     `<!DOCTYPE html><body>
     <a type="button" 
-    onclick="proceed()">Log Out
+    onclick="logoutButton()">Log Out
     </a>
     </body>
 `)
@@ -19,7 +19,7 @@ const {document} = window
  */
 
 test('header Test', (done) => {
-    expect(proceed(document)).toEqual(
+    expect(logoutButton(document)).toEqual(
         {
             "action": "/logout",
             "id": "logout",
