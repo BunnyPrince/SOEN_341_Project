@@ -1,10 +1,7 @@
-const User = require('../models/user')
-const Image = require('../models/image')
-
 // refactoring the logic of uploadNewPost
-const createImage = async (req) => {
+const createImage = async (req, User, Image) => {
     const {user_id} = req.session
-    console.log('user_id', user_id)
+    // console.log('user_id', user_id)
     if (!user_id)
         return undefined
     const user = await User.findById(user_id)

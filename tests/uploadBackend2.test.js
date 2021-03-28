@@ -1,3 +1,5 @@
+// Dummy test file: example of setup to test the service layer functions (logic of controllers)
+
 const mongoose = require('mongoose')
 const UserModel = require('../models/user')
 const userData = {

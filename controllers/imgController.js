@@ -1,8 +1,9 @@
 const Image = require('../models/image')
 const User = require('../models/user')
 const Comment = require('../models/comment')
-const { cloudinary } = require('../cloudinary/cloudConfig')
-const { createImage } = require('../services/imgServices')
+const {cloudinary} = require('../cloudinary/cloudConfig')
+const {createImage} = require('../services/imgServices')
+const {createComment} = require('../services/commentServices')
 
 const explore = async (req, res) => {
     const images = await Image.find({}).sort({createdAt: 'desc'});
@@ -15,9 +16,7 @@ const fullPost = async (req, res) => {
     const imageUserId = image.user.toString()
     if (imageUserId === req.session.user_id)
         permission = true
-    // get image user
     const imgUser = await User.findById(imageUserId)
-    // get current user
     const currentUser = await User.findById(req.session.user_id)
     res.render('images/fullpost', {image, permission, imgUser, currentUser})
 }
@@ -26,12 +25,8 @@ const newImgForm = (req, res) => {
 }
 
 const uploadNewPost = async (req, res) => {
-    const image = await createImage(req)
-    console.log('returned newImg:', image)
-    if (image) {
-        return res.redirect(`/images/${image._id}`)
-    }
-    res.send('Error: trying to post image when not logged in')
+    const image = await createImage(req, User, Image)
+    return res.redirect(`/images/${image._id}`)
 }
 const editPostForm = async (req, res) => {
     const {user_id: user} = req.session
@@ -73,11 +68,7 @@ const deletePost = async (req, res) => {
 
 // ------------------------------ Comments ------------------------------
 const commentPost = async (req, res) => {
-    const image = await Image.findById(req.params.id)
-    const comment = new Comment(req.body.comment)
-    image.comments.push(comment)
-    await comment.save()
-    await image.save()
+    const image = await createComment(req, Image, Comment)
     res.redirect(`/images/${image._id}`)
 }
 const deleteCommentPost = async (req, res) => {

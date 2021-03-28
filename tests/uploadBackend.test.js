@@ -1,6 +1,7 @@
 const {MongoClient} = require('mongodb')
 const mongoose = require('mongoose')
 const User = require('../models/user')
+const Image = require('../models/image')
 const {createImage} = require('../services/imgServices')
 
 // mock user
@@ -44,11 +45,10 @@ const expectedImg = {
     user: {
         username: 'john_smith',
         email: 'john@mail.mock',
-        _id: '60438f9c0b84589e11a1cbc1',
+        _id: mongoose.Types.ObjectId('60438f9c0b84589e11a1cbc1'),
         images: []
     }
 }
-
 
 describe('Testing `createImage`, service function (backend upload logic)', () => {
     let connection
@@ -62,8 +62,7 @@ describe('Testing `createImage`, service function (backend upload logic)', () =>
                 useNewUrlParser: true,
                 useUnifiedTopology: true
             })
-        db =
-        await connection.db(global.__MONGO_DB_NAME__)
+        db = await connection.db(global.__MONGO_DB_NAME__)
 */
         //alt connect
         await mongoose.connect(global.__MONGO_URI__,
@@ -86,11 +85,16 @@ describe('Testing `createImage`, service function (backend upload logic)', () =>
 
     })
 
+    afterEach(async() => {
+    })
+
     afterAll(async () => {
         /*     await connection.close()
              await db.close()*/
 
         //alt disconnect
+
+        Image.deleteMany()
         User.deleteMany()
         await mongoose.connection.close()
 
@@ -118,20 +122,25 @@ describe('Testing `createImage`, service function (backend upload logic)', () =>
                 expect(user).toEqual(mockUser)*/
 
         // alternate fetch
-        const insertedUser = await User.findOne({username: 'john_smith'})
-        expect(insertedUser.username).toEqual(mockUser.username)
-        expect(insertedUser.email).toEqual(mockUser.email)
-        expect(insertedUser.password).toEqual(mockUser.password)
-        expect(insertedUser._id).toEqual(mockUser._id)
+        const {username, email, password, _id} = await User.findOne({username: 'john_smith'})
+        expect(username).toEqual(mockUser.username)
+        expect(email).toEqual(mockUser.email)
+        expect(password).toEqual(mockUser.password)
+        expect(_id).toEqual(mockUser._id)
     })
 
-    /*
-    it('', async() => {
-        const img = await createImage(request)
-        expect(img).toEqual(expectedImg)
+
+    it('createImage fails', async() => {
+        await createImage(request, User, Image)
+        let { filename, url, caption, user} = await Image.findOne({filename: expectedImg.filename})
+        expect(filename).toEqual(expectedImg.filename)
+        expect(url).toEqual(expectedImg.url)
+        expect(caption).toEqual(expectedImg.caption)
+        expect(user._id).toEqual(expectedImg.user._id)
+
 
     })
-    */
+
 
 })
 
