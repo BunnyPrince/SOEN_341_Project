@@ -41,7 +41,7 @@
     "supertest": "^6.1.3"
   },
   "jest": {
-    "testEnvironment": "jsdom",
+    "testEnvironment": "node",
     "coveragePathIgnorePatterns": [
       "/node_modules/"
     ]

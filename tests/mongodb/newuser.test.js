@@ -16,7 +16,7 @@ describe('User Model Test', () => {
     // Connect to the MongoDB Memory Server by using mongoose.connect
     beforeAll(async () => {
         await mongoose.connect(global.__MONGO_URI__,
-            { useNewUrlParser: true, useCreateIndex: true },
+            { useNewUrlParser: true, useUnifiedTopology: true },
             (err) => {
             if (err) {
                 console.error(err);

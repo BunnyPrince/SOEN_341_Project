@@ -1,4 +1,20 @@
-const User = require('../models/user');
+const {MongoClient} = require('mongodb')
+const mongoose = require('mongoose')
+const User = require('../models/user')
+const {createImage} = require('../services/imgServices')
+
+// mock user
+let mockUser = {
+    username: 'john_smith',
+    _id: mongoose.Types.ObjectId('60438f9c0b84589e11a1cbc1'),
+    email: 'john@mail.mock',
+    password: 'non-encrypted-psw',
+    images: [],
+    followers: [],
+    follows: []
+
+}
+
 // mock request
 const request = {
     session: {
@@ -27,72 +43,97 @@ const expectedImg = {
     caption: 'Awesome vacation in Europe!',
     user: {
         username: 'john_smith',
-        _id: '60438f9c0b84589e11a1cbc1'
+        email: 'john@mail.mock',
+        _id: '60438f9c0b84589e11a1cbc1',
+        images: []
     }
 }
 
-// create mock database
-// insert dummy data from our seed files
-// const {MongoClient} = require('mongodb')
-const mongoose = require('mongoose')
-const UserModel = require('../models/user')
 
-// fake user
-let mockUser = {
-    username: 'john_smith',
-    _id: '60438f9c0b84589e11a1cbc1',
-    password: ''
-}
-
-describe('upload image to db', () => {
+describe('Testing `createImage`, service function (backend upload logic)', () => {
     let connection
     let db
 
     beforeAll(async () => {
-        connection = await mongoose.connect(global.__MONGO_URI__,
+
+        // connect
+        /*connection = await MongoClient.connect(global.__MONGO_URI__,
             {
                 useNewUrlParser: true,
-                useCreateIndex: true
+                useUnifiedTopology: true
             })
-        db = await connection.db(global.__MONGO_DB_NAME__)
+        db =
+        await connection.db(global.__MONGO_DB_NAME__)
+*/
+        //alt connect
+        await mongoose.connect(global.__MONGO_URI__,
+            {useNewUrlParser: true, useUnifiedTopology: true},
+            (err) => {
+                if (err) {
+                    console.error(err)
+                    process.exit(1)
+                }
+            })
+
         // insert
+        /*        const user = await new User(mockUser)
+                let users = db.collection('users')
+                users.insertOne(user)*/
+
+        // alternate insert
+        const user = new User(mockUser)
+        await user.save()
 
     })
 
     afterAll(async () => {
-        await connection.close()
-        await db.close()
-    });
+        /*     await connection.close()
+             await db.close()*/
 
+        //alt disconnect
+        User.deleteMany()
+        await mongoose.connection.close()
+
+    })
+
+    /*
     it('should insert a doc into collection', async () => {
-        const users = db.collection('users');
 
-        const mockUser = {_id: 'some-user-id', name: 'John'};
-        await users.insertOne(mockUser);
+        // const users = await db.collection('users')
 
-        const insertedUser = await users.findOne({_id: 'some-user-id'});
-        expect(insertedUser).toEqual(mockUser);
-    });
-});
 
-/*
-const uploadNewPost = async (req, res) => {
-    **refactor here** input request object
-    const {user_id} = req.session
-    if (!user_id)
-        return res.send('Error: trying to post image when not logged in')
-    const user = await User.findById(user_id)
-    const caption = req.body.caption
-    // get url and filename from image stored in request (map creates an array; get first/only img)
-    const newImg = req.files.map(f => ({url: f.path, filename: f.filename, caption, user}))[0]
+        const fakeUser = {_id: 'some-user-id', username: 'jim', email: 'jim@office.us', password: 'password'};
+        await users.insertOne(fakeUser)
 
-    **refactor end** output: either error, or image object
-    const image = new Image(newImg)
-    user.images.push(image)
-    await image.save()
-    await user.save()
-    res.redirect(`/images/${image._id}`)
-}
-*/
+        const insertedUser = await users.findOne({_id: 'some-user-id'})
+        expect(insertedUser).toEqual(fakeUser)
+
+    })
+    */
+
+    it('fetch mock user john smith', async () => {
+        // fetch
+        /*        const users = await db.collection('users')
+                const user = await users.findOne({username: 'john_smith'})
+                expect(user).toEqual(mockUser)*/
+
+        // alternate fetch
+        const insertedUser = await User.findOne({username: 'john_smith'})
+        expect(insertedUser.username).toEqual(mockUser.username)
+        expect(insertedUser.email).toEqual(mockUser.email)
+        expect(insertedUser.password).toEqual(mockUser.password)
+        expect(insertedUser._id).toEqual(mockUser._id)
+    })
+
+    /*
+    it('', async() => {
+        const img = await createImage(request)
+        expect(img).toEqual(expectedImg)
+
+    })
+    */
+
+})
+
 
 
