@@ -7,6 +7,15 @@ const createComment = async (req, Image, Comment) => {
     return image
 }
 
+const deleteComment = async (req, Image, Comment) => {
+    const {imageId, commentId} = req.params
+    // This deletes the reference to the comment in image
+    const image = await Image.findByIdAndUpdate(imageId, {$pull: {comments: commentId}})
+    await Comment.findByIdAndDelete(req.params.commentId)
+    return image
+}
+
 module.exports = {
-    createComment
+    createComment,
+    deleteComment
 }
