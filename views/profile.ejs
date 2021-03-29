@@ -20,7 +20,7 @@
                 <!-- follow/Unfollow buttons -->
                 <h2 class="name">
                     <!-- Follow/Unfollow buttons -->
-                    <button class="button" type="button"
+                    <button class="btn btn-primary btn-lg" type="button"
 
                     <% if (isBeingFollowed || duplicateUser) { %>
                             style="display: none"
@@ -28,7 +28,7 @@
 
                             onclick="editFollow('<%= user._id %>', 'follow', '<%= user.username %>')">Follow
                     </button>
-                    <button class="button" type="button"
+                    <button class="btn btn-primary btn-lg" type="button"
                     <% if (!isBeingFollowed || duplicateUser) { %>
                             style="display: none"
                             <% } %>
@@ -39,14 +39,14 @@
                 </h2>
                 <div class="info">
                     <div class="group">
-                        <button class="button" type="button"
+                        <button class="btn btn-primary" type="button"
                                 onclick="showList('<%= user._id %>', '<%= isBeingFollowed %>', '<%= duplicateUser %>', 'followers', '<%= user.username %>')">
                             followers
                         </button>
                         <%= user.followers.length %>
                     </div>
                     <div class="group">
-                        <button class="button" type="button"
+                        <button class="btn btn-primary" type="button"
                                 onclick="showList('<%= user._id %>', '<%= isBeingFollowed %>', '<%= duplicateUser %>', 'follows', '<%= user.username %>')">
                             followings
                         </button>
