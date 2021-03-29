@@ -96,13 +96,13 @@ img.post {
 
 .edit-button {
     position: absolute;
-    right: 5px;
+    right: 60px;
     z-index: 5;
 }
 
 .trash-button {
     position: absolute;
-    right: 60px;
+    right: 5px;
     z-index: 5;
 }
 
