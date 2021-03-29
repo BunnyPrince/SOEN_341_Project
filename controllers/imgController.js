@@ -2,8 +2,13 @@ const Image = require('../models/image')
 const User = require('../models/user')
 const Comment = require('../models/comment')
 const {cloudinary} = require('../cloudinary/cloudConfig')
-const {createImage, deleteImage, editImageCaption, updateImage} = require('../services/imgServices')
-const {createComment, deleteComment} = require('../services/commentServices')
+const {
+    createImage,
+    deleteImage,
+    editImageCaption,
+    updateImage
+} = require('../services/imgServices')
+const { createComment, deleteComment } = require('../services/commentServices')
 
 const explore = async (req, res) => {
     const images = await Image.find({}).sort({createdAt: 'desc'});
