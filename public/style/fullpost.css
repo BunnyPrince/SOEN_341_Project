@@ -1,42 +1,48 @@
 /*-----div---------*/
 .post-card {
-    padding:80px;
-    display:flex;
-    margin:auto; /* center horizontally; 50px margin on top+bottom */
+    padding: 80px;
+    display: flex;
+    margin: auto; /* center horizontally; 50px margin on top+bottom */
     align-items: center; /* center the content (post-body) */
     justify-content: center; /* center horizontally */
 }
+
 .post-body {
-    display:flex;
+    display: flex;
     padding: 0;
-    max-height:inherit; /* this child div does not expand outside of parent (post-card) */
-    background-color:white;
+    max-height: inherit; /* this child div does not expand outside of parent (post-card) */
+    background-color: white;
     /* border: #dbdbdb solid 1px; */
 }
+
 .post-column {
     display: inline-block;
     /*border: 1px solid #dbdbdb; */
     height: 500px;
 }
+
 .post-container {
-    display: flex;/* parent div to the image container (post div) */
+    display: flex; /* parent div to the image container (post div) */
 }
+
 .post { /* div containing the image*/
     width: auto;
 }
+
 .comment-section {
     background-color: #fafafa;
-    position:relative;/* Parent div of new-comment div: this line helps make new-comment sticky */
+    position: relative; /* Parent div of new-comment div: this line helps make new-comment sticky */
     border: #dbdbdb solid 1px;
     height: 500px;
     width: 300px;
     overflow-x: hidden;
-    overflow-y:auto;
+    overflow-y: auto;
 }
+
 .caption-box {
     background-color: white; /* this div cannot be transparent */
     position: sticky;
-    top:0;
+    top: 0;
     padding: 10px;
     /*
     height: 100px;*/
@@ -44,30 +50,37 @@
     border-bottom: #dbdbdb solid 1px;
     z-index: 15; /* buttons are "behind" sticky .caption and .new-comment */
 }
+
 .caption {
     /* box-sizing: border-box; /*box-sizing property*/
 }
+
 .show-btn-with-permission {
     /* box-sizing: border-box; /*box-sizing property*/
 }
+
 .comment {
     padding: 10px;
 }
+
 .new-comment {
     background-color: white; /* this div cannot be transparent */
-    padding:10px;
+    padding: 10px;
     border: #dbdbdb solid 1px;
     /* make new comment form at bottom of comment-section div, parent div */
     position: sticky;
-    bottom:0;
+    bottom: 0;
     z-index: 15; /* buttons are "behind" sticky .caption and .new-comment */
 }
+
 input.new-comment {
-  /*  overflow-wrap: break-word */
+    /*  overflow-wrap: break-word */
 }
+
 div.oneline {
-    display:inline-block;
+    display: inline-block;
 }
+
 /*--------image-------*/
 img.post {
     height: 500px; /* needs to fit the div.post-column*/
@@ -75,10 +88,22 @@ img.post {
 
 /*---------button-----*/
 .button {
-    position:absolute;
-    right:5px;
+    position: absolute;
+    right: 5px;
     color: #3e83f6;
     z-index: 5; /* buttons are "behind" sticky .caption and .new-comment */
+}
+
+.edit-button {
+    position: absolute;
+    right: 5px;
+    z-index: 5;
+}
+
+.trash-button {
+    position: absolute;
+    right: 60px;
+    z-index: 5;
 }
 
 /*---------p---------*/
@@ -92,9 +117,10 @@ p.oneline {
 a {
     text-decoration: none;
 }
+
 .avatar {
-  vertical-align: middle;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
 }

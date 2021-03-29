@@ -14,20 +14,20 @@ function editLike(img, type) {
     input.setAttribute('name', 'image');
     input.setAttribute('value', img);
     input.style.display = 'none'
-    form.style.display = 'hidden';
+    form.style.display = 'none';
     form.appendChild(input);
     document.body.appendChild(form);
     if (type === 'like') {
         document.getElementById('like-button-' + img).style.display = 'none'
-        document.getElementById('unlike-button-' + img).style.display = 'block'
+        document.getElementById('unlike-button-' + img).style.display = 'inline-block'
     } else {
         document.getElementById('unlike-button-' + img).style.display = 'none'
-        document.getElementById('like-button-' + img).style.display = 'block'
+        document.getElementById('like-button-' + img).style.display = 'inline-block'
     }
     form.submit();
 }
 
 function setVisibilityLike(img) {
     document.getElementById('like-button-' + img).style.display = 'none'
-    document.getElementById('unlike-button-' + img).style.display = 'block'
+    document.getElementById('unlike-button-' + img).style.display = 'inline-block'
 }
