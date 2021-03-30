@@ -25,6 +25,11 @@ describe('User Model Test', () => {
         });
     });
 
+    afterAll(async() => {
+        await UserModel.deleteMany()
+        await mongoose.connection.close()
+    })
+
 
     it('create & save user successfully', async () => {
         const validUser = new UserModel(userData);
