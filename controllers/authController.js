@@ -1,5 +1,6 @@
 const Image = require('../models/image')
 const User = require('../models/user')
+const { destroySession } = require('../services/authServices')
 const ExpressError = require('../.utils/ExpressError')
 const Joi = require('joi') // schema validation
 const bcrypt = require('bcrypt')
@@ -71,9 +72,7 @@ const profile = async (req, res) => {
     res.redirect(`/${user.username}`); // redirect to '/<username>'
 }
 const logout = (req, res) => {
-    req.session.user_id = null
-    req.session.destroy() // completely any information stored in session
-    console.log('User has logout.')
+    destroySession(req)
     res.redirect('/')
 }
 module.exports = {

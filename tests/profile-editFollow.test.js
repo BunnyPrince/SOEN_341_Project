@@ -7,7 +7,7 @@ jest.setTimeout(30000)
 const dom = new JSDOM(
     `<!DOCTYPE html><body>
     <button class="button" type="button" style="display: none"
-        onclick="editFollow('60438f9c0b84589e11a1cbf2', 'follow', ' eyeshield2110 ')"> Follow
+        onclick="editFollow('60438f9c0b84589e11a1cbf2', 'follow', ' eyeshield2110')"> Follow
     </button>
     
     </body>
@@ -19,7 +19,7 @@ const {document} = window
 
 test('Profile Test', (done) => {
 
-      expect(editFollow('60438f9c0b84589e11a1cbf2', 'follow', ' eyeshield2110 ',document)).toEqual(
+      expect(editFollow('60438f9c0b84589e11a1cbf2', 'follow', ' eyeshield2110', document)).toEqual(
           {
               "action": "/follow?_method=PUT",
               "currentUser": "userid",
