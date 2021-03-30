@@ -1,19 +1,26 @@
-
 <link href="/style/basic.css" rel="stylesheet" type="text/css">
 <link href="/style/custom.css" rel="stylesheet" type="text/css">
 
-<%- include('../partials/header')  %>
+<%- include('../partials/header') %>
 <main>
-    <div  align="center" >
-      <div class="col-sm-6 p-5">
-           <div class="card btn-card">
+    <div align="center">
+        <div class="col-sm-6 p-5">
+            <div class="card btn-card">
                 <div class="card-body">
                     <form action="/images" method="POST" enctype="multipart/form-data" class="clearfix">
-                         <img id="file" class="w-100" src="https://i.ibb.co/ZVFsg37/default.png">
-                         <input type="file" name="image" id="file-ip-1" accept="image/*" onchange="showPreviewOne(event);" required>
+                        <div style="padding: 10px;">
+                            <img id="file" class="w-100" src="https://i.ibb.co/ZVFsg37/default.png">
+                        </div>
 
-                            <label for="caption" class="card-label">Add Caption</label>
-                            <input class="card-input" type="text" id="caption" name="caption">
+                        <div style="padding: 10px;">
+                            <input type="file" name="image" id="file-ip-1" accept="image/*"
+                               onchange="showPreviewOne(event);" required>
+                        </div>
+
+                        <div style="padding: 10px; padding-bottom: 0px">
+                             <input class="card-input" type="text" id="caption" name="caption" placeholder="Add a caption">
+                        </div>
+
 
                         <div class="float-end mt-4">
                             <button class="btn btn-button">Add Image</button>
@@ -21,12 +28,12 @@
 
                     </form>
                 </div>
-           </div>
-      </div>
+            </div>
+        </div>
     </div>
 
 </main>
 
 <%- include('../partials/footer') %>
 
-<script  src="/scripts/image.js" ></script>
+<script src="/scripts/image.js"></script>
