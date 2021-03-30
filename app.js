@@ -18,6 +18,7 @@ const imgRouter = require('./routes/imgRouter')
 const authRouter = require('./routes/authRouter')
 const usrRouter = require('./routes/usrRouter')
 const accRouter = require('./routes/accRouter')
+const likeRouter = require('./routes/likeRouter')
     // Error handling
 const ExpressError = require('./.utils/ExpressError')
 const asyncErr = require('./.utils/asyncErr')
@@ -90,6 +91,8 @@ app.get('/search', (req, res) => {
 app.use('/images', isLogged, imgRouter)
 
 app.use('/', isLogged, usrRouter)
+
+app.use('/', likeRouter)
 
 // To-do: account setting routes
 app.use('/account', accRouter)
