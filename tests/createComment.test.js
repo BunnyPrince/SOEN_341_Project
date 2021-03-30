@@ -68,7 +68,7 @@ describe('Testing `createComment`',  () => {
     })
 
 
-    it('createComment fails', async () => {
+    it('createComment with a valid comment', async () => {
         await createComment(request, Image, Comment)
         const img = await Image.findById('60438f9c0b84589e11a1cbb9').populate('comments')
         const {comments} = img
