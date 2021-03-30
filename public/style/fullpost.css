@@ -106,6 +106,22 @@ img.post {
     z-index: 5;
 }
 
+.like-button {
+    color: #0D6EFD !important;
+}
+
+.unlike-button {
+    color: #0D6EFD !important;
+}
+
+.trash-btn {
+    color: #0D6EFD !important;
+}
+
+.edit-btn {
+    color: #0D6EFD !important;
+}
+
 /*---------p---------*/
 p.oneline {
     overflow-wrap: break-word;
