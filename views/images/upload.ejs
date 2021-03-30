@@ -17,93 +17,111 @@
                         <form action="/images" method="POST" enctype="multipart/form-data" class="clearfix">
                             <canvas id="canvas" style="background-color: #ececec"></canvas>
                             <div class="custom-file mb-3">
-                            <input type="file"  name="image" id="upload-file">
-                            </div>
-                            <h4 class="text-center my-3">Filters</h4>
 
-                            <div class="row my-4 text-center">
-                                <div class="col-md-3">
-                                    <div class="btn-group btn-group-sm">
-                                        <input type="button" class="filter-btn brightness-remove btn btn-info" value="-">
-                                        <input type="button"  class="btn btn-secondary btn-disabled" disabled value="Brightness">
-                                        <input type="button"  class="filter-btn brightness-add btn btn-info" value="+">
+                                <br>
+                                <div class="flex-contain row">
+                                    <input class="row" type="file" name="image" id="upload-file">
+                                    <input type="text" id="caption" name="caption"
+                                           placeholder="Add a caption">
+                                </div>
+
+                                <h4 class="text-center my-3">Filters</h4>
+
+                                <div class="row my-4 text-center">
+                                    <div class="col-md-3">
+                                        <div class="btn-group btn-group-sm">
+                                            <input type="button" class="filter-btn brightness-remove btn btn-info"
+                                                   value="-">
+                                            <input type="button" class="btn btn-secondary btn-disabled" disabled
+                                                   value="Brightness">
+                                            <input type="button" class="filter-btn brightness-add btn btn-info"
+                                                   value="+">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="btn-group btn-group-sm">
+                                            <input type="button" class="filter-btn contrast-remove btn btn-info"
+                                                   value="-">
+                                            <input type="button" class="btn btn-secondary btn-disabled" disabled
+                                                   value="Contrast">
+                                            <input type="button" class="filter-btn contrast-add btn btn-info" value="+">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="btn-group btn-group-sm">
+                                            <input type="button" class="filter-btn saturation-remove btn btn-info"
+                                                   value="-">
+                                            <input type="button" class="btn btn-secondary btn-disabled" disabled
+                                                   value="Saturation">
+                                            <input type="button" class="filter-btn saturation-add btn btn-info"
+                                                   value="+">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="btn-group btn-group-sm">
+                                            <input type="button" class="filter-btn vibrance-remove btn btn-info"
+                                                   value="-">
+                                            <input type="button" class="btn btn-secondary btn-disabled" disabled
+                                                   value="Vibrance">
+                                            <input type="button" class="filter-btn vibrance-add btn btn-info" value="+">
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="col-md-3">
-                                    <div class="btn-group btn-group-sm">
-                                        <input type="button"  class="filter-btn contrast-remove btn btn-info" value="-">
-                                        <input type="button"  class="btn btn-secondary btn-disabled" disabled value="Contrast">
-                                        <input type="button"  class="filter-btn contrast-add btn btn-info" value="+">
+                                <h4 class="text-center my-3">Effects</h4>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-3">
+                                        <input type="button" class="filter-btn vintage-add btn btn-dark btn-block"
+                                               value="Vintage">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="button" class="filter-btn lomo-add btn btn-dark btn-block"
+                                               value="Lomo">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="button" class="filter-btn clarity-add btn btn-dark btn-block"
+                                               value="Clarity">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="button" class="filter-btn sincity-add btn btn-dark btn-block"
+                                               value="Sin City">
                                     </div>
                                 </div>
 
-                                <div class="col-md-3">
-                                    <div class="btn-group btn-group-sm">
-                                        <input type="button"  class="filter-btn saturation-remove btn btn-info" value="-">
-                                        <input type="button"  class="btn btn-secondary btn-disabled" disabled value="Saturation">
-                                        <input type="button"  class="filter-btn saturation-add btn btn-info" value="+">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <input type="button" class="filter-btn crossprocess-add btn btn-dark btn-block"
+                                               value="Cross Process">
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <input type="button" class="filter-btn pinhole-add btn btn-dark btn-block"
+                                               value="Pinhole">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="button" class="filter-btn nostalgia-add btn btn-dark btn-block"
+                                               value="Nostalgia">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="button" class="filter-btn hermajesty-add btn btn-dark btn-block"
+                                               value="Her Majesty">
                                     </div>
                                 </div>
 
-                                <div class="col-md-3">
-                                    <div class="btn-group btn-group-sm">
-                                        <input type="button"  class="filter-btn vibrance-remove btn btn-info" value="-">
-                                        <input type="button"  class="btn btn-secondary btn-disabled" disabled value="Vibrance">
-                                        <input type="button"  class="filter-btn vibrance-add btn btn-info" value="+">
+                                <div class="row mt-5">
+                                    <div class="col-md-6">
+                                        <button type="submit" class="btn btn-primary btn-block">Upload</button>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="button" id="revert-btn" class="btn btn-danger btn-block"
+                                               value="Remove filters">
                                     </div>
                                 </div>
-                            </div>
-                            <!-- ./row -->
-
-                            <h4 class="text-center my-3">Effects</h4>
-
-                            <div class="row mb-3">
-                                <div class="col-md-3">
-                                    <input type="button"  class="filter-btn vintage-add btn btn-dark btn-block" value="Vintage">
                                 </div>
-                                <div class="col-md-3">
-                                    <input type="button" class="filter-btn lomo-add btn btn-dark btn-block" value="Lomo">
-                                </div>
-                                <div class="col-md-3">
-                                    <input type="button" class="filter-btn clarity-add btn btn-dark btn-block" value="Clarity">
-                                </div>
-                                <div class="col-md-3">
-                                    <input type="button" class="filter-btn sincity-add btn btn-dark btn-block" value="Sin City">
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <button class="filter-btn crossprocess-add btn btn-dark btn-block">
-                                        Cross Process
-                                    </button>
-                                </div>
-                                <div class="col-md-3">
-                                    <button class="filter-btn pinhole-add btn btn-dark btn-block">
-                                        Pinhole
-                                    </button>
-                                </div>
-                                <div class="col-md-3">
-                                    <button class="filter-btn nostalgia-add btn btn-dark btn-block">
-                                        Nostalgia
-                                    </button>
-                                </div>
-                                <div class="col-md-3">
-                                    <button class="filter-btn hermajesty-add btn btn-dark btn-block">
-                                        Her Majesty
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="row mt-5">
-                                <div class="col-md-6">
-                                    <button type="submit" class="btn btn-primary btn-block">Upload</button>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="button" id="revert-btn" class="btn btn-danger btn-block" value="Remove filters">
-                                </div>
-                            </div>
 
                         </form>
                     </div>

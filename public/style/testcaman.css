@@ -14,3 +14,7 @@
       background-color:blue;
 }
 
+.flex-contain{
+    display: inline-list-item;
+    width: 50%;
+}
