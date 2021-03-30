@@ -120,6 +120,11 @@ uploadFile.addEventListener("change", () => {
     false
   );
 });
+document.getElementById('displayFilters').addEventListener("click", function() {
+   const file = document.getElementById("upload-file").files[0];
+if (file) {
+   document.querySelector('.disappear-card').style.display = "flex";
+ }});
 /*
 
 // Download Event

@@ -14,7 +14,36 @@
       background-color:blue;
 }
 
-.flex-contain{
+.contain{
     display: inline-list-item;
     width: 50%;
 }
+.disappear-card {
+	width: 100%;
+	height: 100%;
+	display: none;
+	justify-content: center;
+	align-items: center;
+}
+/*
+.modal-contents {
+	width: 500px;
+}*/
+.disappear{
+	height: 300px;
+	width: 500px;
+	text-align: center;
+	padding: 20px;
+	border-radius: 4px;
+
+}
+
+.card{
+    overflow: auto;
+}
+.triple-btn{
+	margin: 10%;
+}
+/*.row{
+	bs-gutter-x: 6rem;
+}*/
