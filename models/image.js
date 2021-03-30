@@ -19,7 +19,8 @@ const ImageSchema = new Schema({
     likes: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'User'
+            ref: 'User',
+            default: []
         }
     ],
     createdAt: {

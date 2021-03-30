@@ -5,13 +5,16 @@ const Joi = require('joi') // schema validation
 const bcrypt = require('bcrypt')
 
 const login_feed = async (req, res) => {
-    if (req.session.user_id) {
-        let {follows} = await User.findById(req.session.user_id)
+    const sessionUserID = req.session.user_id
+    if (sessionUserID) {
+        let {follows} = await User.findById(sessionUserID)
         let feedImgs = await Image.find({user: {$in: follows}})
             .populate('user')
             .populate('comments')
-        // console.log(feedImgs)
-        return res.render('feed', {feedImgs});
+        return res.render('feed', {
+            feedImgs,
+            sessionUserID
+        });
     }
     res.render('login', {
         msg:
