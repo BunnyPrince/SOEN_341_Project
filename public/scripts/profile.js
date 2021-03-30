@@ -1,5 +1,12 @@
-function editFollow(userid, type, username, mockDoc) {
-    const doc = loadDoc(mockDoc)
+// import loadDoc from './loadDocument.js'
+
+function editFollow(userid, type, username, mockDoc){
+    let doc
+    if (typeof document === 'undefined') {
+        doc = mockDoc
+    } else {
+        doc = document
+    }
     console.log('clicked ' + type)
     let form = doc.createElement('form')
     form.setAttribute('id', 'editForm')
@@ -16,7 +23,7 @@ function editFollow(userid, type, username, mockDoc) {
     form.appendChild(otherUserInput)
     doc.body.appendChild(form)
     if (typeof mockDoc === 'undefined')
-        form.submit()
+    form.submit()
     return {
         id: form.getAttribute('id'),
         method: form.getAttribute('method'),
@@ -29,7 +36,12 @@ function editFollow(userid, type, username, mockDoc) {
 }
 
 function showList(userid, isBeingFollowed, duplicateUser, type, username, mockDoc) {
-    const doc = loadDoc(mockDoc)
+    let doc
+    if (typeof document === 'undefined') {
+        doc = mockDoc
+    } else {
+        doc = document
+    }
     console.log('clicked ' + type)
     let form = doc.createElement('form')
     form.setAttribute('id', 'showList')
@@ -50,7 +62,7 @@ function showList(userid, isBeingFollowed, duplicateUser, type, username, mockDo
     form.style.display = 'hidden'
     doc.body.appendChild(form)
     if (typeof mockDoc === 'undefined')
-        form.submit()
+    form.submit()
     return {
         id: form.getAttribute('id'),
         method: form.getAttribute('method'),
@@ -64,4 +76,4 @@ function showList(userid, isBeingFollowed, duplicateUser, type, username, mockDo
     }
 }
 
-module.exports = {showList, editFollow}
+    module.exports = {editFollow, showList}

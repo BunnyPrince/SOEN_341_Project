@@ -1,14 +1,12 @@
-const loadDoc = (mockDoc) => {
-    // loads mock document from jsdom or browser document
-    if (typeof document === 'undefined') {
-        return mockDoc
-    } else {
-        return document
-    }
-}
 
-const logoutButton = (mockDoc) => {
-    const doc = loadDoc(mockDoc)
+
+function logoutButton(mockDoc){
+    let doc
+    if (typeof document === 'undefined') {
+        doc = mockDoc
+    } else {
+        doc = document
+    }
     let form = doc.createElement('form')
     form.setAttribute('id', 'logout')
     form.setAttribute('method', 'post')
