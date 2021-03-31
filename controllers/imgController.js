@@ -1,7 +1,7 @@
 const Image = require('../models/image')
 const User = require('../models/user')
 const Comment = require('../models/comment')
-const { cloudinary } = require('../cloudinary/cloudConfig')
+const {cloudinary} = require('../cloudinary/cloudConfig')
 
 const explore = async (req, res) => {
     const images = await Image.find({}).sort({createdAt: 'desc'});
@@ -29,13 +29,21 @@ const uploadNewPost = async (req, res) => {
         return res.send('Error: trying to post image when not logged in')
     const user = await User.findById(user_id)
     const caption = req.body.caption
-    // get url and filename from image stored in request (map creates an array; get first/only img)
-    const newImg = req.files.map(f => ({url: f.path, filename: f.filename, caption, user}))[0]
-    const image = new Image(newImg)
+
+    // console.log("Hidden img:", req.body.hidden)
+    let editedImg
+    await cloudinary.uploader.upload(req.body.hidden, (error, result) => {
+        console.log('Edited img info:', result, error)
+        editedImg = {filename: result.public_id, url: result.url, caption, user}
+    })
+    const image = new Image(editedImg)
     user.images.push(image)
     await image.save()
     await user.save()
-    res.redirect(`/images/${image._id}`)
+    return res.redirect(`/images/${image._id}`)
+    //  const newImg = req.files.map(f => ({url: f.path, filename: f.filename, caption, user}))[0]
+    //  console.log('Og image info:', newImg)
+
 }
 const editPostForm = async (req, res) => {
     const {user_id: user} = req.session
@@ -69,8 +77,9 @@ const deletePost = async (req, res) => {
     const {id} = req.params
     const {filename} = await Image.findById(id)
     await User.findByIdAndUpdate(user_id, {$pull: {images: id}})/* delete reference to image */
-    if (filename)
-        await cloudinary.uploader.destroy(filename) // delete image from cloud storage with filename
+    if (filename) {
+        await cloudinary.uploader.destroy(filename)
+    }
     await Image.findByIdAndDelete(id) // delete image from db
     res.redirect('/images')
 }

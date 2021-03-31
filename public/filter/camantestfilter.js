@@ -7,124 +7,142 @@ let fileName = "";
 // const downloadBtn = document.getElementById("download-btn");
 const uploadFile = document.getElementById("upload-file");
 const revertBtn = document.getElementById("revert-btn");
+const uploadBtn = document.getElementById('uploadBtn')
 
 // Filter & Effect Handlers
 document.addEventListener("click", e => {
-  if (e.target.classList.contains("filter-btn")) {
-    if (e.target.classList.contains("brightness-add")) {
-      Caman("#canvas", img, function() {
-        this.brightness(5).render();
-      });
-    } else if (e.target.classList.contains("brightness-remove")) {
-      Caman("#canvas", img, function() {
-        this.brightness(-5).render();
-      });
-    } else if (e.target.classList.contains("contrast-add")) {
-      Caman("#canvas", img, function() {
-        this.contrast(5).render();
-      });
-    } else if (e.target.classList.contains("contrast-remove")) {
-      Caman("#canvas", img, function() {
-        this.contrast(-5).render();
-      });
-    } else if (e.target.classList.contains("saturation-add")) {
-      Caman("#canvas", img, function() {
-        this.saturation(5).render();
-      });
-    } else if (e.target.classList.contains("saturation-remove")) {
-      Caman("#canvas", img, function() {
-        this.saturation(-5).render();
-      });
-    } else if (e.target.classList.contains("vibrance-add")) {
-      Caman("#canvas", img, function() {
-        this.vibrance(5).render();
-      });
-    } else if (e.target.classList.contains("vibrance-remove")) {
-      Caman("#canvas", img, function() {
-        this.vibrance(-5).render();
-      });
-    } else if (e.target.classList.contains("vintage-add")) {
-      Caman("#canvas", img, function() {
-        this.vintage().render();
-      });
-    } else if (e.target.classList.contains("lomo-add")) {
-      Caman("#canvas", img, function() {
-        this.lomo().render();
-      });
-    } else if (e.target.classList.contains("clarity-add")) {
-      Caman("#canvas", img, function() {
-        this.clarity().render();
-      });
-    } else if (e.target.classList.contains("sincity-add")) {
-      Caman("#canvas", img, function() {
-        this.sinCity().render();
-      });
-    } else if (e.target.classList.contains("crossprocess-add")) {
-      Caman("#canvas", img, function() {
-        this.crossProcess().render();
-      });
-    } else if (e.target.classList.contains("pinhole-add")) {
-      Caman("#canvas", img, function() {
-        this.pinhole().render();
-      });
-    } else if (e.target.classList.contains("nostalgia-add")) {
-      Caman("#canvas", img, function() {
-        this.nostalgia().render();
-      });
-    } else if (e.target.classList.contains("hermajesty-add")) {
-      Caman("#canvas", img, function() {
-        this.herMajesty().render();
-      });
+    if (e.target.classList.contains("filter-btn")) {
+        if (e.target.classList.contains("brightness-add")) {
+            Caman("#canvas", img, function () {
+                this.brightness(5).render();
+            });
+        } else if (e.target.classList.contains("brightness-remove")) {
+            Caman("#canvas", img, function () {
+                this.brightness(-5).render();
+            });
+        } else if (e.target.classList.contains("contrast-add")) {
+            Caman("#canvas", img, function () {
+                this.contrast(5).render();
+            });
+        } else if (e.target.classList.contains("contrast-remove")) {
+            Caman("#canvas", img, function () {
+                this.contrast(-5).render();
+            });
+        } else if (e.target.classList.contains("saturation-add")) {
+            Caman("#canvas", img, function () {
+                this.saturation(5).render();
+            });
+        } else if (e.target.classList.contains("saturation-remove")) {
+            Caman("#canvas", img, function () {
+                this.saturation(-5).render();
+            });
+        } else if (e.target.classList.contains("vibrance-add")) {
+            Caman("#canvas", img, function () {
+                this.vibrance(5).render();
+            });
+        } else if (e.target.classList.contains("vibrance-remove")) {
+            Caman("#canvas", img, function () {
+                this.vibrance(-5).render();
+            });
+        } else if (e.target.classList.contains("vintage-add")) {
+            Caman("#canvas", img, function () {
+                this.vintage().render();
+            });
+        } else if (e.target.classList.contains("lomo-add")) {
+            Caman("#canvas", img, function () {
+                this.lomo().render();
+            });
+        } else if (e.target.classList.contains("clarity-add")) {
+            Caman("#canvas", img, function () {
+                this.clarity().render();
+            });
+        } else if (e.target.classList.contains("sincity-add")) {
+            Caman("#canvas", img, function () {
+                this.sinCity().render();
+            });
+        } else if (e.target.classList.contains("crossprocess-add")) {
+            Caman("#canvas", img, function () {
+                this.crossProcess().render();
+            });
+        } else if (e.target.classList.contains("pinhole-add")) {
+            Caman("#canvas", img, function () {
+                this.pinhole().render();
+            });
+        } else if (e.target.classList.contains("nostalgia-add")) {
+            Caman("#canvas", img, function () {
+                this.nostalgia().render();
+            });
+        } else if (e.target.classList.contains("hermajesty-add")) {
+            Caman("#canvas", img, function () {
+                this.herMajesty().render();
+            });
+        }
     }
-  }
 });
 
 // Revert Filters
 revertBtn.addEventListener("click", e => {
-  Caman("#canvas", img, function() {
-    this.revert();
-  });
+    Caman("#canvas", img, function () {
+        this.revert();
+    });
 });
 
 // Upload File
 uploadFile.addEventListener("change", () => {
-  // Get File
-  const file = document.getElementById("upload-file").files[0];
-  // Init FileReader API
-  const reader = new FileReader();
+    // Get File
+    const file = document.getElementById("upload-file").files[0];
+    // Init FileReader API
+    const reader = new FileReader();
 
-  // Check for file
-  if (file) {
-    // Set file name
-    fileName = file.name;
-    // Read data as URL
-    reader.readAsDataURL(file);
-  }
+    // Check for file
+    if (file) {
+        // Set file name
+        fileName = file.name;
+        // Read data as URL
+        reader.readAsDataURL(file);
+    }
 
-  // Add image to canvas
-  reader.addEventListener(
-    "load",
-    () => {
-      // Create image
-      img = new Image();
-      // Set image src
-      img.src = reader.result;
-      // On image load add to canvas
-      img.onload = function() {
-        canvas.width = img.width;
-        canvas.height = img.height;
-        ctx.drawImage(img, 0, 0, img.width, img.height);
-        canvas.removeAttribute("data-caman-id");
-      };
-    },
-    false
-  );
+    // Add image to canvas
+    reader.addEventListener(
+        "load",
+        () => {
+            // Create image
+            img = new Image();
+            // Set image src
+            img.src = reader.result;
+            // On image load add to canvas
+            img.onload = function () {
+                canvas.width = 500;
+                canvas.height = img.height/img.width * 500;
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                canvas.removeAttribute("data-caman-id");
+            };
+        },
+        false
+    );
 });
-document.getElementById('displayFilters').addEventListener("click", function() {
-   const file = document.getElementById("upload-file").files[0];
-if (file) {
-   document.querySelector('.disappear-card').style.display = "flex";
- }});
+/*
+document.getElementById('displayFilters').addEventListener("click", function () {
+    const file = document.getElementById("upload-file").files[0];
+    if (file) {
+        document.querySelector('.disappear-card').style.display = "flex";
+    }
+});
+*/
+// Upload post to backend
+uploadBtn.addEventListener('click', () => {
+    const form = document.getElementById('my-form')
+    let dataURL = canvas.toDataURL("image/jpeg", 0.8)
+    let input = document.createElement('input')
+    input.setAttribute('display', 'none')
+    input.setAttribute('name', 'hidden')
+    input.setAttribute('type', 'text')
+    input.value = dataURL
+    form.appendChild(input)
+    form.submit()
+})
+
+
 /*
 
 // Download Event
