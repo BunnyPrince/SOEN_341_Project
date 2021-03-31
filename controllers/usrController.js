@@ -1,7 +1,7 @@
 const User = require('../models/user')
+const Image = require('../models/image')
 const ExpressError = require('../.utils/ExpressError')
 const Joi = require('joi') // schema validation
-
 
 
 const userProfile = async (req, res, next) => {
@@ -12,8 +12,8 @@ const userProfile = async (req, res, next) => {
     if (!user) {
         return next(new ExpressError(404, 'Sorry, this page isn\'t available.'))
     }
-    const { followers } = user
-    const { user_id:sessionUserId } = req.session
+    const {followers} = user
+    const {user_id: sessionUserId} = req.session
     let duplicateUser = (sessionUserId === user._id.toString())
 
     let isBeingFollowed = false
@@ -59,11 +59,11 @@ const profileFollow = async (req, res) => {
     await userToFollow.save()
 
     console.log(sessionUser.username + ' is now following ' + userToFollow.username)
-    res.redirect('/' + userToFollow.username)
+    return res.redirect('/' + userToFollow.username)
 
 }
 const profileUnfollow = async (req, res) => {
-    const userToUnfollow = { ... req.body }
+    const userToUnfollow = {...req.body}
     const sessionUserId = req.session.user_id
 
     const sessionUser = await User.findByIdAndUpdate(sessionUserId, {$pull: {follows: userToUnfollow.userid}})
@@ -72,9 +72,35 @@ const profileUnfollow = async (req, res) => {
     return res.redirect('/' + userToUnfollow.username)
 }
 
+const profileLikeImage = async (req, res) => {
+    const imageToLikeId = req.body.image
+    const sessionUserId = req.session.user_id
+    await Image.findByIdAndUpdate(imageToLikeId, {$push: {likes: sessionUserId}})
+    // console.log('liked')
+
+    // for debugging only, de-comment if needed
+    // const image = await Image.findById(imageToLikeId)
+    // image.likes.forEach(u => console.log(u))
+    // console.log('')
+}
+
+const profileUnlikeImage = async (req, res) => {
+    const imageToUnlikeId = req.body.image
+    const sessionUserId = req.session.user_id
+    await Image.findByIdAndUpdate(imageToUnlikeId, {$pull: {likes: sessionUserId}})
+    // console.log("unliked")
+
+    // for debugging only, de-comment if needed
+    // const image = await Image.findById(imageToUnlikeId)
+    // image.likes.forEach(u => console.log(u))
+    // console.log('')
+}
+
 module.exports = {
     userProfile,
     showListFollows,
     profileFollow,
-    profileUnfollow
+    profileUnfollow,
+    profileLikeImage,
+    profileUnlikeImage
 }
