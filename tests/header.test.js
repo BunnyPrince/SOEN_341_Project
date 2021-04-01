@@ -1,8 +1,30 @@
-const proceed = require('../public/scripts/header.js');
+const logoutButton = require('../public/scripts/header')
 
-describe('header Test', () => {
-  it('should return a boolean', () =>{
-    const value = proceed()
-    expect(value).toEqual(true)
-  })
+const jsdom = require("jsdom")
+const {JSDOM} = jsdom
+jest.setTimeout(30000)
+
+const dom = new JSDOM(
+    `<!DOCTYPE html><body>
+    <a type="button" 
+    onclick="logoutButton()">Log Out
+    </a>
+    </body>
+`)
+
+const {window} = dom
+const {document} = window
+/**
+ * @jest-environment jsdom
+ */
+
+test('header Test', (done) => {
+    expect(logoutButton(document)).toEqual(
+        {
+            "action": "/logout",
+            "id": "logout",
+            "method": "post"
+        }
+    )
+    done()
 })

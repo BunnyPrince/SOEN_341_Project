@@ -72,35 +72,11 @@ const profileUnfollow = async (req, res) => {
     return res.redirect('/' + userToUnfollow.username)
 }
 
-const profileLikeImage = async (req, res) => {
-    const imageToLikeId = req.body.image
-    const sessionUserId = req.session.user_id
-    await Image.findByIdAndUpdate(imageToLikeId, {$push: {likes: sessionUserId}})
-    // console.log('liked')
-
-    // for debugging only, de-comment if needed
-    // const image = await Image.findById(imageToLikeId)
-    // image.likes.forEach(u => console.log(u))
-    // console.log('')
-}
-
-const profileUnlikeImage = async (req, res) => {
-    const imageToUnlikeId = req.body.image
-    const sessionUserId = req.session.user_id
-    await Image.findByIdAndUpdate(imageToUnlikeId, {$pull: {likes: sessionUserId}})
-    // console.log("unliked")
-
-    // for debugging only, de-comment if needed
-    // const image = await Image.findById(imageToUnlikeId)
-    // image.likes.forEach(u => console.log(u))
-    // console.log('')
-}
-
 module.exports = {
     userProfile,
     showListFollows,
     profileFollow,
-    profileUnfollow,
-    profileLikeImage,
-    profileUnlikeImage
+    profileUnfollow
+   // , profileLikeImage,
+   // profileUnlikeImage
 }
