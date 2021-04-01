@@ -134,9 +134,8 @@ uploadBtn.addEventListener('click', () => {
     const form = document.getElementById('my-form')
     let dataURL = canvas.toDataURL("image/jpeg", 0.8)
     let input = document.createElement('input')
-    input.setAttribute('display', 'none')
+    input.setAttribute('type', 'hidden')
     input.setAttribute('name', 'hidden')
-    input.setAttribute('type', 'text')
     input.value = dataURL
     form.appendChild(input)
     form.submit()
