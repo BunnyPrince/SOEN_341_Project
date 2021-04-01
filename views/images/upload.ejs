@@ -15,6 +15,7 @@
                         <form id="my-form" action="/images" method="POST" enctype="multipart/form-data"
                               class="clearfix">
                             <canvas class="pic-card" id="canvas" style="background-color: #ececec"></canvas>
+
                             <div class="custom-file mb-3">
 
                                 <br>
@@ -22,6 +23,8 @@
                                     <input class="row" type="file" name="image" id="upload-file">
                                     <input type="text" id="caption" name="caption"
                                            placeholder="Add a caption">
+                                    <input type="button" class="Filterbtn" id="displayFilters" value="Filters">
+
                                 </div>
                                 <!-- Hidden input -->
 
@@ -141,9 +144,7 @@
                                 </div>
                             </div>
 
-
                         </form>
-                        <button class="Filterbtn" id="displayFilters"> Filters</button>
 
                     </div>
                 </div>
