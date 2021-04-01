@@ -121,14 +121,22 @@ uploadFile.addEventListener("change", () => {
         false
     );
 });
-/*
+
 document.getElementById('displayFilters').addEventListener("click", function () {
     const file = document.getElementById("upload-file").files[0];
     if (file) {
         document.querySelector('.disappear-card').style.display = "flex";
+        document.querySelector('.Filterbtn').style.display = "none";
     }
 });
-*/
+
+document.getElementById('close').addEventListener("click", function () {
+
+    document.querySelector('.disappear-card').style.display = "none";
+    document.querySelector('.Filterbtn').style.display = "flex";
+
+});
+
 // Upload post to backend
 uploadBtn.addEventListener('click', () => {
     const form = document.getElementById('my-form')

@@ -14,8 +14,9 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <form id="my-form" action="/images" method="POST" enctype="multipart/form-data" class="clearfix">
-                            <canvas  class="pic-card"  id="canvas" style="background-color: #ececec"></canvas>
+                        <form id="my-form" action="/images" method="POST" enctype="multipart/form-data"
+                              class="clearfix">
+                            <canvas class="pic-card" id="canvas" style="background-color: #ececec"></canvas>
                             <div class="custom-file mb-3">
 
                                 <br>
@@ -26,13 +27,11 @@
                                 </div>
                                 <!-- Hidden input -->
 
-                                <!---           <button id="displayFilters"> Filters</button>--->
-
-                                <!--
                                 <div class="disappear-card ">
                                     <div class="disappear ">
-                                        <h4 class="text-center my-3 ">Filters</h4>
-                                        -->
+                                        <div class="close" id="close">+</div>
+                                        <br>
+
 
                                         <div class="row my-4 text-center ">
                                             <div class="col-md-3">
@@ -131,20 +130,24 @@
 
                                         <div class="row mt-5 ">
                                             <div class="col-md-6">
-                                                <input type="button" id="uploadBtn" class="btn btn-primary btn-block" value="Upload">
+                                                <input type="button" id="uploadBtn" class="btn btn-primary btn-block"
+                                                       value="Upload">
                                             </div>
                                             <div class="col-md-6">
                                                 <input type="button" id="revert-btn" class="btn btn-danger btn-block"
                                                        value="Remove filters">
                                             </div>
                                         </div>
-                                        <!--
+
                                     </div>
-                                </div> -->
+                                </div>
                             </div>
 
 
                         </form>
+                        <button class="Filterbtn" id="displayFilters"> Filters</button>
+
+
                     </div>
                 </div>
             </div>
