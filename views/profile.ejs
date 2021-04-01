@@ -40,7 +40,7 @@
                 <div class="info">
                     <div class="group">
                         <button class="btn btn-primary" type="button"
-                                onclick="showList('<%= user._id %>', '<%= isBeingFollowed %>', '<%= duplicateUser %>', 'followers', '<%= user.username %>')">
+                                onclick="showList('<%= user._id %>', '<%= isBeingFollowed %>', '<%= duplicateUser %>', 'followers', '<%= user.username %>', undefined)">
                             followers
                         </button>
                         <%= user.followers.length %>
@@ -110,6 +110,6 @@
 
 </main>
 
-<script  src="/scripts/profile.js" ></script>
+<script src="/scripts/profile.js" ></script>
 
 <%- include('./partials/footer') %>

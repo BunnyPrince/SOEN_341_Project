@@ -15,13 +15,20 @@ describe('User Model Test', () => {
 
     // Connect to the MongoDB Memory Server by using mongoose.connect
     beforeAll(async () => {
-        await mongoose.connect(global.__MONGO_URI__, { useNewUrlParser: true, useCreateIndex: true }, (err) => {
+        await mongoose.connect(global.__MONGO_URI__,
+            { useNewUrlParser: true, useUnifiedTopology: true },
+            (err) => {
             if (err) {
                 console.error(err);
                 process.exit(1);
             }
         });
     });
+
+    afterAll(async() => {
+        await UserModel.deleteMany()
+        await mongoose.connection.close()
+    })
 
 
     it('create & save user successfully', async () => {
