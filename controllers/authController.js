@@ -8,7 +8,8 @@ const bcrypt = require('bcrypt')
 const login_feed = async (req, res) => {
     const sessionUserID = req.session.user_id
     if (sessionUserID) {
-        let {follows} = await User.findById(sessionUserID)
+        let currentUser = await User.findById(sessionUserID)
+        let {follows} = currentUser
         let feedImgs = await Image.find({user: {$in: follows}})
             .populate('user')
             .populate('comments')
@@ -16,7 +17,8 @@ const login_feed = async (req, res) => {
 
         return res.render('feed', {
             feedImgs,
-            sessionUserID
+            sessionUserID,
+            currentUser
         });
     }
     res.render('login', {

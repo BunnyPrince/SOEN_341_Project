@@ -25,14 +25,24 @@ function editLike(img, type) {
     if (type === 'like') {
         document.getElementById('like-button-' + img).style.display = 'none'
         document.getElementById('unlike-button-' + img).style.display = 'inline-block'
-        updateLike(img, true)
+        try {
+            updateLike(img, true)
+        } catch (e) {
+        } finally {
+            form.submit()
+        }
     } else {
         document.getElementById('unlike-button-' + img).style.display = 'none'
         document.getElementById('like-button-' + img).style.display = 'inline-block'
-        updateLike(img, false)
+        try {
+            updateLike(img, false)
+        } catch (e) {
+        } finally {
+            form.submit()
+        }
     }
-    form.submit();
 }
+
 
 function updateLike(img, inc) {
     if (inc) {
@@ -47,9 +57,16 @@ function updateLike(img, inc) {
 }
 
 function showCurrentUserInList(img) {
-    document.getElementById('current-user-in-' + img).style.display = 'block'
+    console.log('img id:', img)
+    let show = document.getElementById('current-user-in-' + img)
+    console.log(show)
+    show.style.display = 'block'
 }
 
 function hideCurrentUserInList(img) {
-    document.getElementById('current-user-in-' + img).style.display = 'none'
+    console.log('img id:', img)
+    let hide = document.getElementById('current-user-in-' + img)
+    console.log(hide)
+        hide.style.display = 'none'
 }
+

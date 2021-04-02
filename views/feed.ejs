@@ -24,7 +24,8 @@
                         </div>
                     </div>
                     <div class="post">
-                        <!---post----likeButton-----caption--->
+
+
                         <img class="post" src="<%= image.url %>" id="post1-<%= image.id %>">
                     </div>
                     <div>
@@ -49,10 +50,13 @@
                                 aria-expanded="false"
                                 aria-controls="listOfThePeopleLikedThePic-<%= image.id %>"> <%= image.likes.length %></button>
 
-                        <div class="collapse" id="listOfThePeopleLikedThePic-<%= image.id %>">
+                        <div class="collapse oneline" id="listOfThePeopleLikedThePic-<%= image.id %>">
                             <div class="card card-body" id="like-list-<%= image.id %>">
                                 <p id="current-user-in-<%= image.id %>" style="display: none">
-                                    <a class="username text-decoration-none text-reset">Me</a>
+                                    <a href="/<%= currentUser.username %>"
+                                       class="username text-decoration-none text-reset">
+                                        <%= currentUser.username %>
+                                    </a>
                                 </p>
                                 <% image.likes.forEach(user  => { %>
                                     <% if (user._id.toString() === sessionUserID) { %>
