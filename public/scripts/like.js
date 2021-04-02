@@ -1,3 +1,8 @@
+function setVisibilityLike(img) {
+    document.getElementById('like-button-' + img).style.display = 'none'
+    document.getElementById('unlike-button-' + img).style.display = 'inline-block'
+}
+
 function editLike(img, type) {
     // iframe
     let iframe = document.createElement('iframe');
@@ -20,14 +25,31 @@ function editLike(img, type) {
     if (type === 'like') {
         document.getElementById('like-button-' + img).style.display = 'none'
         document.getElementById('unlike-button-' + img).style.display = 'inline-block'
+        updateLike(img, true)
     } else {
         document.getElementById('unlike-button-' + img).style.display = 'none'
         document.getElementById('like-button-' + img).style.display = 'inline-block'
+        updateLike(img, false)
     }
     form.submit();
 }
 
-function setVisibilityLike(img) {
-    document.getElementById('like-button-' + img).style.display = 'none'
-    document.getElementById('unlike-button-' + img).style.display = 'inline-block'
+function updateLike(img, inc) {
+    if (inc) {
+        showCurrentUserInList(img)
+        let i = parseInt(document.getElementById('like-number-' + img).innerText)
+        document.getElementById('like-number-' + img).innerText = (i + 1) + ''
+    } else {
+        hideCurrentUserInList(img)
+        let i = parseInt(document.getElementById('like-number-' + img).innerText)
+        document.getElementById('like-number-' + img).innerText = (i - 1) + ''
+    }
+}
+
+function showCurrentUserInList(img) {
+    document.getElementById('current-user-in-' + img).style.display = 'block'
+}
+
+function hideCurrentUserInList(img) {
+    document.getElementById('current-user-in-' + img).style.display = 'none'
 }

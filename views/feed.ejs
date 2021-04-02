@@ -44,13 +44,25 @@
                                       d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
                             </svg>
                         </button>
-                        <button class="feed-btn btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#listOfThePeopleLikedThePic-<%= image.id %>" aria-expanded="false" aria-controls="listOfThePeopleLikedThePic-<%= image.id %>" > <%= image.likes.length %></button>
+                        <button class="feed-btn btn btn-light" type="button" id="like-number-<%= image.id %>"
+                                data-bs-toggle="collapse" data-bs-target="#listOfThePeopleLikedThePic-<%= image.id %>"
+                                aria-expanded="false"
+                                aria-controls="listOfThePeopleLikedThePic-<%= image.id %>"> <%= image.likes.length %></button>
 
                         <div class="collapse" id="listOfThePeopleLikedThePic-<%= image.id %>">
-                            <div class="card card-body">
-                                 <%image.likes.forEach(user  => {%>
-                               <p> <a href="/<%= user.username %>" class="username text-decoration-none text-reset"><%=user.username%></a></p>
-                            <%})%>
+                            <div class="card card-body" id="like-list-<%= image.id %>">
+                                <p id="current-user-in-<%= image.id %>" style="display: none">
+                                    <a class="username text-decoration-none text-reset">Me</a>
+                                </p>
+                                <% image.likes.forEach(user  => { %>
+                                    <% if (user._id.toString() === sessionUserID) { %>
+                                        <img src onerror="showCurrentUserInList('<%= image.id %>')">
+                                    <% }  else { %>
+                                        <p><a href="/<%= user.username %>"
+                                              class="username text-decoration-none text-reset"><%= user.username %></a>
+                                        </p>
+                                    <% } %>
+                                <% }) %>
                             </div>
                         </div>
 
