@@ -102,26 +102,30 @@
 
                         </div>
                         <div class="collapse" id="listOfThePeopleLikedThePic-<%= image.id %>">
-                                <div class="card card-body" id="like-list-<%= image.id %>">
-                                    <p id="current-user-in-<%= image.id %>" style="display: none">
-                                        <a href="/<%= currentUser.username %>"
-                                           class="username text-decoration-none text-reset">
-                                            <b>
-                                                <%= currentUser.username %>
-                                            </b>
-                                        </a>
-                                    </p>
-                                    <% image.likes.forEach(user  => { %>
-                                        <% if (user._id.toString() === currentUser.id) { %>
-                                            <img src onerror="showCurrentUserInList('<%= image.id %>')">
-                                        <% }  else { %>
-                                            <p><a href="/<%= user.username %>"
-                                                  class="username text-decoration-none text-reset"><%= user.username %></a>
-                                            </p>
-                                        <% } %>
-                                    <% }) %>
-                                </div>
+                            <div class="card card-body" id="like-list-<%= image.id %>">
+                                <p id="current-user-in-<%= image.id %>" style="display: none">
+                                    <a href="/<%= currentUser.username %>"
+                                       class="username text-decoration-none text-reset">
+                                        <b>
+                                            <%= currentUser.username %>
+                                        </b>
+                                    </a>
+                                </p>
+                                <% image.likes.forEach(user  => { %>
+                                    <% if (user._id.toString() === currentUser.id) { %>
+                                        <img src onerror="showCurrentUserInList('<%= image.id %>')">
+                                    <% }  else { %>
+                                        <p><a href="/<%= user.username %>"
+                                              class="username text-decoration-none text-reset">
+                                                <b>
+                                                    <%= user.username %>
+                                                </b>
+                                            </a>
+                                        </p>
+                                    <% } %>
+                                <% }) %>
                             </div>
+                        </div>
 
 
                     </div>

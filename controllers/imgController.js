@@ -15,7 +15,9 @@ const explore = async (req, res) => {
     res.render('images/explore', {images})
 }
 const fullPost = async (req, res) => {
-    const image = await Image.findById(req.params.id).populate('comments')
+    const image = await Image.findById(req.params.id)
+        .populate('comments')
+        .populate('likes')
     // check if image belongs to current user
     let permission = false
     const imageUserId = image.user.toString()
