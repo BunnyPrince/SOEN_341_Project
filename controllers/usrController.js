@@ -2,26 +2,13 @@ const User = require('../models/user')
 const Image = require('../models/image')
 const ExpressError = require('../.utils/ExpressError')
 const Joi = require('joi') // schema validation
+const {checkoutUser} = require('../services/usrServices')
 
 
 const userProfile = async (req, res, next) => {
-    const {username} = req.params
-    const user = await User.findOne({username})
-        .populate('images')
-        .populate('followers')
+    let {user, isBeingFollowed, duplicateUser} = await checkoutUser(req, User)
     if (!user) {
         return next(new ExpressError(404, 'Sorry, this page isn\'t available.'))
-    }
-    const {followers} = user
-    const {user_id: sessionUserId} = req.session
-    let duplicateUser = (sessionUserId === user._id.toString())
-
-    let isBeingFollowed = false
-    for (const follower of followers) {
-        if (follower._id.toString() === sessionUserId) {
-            isBeingFollowed = true
-            break
-        }
     }
     return res.render('profile',
         {user, isBeingFollowed, duplicateUser, overlay: false, usersList: []})
@@ -77,6 +64,6 @@ module.exports = {
     showListFollows,
     profileFollow,
     profileUnfollow
-   // , profileLikeImage,
-   // profileUnlikeImage
+    // , profileLikeImage,
+    // profileUnlikeImage
 }

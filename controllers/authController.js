@@ -1,6 +1,6 @@
 const Image = require('../models/image')
 const User = require('../models/user')
-const { showFeed, destroySession } = require('../services/authServices')
+const { showFeed, loginToAccount, createAccount, fetchLoginUser, destroySession } = require('../services/authServices')
 const ExpressError = require('../.utils/ExpressError')
 const Joi = require('joi') // schema validation
 const bcrypt = require('bcrypt')
@@ -20,53 +20,30 @@ const login_feed = async (req, res) => {
             [req.flash('failedLogin'), req.flash('successRegister')]
     })
 }
-const verifyLogin = async (req, res) => {
-    const {username, password} = req.body
-    const searchUser = await User.findOne({username})
-    if (!searchUser) {
-        console.log('Failed login')
-        req.flash('failedLogin', "Wrong username and/or password.")
-        return res.redirect('/') // implement wrong username/pw message
-    }
-    const validPw = await bcrypt.compare(password, searchUser.password)
-    if (validPw) {
-        req.session.user_id = searchUser._id
-        console.log("success login")
-        return res.redirect('/')
-    }
-    // console.log('Failed login')
-    req.flash('failedLogin', "Wrong username and/or password.")
-    res.redirect('/')
 
+const verifyLogin = async (req, res) => {
+    let {result, msg, sessionUser} = await loginToAccount(req, User, bcrypt)
+    if (!sessionUser)
+        req.flash(result, msg)
+    else
+        req.session.user_id = sessionUser._id
+    res.redirect('/')
 }
+
 const registerForm = (req, res) => {
     res.render('register', {msg: req.flash('taken')})
 }
+
 const verifyRegister = async (req, res) => {
-    const {username, email, password} = req.body
-    const db_user = await User.findOne({username})
-    const db_email = await User.findOne({email})
-    if (db_user || db_email) {
-        req.flash('taken', 'This username/email have already been used.')
-        return res.redirect('/register')
-    }
-    // hash password before storing
-    const hash = await bcrypt.hash(password, 12)
-
-    // create user if data valid, and redirect to login (note: add default pfp)
-    const newUser = new User({username, email, password: hash, pfp: {
-            url: "https://res.cloudinary.com/soen341teamb8/image/upload/v1616987122/ig_photos/defaultPfp_ycybzx.png",
-            filename: ''
-        }})
-    await newUser.save()
-    console.log(newUser)
-    req.flash('successRegister', 'Registration successful!')
-    res.redirect('/')
-
+    let { result, msg } = await createAccount(req, User, bcrypt)
+    req.flash(result, msg)
+    if (result === 'successRegister')
+        return res.redirect('/')
+    return res.redirect('/register')
 }
+
 const profile = async (req, res) => {
-    const {user_id} = req.session
-    const user = await User.findById(user_id)
+    const user = await fetchLoginUser(req, User)
     res.redirect(`/${user.username}`); // redirect to '/<username>'
 }
 const logout = (req, res) => {
