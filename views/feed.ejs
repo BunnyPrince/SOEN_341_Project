@@ -24,7 +24,8 @@
                         </div>
                     </div>
                     <div class="post">
-                        <!---post----likeButton-----caption--->
+
+
                         <img class="post" src="<%= image.url %>" id="post1-<%= image.id %>">
                     </div>
                     <div>
@@ -44,12 +45,38 @@
                                       d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
                             </svg>
                         </button>
-                        <% for (var like of image.likes) { %>
+                        <button class="feed-btn btn btn-light" type="button" id="like-number-<%= image.id %>"
+                                data-bs-toggle="collapse" data-bs-target="#listOfThePeopleLikedThePic-<%= image.id %>"
+                                aria-expanded="false"
+                                aria-controls="listOfThePeopleLikedThePic-<%= image.id %>"> <%= image.likes.length %></button>
+
+                        <div class="collapse oneline" id="listOfThePeopleLikedThePic-<%= image.id %>">
+                            <div class="card card-body" id="like-list-<%= image.id %>">
+                                <p id="current-user-in-<%= image.id %>" style="display: none">
+                                    <a href="/<%= currentUser.username %>"
+                                       class="username text-decoration-none text-reset">
+                                        <%= currentUser.username %>
+                                    </a>
+                                </p>
+                                <% image.likes.forEach(user  => { %>
+                                    <% if (user._id.toString() === sessionUserID) { %>
+                                        <img src onerror="showCurrentUserInList('<%= image.id %>')">
+                                    <% }  else { %>
+                                        <p><a href="/<%= user.username %>"
+                                              class="username text-decoration-none text-reset"><%= user.username %></a>
+                                        </p>
+                                    <% } %>
+                                <% }) %>
+                            </div>
+                        </div>
+
+                        <% for (let like of image.likes) { %>
                             <% if (like._id.toString() === sessionUserID) { %>
                                 <img src onerror="setVisibilityLike('<%= image.id %>')">
                                 <% break %>
                             <% } %>
                         <% } %>
+
                     </div>
                     <div class="comments">
                         <div class="line1">

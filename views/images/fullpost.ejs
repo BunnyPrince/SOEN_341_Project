@@ -62,6 +62,15 @@
                                     <% } %>
                                 <% } %>
                             </div>
+                            <!-- Show list -->
+                            <div class="oneline">
+                                <button class="feed-btn btn btn-light" type="button" id="like-number-<%= image.id %>"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#listOfThePeopleLikedThePic-<%= image.id %>"
+                                        aria-expanded="false"
+                                        aria-controls="listOfThePeopleLikedThePic-<%= image.id %>"> <%= image.likes.length %></button>
+                            </div>
+
 
                             <!-- Edit/Delete the post -->
                             <% if (permission) { %>
@@ -91,6 +100,31 @@
                                 </div>
                             <% } %>
 
+                        </div>
+                        <div class="collapse" id="listOfThePeopleLikedThePic-<%= image.id %>">
+                            <div class="card card-body" id="like-list-<%= image.id %>">
+                                <p id="current-user-in-<%= image.id %>" style="display: none">
+                                    <a href="/<%= currentUser.username %>"
+                                       class="username text-decoration-none text-reset">
+                                        <b>
+                                            <%= currentUser.username %>
+                                        </b>
+                                    </a>
+                                </p>
+                                <% image.likes.forEach(user  => { %>
+                                    <% if (user._id.toString() === currentUser.id) { %>
+                                        <img src onerror="showCurrentUserInList('<%= image.id %>')">
+                                    <% }  else { %>
+                                        <p><a href="/<%= user.username %>"
+                                              class="username text-decoration-none text-reset">
+                                                <b>
+                                                    <%= user.username %>
+                                                </b>
+                                            </a>
+                                        </p>
+                                    <% } %>
+                                <% }) %>
+                            </div>
                         </div>
 
 
