@@ -1,6 +1,6 @@
 const Image = require('../models/image')
 const User = require('../models/user')
-const { destroySession } = require('../services/authServices')
+const { showFeed, destroySession } = require('../services/authServices')
 const ExpressError = require('../.utils/ExpressError')
 const Joi = require('joi') // schema validation
 const bcrypt = require('bcrypt')
@@ -8,18 +8,12 @@ const bcrypt = require('bcrypt')
 const login_feed = async (req, res) => {
     const sessionUserID = req.session.user_id
     if (sessionUserID) {
-        let currentUser = await User.findById(sessionUserID)
-        let {follows} = currentUser
-        let feedImgs = await Image.find({user: {$in: follows}})
-            .populate('user')
-            .populate('comments')
-            .populate("likes")
-
+        let {feedImages, currentUser} = await showFeed(req, User, Image)
         return res.render('feed', {
-            feedImgs,
+            feedImages,
             sessionUserID,
             currentUser
-        });
+        })
     }
     res.render('login', {
         msg:
