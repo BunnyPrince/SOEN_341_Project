@@ -2,6 +2,8 @@
 
 <link href="/style/basic.css" rel="stylesheet" type="text/css">
 <link href="/style/custom.css" rel="stylesheet" type="text/css">
+<link href="/style/edit.css" rel="stylesheet" type="text/css">
+
 
 <%- include('../partials/header')  %>
 <main>
@@ -11,7 +13,8 @@
                 <div class="card-body">
                     <form action="/images/<%=image._id%>?_method=PUT" method="POST" enctype="multipart/form-data" class="clearfix">
                         <div style="padding: 10px">
-                            <img id="file" src="<%=image.url %>" height="200px">
+                            <img id="file" src="<%=image.url %>" width="300px">
+
                         </div>
                         <div style="padding: 10px">
                             <input type="file" name="image" id="file-ip-1" accept="image/*" onchange="showPreviewOne(event);">
