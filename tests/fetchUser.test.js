@@ -58,9 +58,5 @@ describe('fetchUser (backend logic)', () => {
         expect(isBeingFollowed).toEqual(false)
         expect(duplicateUser).toEqual(true)
     })
-
-
-
-
 })
 
