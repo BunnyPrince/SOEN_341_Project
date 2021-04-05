@@ -18,20 +18,11 @@
                 </h1>
                 <div class="card-body">
                     <h3><%= msg %></h3>
-                    <form action="/register" method="post" class="clearfix">
+                    <form id="register-form" action="/register" method="post" class="clearfix">
 
-                        <div id="register-div" class="spacing-input">
+                        <div id="register-div" class="spacing-input"></div>
 
-
-                            <!--
-                            <input type="text" name="username" placeholder="Enter Username" required autocomplete="off">
-                            <input type="email" name="email" placeholder="Enter Email" required autocomplete="off chrome-off" >
-                            <input id="password" type="password" name="password"placeholder="Enter password" required autocomplete="off">
-                            <input type="password" name="validate_password" oninput="check(this)" placeholder="Reenter password" required autocomplete="off">
-                               -->
-                        </div>
-
-                        <div class="float-end mt-4">
+                        <div class="mt-4">
                             <button class="btn btn-button ">create</button>
                         </div>
 
@@ -54,5 +45,5 @@
 
 <script src="/scripts/register.js"></script>
 <script type="text/javascript">
-    window.addEventListener('onload', loadForm)
+    window.addEventListener('load', loadForm)
 </script>
