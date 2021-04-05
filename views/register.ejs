@@ -25,18 +25,6 @@
                              <input type="password" name="validate_password" oninput="check(this)" placeholder="Reenter password" required autocomplete="off">
                          </div>
 
-
-                         <script language='javascript' type='text/javascript'>
-                             function check(input) {
-                                 if (input.value != document.getElementById('password').value) {
-                                     input.setCustomValidity('Password Must be Matching.');
-                                 } else {
-                                     // input is valid -- reset the error message
-                                     input.setCustomValidity('');
-                                 }
-                             }
-                         </script>
-
                          <div class="float-end mt-4">
                              <button class="btn btn-button ">create</button>
                          </div>
@@ -57,3 +45,5 @@
 <%- include('./partials/footer') %>
 </body>
 </html>
+
+<script src="/scripts/register.js"></script>
