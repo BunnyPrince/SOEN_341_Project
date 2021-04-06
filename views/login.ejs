@@ -20,14 +20,16 @@
                         <h4> <%= m %> </h4>
                     <% } %>
 
-                        <form action="/login" method="post">
-                            <div class="input1">
-                                <input class="login-input" placeholder="Enter username" name="username" required>
-                            </div>
+                        <form id="login-form" action="/login" method="post" class="clearfix">
 
-                            <div class="input2">
-                                <input type="password" class="login-input" placeholder="Enter password" name="password" required>
-                            </div>
+                            <div id="login-div" class="input1"></div>
+<!--                            <div class="input1">-->
+<!--                                <input class="login-input" placeholder="Enter username" name="username" required>-->
+<!--                            </div>-->
+
+<!--                            <div class="input2">-->
+<!--                                <input type="password" class="login-input" placeholder="Enter password" name="password" required>-->
+<!--                            </div>-->
 
                             <button class="btn btn-button">Login</button>
                         </form>
@@ -45,3 +47,7 @@
 
 <%- include('./partials/footer') %>
 </html>
+<script src="/scripts/login.js"></script>
+<script type="text/javascript">
+    window.addEventListener('load', loadForm)
+</script>
