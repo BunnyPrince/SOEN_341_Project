@@ -9,12 +9,14 @@ function loadForm(mockDoc, testInput) {
      let divForm = doc.getElementById('login-div')
 
     let usernameInput = doc.createElement('input')
-    usernameInput.setAttribute('type', 'text')
-    usernameInput.setAttribute('name', 'username')
-    usernameInput.setAttribute('placeholder', 'Enter Username')
-    usernameInput.setAttribute('required', true)
+    usernameInput.type = text
+    usernameInput.name = 'username'
+    usernameInput.placeholder = 'Enter username'
+    usernameInput.required = true
+    usernameInput.className += 'login-input'
 
     let passwordInput = doc.createElement('input')
+    passwordInput.className += 'login-input'
     passwordInput.id = 'password'
     passwordInput.type = 'password'
     passwordInput.name = 'password'

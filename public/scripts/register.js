@@ -1,4 +1,4 @@
-function loadForm(mockDoc, testInput) {
+function loadForm(mockDoc) {
     let doc
     if (typeof document === 'undefined') {
         doc = mockDoc
@@ -9,6 +9,7 @@ function loadForm(mockDoc, testInput) {
     let divForm = doc.getElementById('register-div')
     // let form = document.getElementById('register-form')
     let usernameInput = doc.createElement('input')
+    usernameInput.id = 'username'
     usernameInput.setAttribute('type', 'text')
     usernameInput.setAttribute('name', 'username')
     usernameInput.setAttribute('placeholder', 'Enter Username')
@@ -16,6 +17,7 @@ function loadForm(mockDoc, testInput) {
     usernameInput.setAttribute('autocomplete', 'off')
 
     let emailInput = doc.createElement('input')
+    emailInput.id = 'email'
     emailInput.type = 'email'
     emailInput.name = 'email'
     emailInput.chromeoff = true
@@ -33,6 +35,7 @@ function loadForm(mockDoc, testInput) {
 
     let errorPassword = ''
     let validatePasswordInput = doc.createElement('input')
+    validatePasswordInput.id = 'validate_password'
     validatePasswordInput.type = 'password'
     validatePasswordInput.name = 'validate_password'
     validatePasswordInput.addEventListener('input', function () {
@@ -48,15 +51,6 @@ function loadForm(mockDoc, testInput) {
         }
     })
     validatePasswordInput.placeholder = 'Reenter password'
-
-    if (testInput) {
-        const {username, email, password, validatePassword} = testInput
-        usernameInput.value = username
-        emailInput.value = email
-        passwordInput.value = password
-        validatePasswordInput.value = validatePassword
-
-    }
 
     divForm.appendChild(usernameInput)
     divForm.appendChild(emailInput)
