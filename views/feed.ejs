@@ -10,7 +10,7 @@
         <% feedImages.forEach(image => { %>
             <div class="feed-content shadow">
                 <div class="post-container">
-                    <!-- User profilePic---name----unfollowOption---->
+                    <!-- User profilePic unfollowOption---->
                     <div>
                         <div class="line1 post-pfp poster">
                             <img class="post-pfp" src="<%= image.user.pfp.url %>"
@@ -118,7 +118,9 @@
                             </div><!---place it in a box---->
                         </div>
                     <% } %>
+                    <!--
                     <div class="new-comment">
+
                         <div class="input-comment line1">
                             <input size="50" class="input-comment" placeholder="Add a comment..." name="comment"
                                    required>
@@ -127,7 +129,9 @@
                             <button class="feed-btn btn btn-link btn-sm text-decoration-none" type="submit">Post
                             </button>
                         </div>
+
                     </div>
+                    -->
                 </div>
             </div>
         <% }) %>
