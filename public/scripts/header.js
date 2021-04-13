@@ -1,5 +1,3 @@
-
-
 function logoutButton(mockDoc){
     let doc
     if (typeof document === 'undefined') {

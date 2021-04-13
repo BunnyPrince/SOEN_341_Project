@@ -13,7 +13,6 @@ let mockUser = {
     images: [],
     followers: [],
     follows: []
-
 }
 
 // mock request
@@ -63,18 +62,18 @@ describe('Testing `createImage`, service function (backend upload logic)', () =>
                 }
             })
 
-        // insert
-        const user = new User(mockUser)
-        await user.save()
 
     })
 
-    afterEach(async() => {
+    beforeEach(async () => {
+        await User.deleteMany()
+        const user = new User(mockUser)
+        await user.save()
     })
 
     afterAll(async () => {
-        Image.deleteMany()
-        User.deleteMany()
+        await Image.deleteMany()
+        await User.deleteMany()
         await mongoose.connection.close()
 
     })
@@ -89,18 +88,15 @@ describe('Testing `createImage`, service function (backend upload logic)', () =>
     })
 
 
-    it('createImage fails', async() => {
+    it('createImage fails', async () => {
         await createImage(request, User, Image)
-        let { filename, url, caption, user} = await Image.findOne({filename: expectedImg.filename})
+        let {filename, url, caption, user} = await Image.findOne({filename: expectedImg.filename})
         expect(filename).toEqual(expectedImg.filename)
         expect(url).toEqual(expectedImg.url)
         expect(caption).toEqual(expectedImg.caption)
         expect(user._id).toEqual(expectedImg.user._id)
 
-
     })
-
-
 })
 
 

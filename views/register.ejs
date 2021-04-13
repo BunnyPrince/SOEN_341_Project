@@ -1,14 +1,16 @@
 <html style="background-color:#f1f3f5;">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
 
 <link href="/style/register.css" rel="stylesheet" type="text/css">
 <link href="/style/similar.css" rel="stylesheet" type="text/css">
 
 <body>
 <main class="btn-background">
-    <div align="center" >
+    <div align="center">
         <article class="article_centering">
             <div class="card btn-card">
                 <h1 class="name-inst">
@@ -16,37 +18,20 @@
                 </h1>
                 <div class="card-body">
                     <h3><%= msg %></h3>
-                     <form action="/register" method="post" class="clearfix">
+                    <form id="register-form" action="/register" method="post" class="clearfix">
 
-                         <div class="spacing-input">
-                             <input type="text" name="username" placeholder="Enter Username" required autocomplete="off">
-                             <input type="email" name="email" placeholder="Enter Email" required autocomplete="off chrome-off" >
-                             <input id="password" type="password" name="password"placeholder="Enter password" required autocomplete="off">
-                             <input type="password" name="validate_password" oninput="check(this)" placeholder="Reenter password" required autocomplete="off">
-                         </div>
+                        <div id="register-div" class="spacing-input"></div>
 
-
-                         <script language='javascript' type='text/javascript'>
-                             function check(input) {
-                                 if (input.value != document.getElementById('password').value) {
-                                     input.setCustomValidity('Password Must be Matching.');
-                                 } else {
-                                     // input is valid -- reset the error message
-                                     input.setCustomValidity('');
-                                 }
-                             }
-                         </script>
-
-                         <div class="float-end mt-4">
-                             <button class="btn btn-button ">create</button>
-                         </div>
+                        <div class="mt-4">
+                            <button class="btn btn-button ">create</button>
+                        </div>
 
                     </form>
                 </div>
             </div>
             <div class="card btn-card">
                 <p style="vertical-align: inherit">Do you have an account?
-                <a href ='/';>Log in</a>
+                    <a href='/'>Log in</a>
                 </p>
             </div>
         </article>
@@ -57,3 +42,8 @@
 <%- include('./partials/footer') %>
 </body>
 </html>
+
+<script src="/scripts/register.js"></script>
+<script type="text/javascript">
+    window.addEventListener('load', loadForm)
+</script>

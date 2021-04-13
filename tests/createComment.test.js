@@ -51,18 +51,19 @@ describe('Testing `createComment`',  () => {
                     process.exit(1)
                 }
             })
-        // alternate insert
-        const image = new Image(mockImage)
-        await image.save()
+
 
     })
 
-    afterEach(async () => {
+    beforeEach(async () => {
+        await Image.deleteMany()
+        const image = new Image(mockImage)
+        await image.save()
     })
 
     afterAll(async () => {
-        Comment.deleteMany()
-        Image.deleteMany()
+        await Comment.deleteMany()
+        await Image.deleteMany()
         await mongoose.connection.close()
 
     })

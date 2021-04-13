@@ -7,7 +7,7 @@
 
 
 <main class="btn-background">
-    <div  align="center" >
+    <div  align="center">
         <article class="article_centering">
             <div class="card btn-card">
 
@@ -20,7 +20,9 @@
                         <h4> <%= m %> </h4>
                     <% } %>
 
-                        <form action="/login" method="post">
+                        <form id="login-form" action="/login" method="post" class="clearfix">
+
+                            <div id="login-div" class="input1"></div>
                             <div class="input1">
                                 <input class="login-input" placeholder="Enter username" name="username" required>
                             </div>
@@ -45,3 +47,8 @@
 
 <%- include('./partials/footer') %>
 </html>
+<!-- <script src="/scripts/login.js"></script>
+<script type="text/javascript">
+    window.addEventListener('load', loadForm)
+</script>
+-->
