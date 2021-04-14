@@ -1,9 +1,10 @@
 const Image = require('../models/image')
 const User = require('../models/user')
 const { showFeed, loginToAccount, createAccount, fetchLoginUser, destroySession } = require('../services/authServices')
-const ExpressError = require('../.utils/ExpressError')
-const Joi = require('joi') // schema validation
 const bcrypt = require('bcrypt')
+// planned unused variables (helpful in the future)
+// const ExpressError = require('../.utils/ExpressError')
+// const Joi = require('joi') // schema validation
 
 const login_feed = async (req, res) => {
     const sessionUserID = req.session.user_id
@@ -35,7 +36,7 @@ const registerForm = (req, res) => {
 }
 
 const verifyRegister = async (req, res) => {
-    let { result, msg } = await createAccount(req, User, bcrypt)
+    let {result, msg} = await createAccount(req, User, bcrypt)
     req.flash(result, msg)
     if (result === 'successRegister')
         return res.redirect('/')
@@ -44,7 +45,7 @@ const verifyRegister = async (req, res) => {
 
 const profile = async (req, res) => {
     const user = await fetchLoginUser(req, User)
-    res.redirect(`/${user.username}`); // redirect to '/<username>'
+    res.redirect(`/${user.username}`)   // redirect to '/<username>'
 }
 const logout = (req, res) => {
     destroySession(req)

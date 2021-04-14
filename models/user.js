@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const Image = require('./image');
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
+const Image = require('./image')
 
 const UserSchema = new Schema({
     username: {
@@ -36,12 +36,9 @@ const UserSchema = new Schema({
 
 })
 
-// middleware: verify user login
-
-
 // deleting users will delete user images
 // Middleware (delete cascade - deleting an image/post will delete all the comments)
-UserSchema.post('findOneAndDelete', async function(deletedDoc) {
+UserSchema.post('findOneAndDelete', async (deletedDoc) => {
     if (deletedDoc) {
         await Image.deleteMany({
             _id: {
@@ -52,4 +49,4 @@ UserSchema.post('findOneAndDelete', async function(deletedDoc) {
     console.log('DELETED USER & POSTS!', deletedDoc)
 })
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('User', UserSchema)

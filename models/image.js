@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 const Comment = require('./comment')
 
 const ImageSchema = new Schema({
@@ -27,10 +27,10 @@ const ImageSchema = new Schema({
         type: Date,
         default: Date.now
     }
-});
+})
 
 // Middleware (delete cascade - deleting an image/post will delete all the comments)
-ImageSchema.post('findOneAndDelete', async function(deletedDoc) {
+ImageSchema.post('findOneAndDelete', async (deletedDoc) => {
     if (deletedDoc) {
         await Comment.deleteMany({
             _id: {
@@ -41,4 +41,4 @@ ImageSchema.post('findOneAndDelete', async function(deletedDoc) {
     console.log('DELETED!', deletedDoc)
 })
 
-module.exports = mongoose.model('Image', ImageSchema);
+module.exports = mongoose.model('Image', ImageSchema)
