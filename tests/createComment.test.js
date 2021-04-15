@@ -12,8 +12,8 @@ const request = {
     },
     body: {
         comment: {
-            username: "john_smith",
-            comment: "I love this pic!!"
+            username: 'john_smith',
+            comment: 'I love this pic!!'
         }
     }
 
@@ -32,8 +32,8 @@ const expectedImg = {
     user: mongoose.Types.ObjectId('60438f9c0b84589e11a1cbb6'),
     comments: [
         {
-            username: "john_smith",
-            comment: "I love this pic!!"
+            username: 'john_smith',
+            comment: 'I love this pic!!'
         }
     ]
 }

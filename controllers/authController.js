@@ -1,10 +1,7 @@
 const Image = require('../models/image')
 const User = require('../models/user')
-const { showFeed, loginToAccount, createAccount, fetchLoginUser, destroySession } = require('../services/authServices')
+const {showFeed, loginToAccount, createAccount, fetchLoginUser, destroySession} = require('../services/authServices')
 const bcrypt = require('bcrypt')
-// planned unused variables (helpful in the future)
-// const ExpressError = require('../.utils/ExpressError')
-// const Joi = require('joi') // schema validation
 
 const login_feed = async (req, res) => {
     const sessionUserID = req.session.user_id
@@ -45,7 +42,7 @@ const verifyRegister = async (req, res) => {
 
 const profile = async (req, res) => {
     const user = await fetchLoginUser(req, User)
-    res.redirect(`/${user.username}`)   // redirect to '/<username>'
+    res.redirect(`/${user.username}`)
 }
 const logout = (req, res) => {
     destroySession(req)

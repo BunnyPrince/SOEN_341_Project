@@ -26,7 +26,7 @@ const userToFollow = {
     email: 'guys@hotmail.fr'
 }
 
-describe('follow (backend logic)', () => {
+describe('Follow test (backend logic)', () => {
 
     beforeAll(async () => {
         // connect

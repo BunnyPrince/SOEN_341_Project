@@ -88,7 +88,7 @@ describe('Testing `createImage`, service function (backend upload logic)', () =>
     })
 
 
-    it('createImage fails', async () => {
+    it('createImage test', async () => {
         await createImage(request, User, Image)
         let {filename, url, caption, user} = await Image.findOne({filename: expectedImg.filename})
         expect(filename).toEqual(expectedImg.filename)

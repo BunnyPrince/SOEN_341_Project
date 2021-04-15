@@ -60,7 +60,7 @@ describe('Testing of backend logic of `loginToAccount`', () => {
 
     it('loginToAccount as user "maria"', async () => {
         const {result, msg} = await loginToAccount(validRequest, User, bcrypt)
-        expect({result, msg}).toEqual({"msg": "Successful login", "result": "success"})
+        expect({result, msg}).toEqual({'msg': 'Successful login', 'result': 'success'})
 
     })
 

@@ -8,7 +8,7 @@ const {
     editImageCaption,
     updateImage
 } = require('../services/imgServices')
-const { createComment, deleteComment } = require('../services/commentServices')
+const {createComment, deleteComment} = require('../services/commentServices')
 
 const explore = async (req, res) => {
     const images = await Image.find({}).sort({createdAt: 'desc'});
@@ -19,7 +19,6 @@ const fullPost = async (req, res) => {
     const image = await Image.findById(req.params.id)
         .populate('comments')
         .populate('likes')
-    // check if image belongs to current user
     let permission = false
     const imageUserId = image.user.toString()
     if (imageUserId === req.session.user_id)
@@ -46,7 +45,6 @@ const uploadNewPost = async (req, res) => {
 const editPostForm = async (req, res) => {
     const {user_id: user} = req.session
     const image = await Image.findById(req.params.id)
-    // check if current user has permission to edit image
     const imgUser = image.user.toString()
     if (user === imgUser)
         return res.render('images/edit', {image});
