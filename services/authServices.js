@@ -31,9 +31,9 @@ const loginToAccount = async (req, User, bcrypt) => { // output
 
 const createAccount = async (req, User, bcrypt) => {
     const {username, email, password} = req.body
-    const db_user = await User.findOne({username})
-    const db_email = await User.findOne({email})
-    if (db_user || db_email) {
+    const dbUser = await User.findOne({username})
+    const dbEmail = await User.findOne({email})
+    if (dbUser || dbEmail) {
         return {
             result: 'taken',
             msg: 'This username/email have already been used.'
