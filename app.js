@@ -38,9 +38,9 @@ app.use(flash())
 /* -------------------------------------------------- Setting up middleware -------------------------------------------------- */
 // pfp on navbar middleware
 app.use(asyncErr(async (req, res, next) => {
-    const {user_id} = req.session
-    if (user_id) {
-        const { pfp } = await User.findById(user_id)
+    const {userId} = req.session
+    if (userId) {
+        const { pfp } = await User.findById(userId)
         res.locals.pfp = pfp
     }
     next()

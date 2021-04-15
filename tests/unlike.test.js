@@ -10,7 +10,7 @@ const mockRequest = {
     },
     session: {
         // logged in user
-        user_id: ''
+        userId: ''
     }
 }
 const mockUser = {
@@ -44,7 +44,7 @@ describe('unlike (backend logic)', () => {
         let myImg = new Image(mockImage)
         // setup request
         mockRequest.body.image = myImg._id.toString()
-        mockRequest.session.user_id = myUsr._id.toString()
+        mockRequest.session.userId = myUsr._id.toString()
         // make user like the image
         myImg.likes.push(myUsr)
         await myUsr.save()

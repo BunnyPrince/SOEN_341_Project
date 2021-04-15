@@ -21,10 +21,10 @@ const fullPost = async (req, res) => {
         .populate('likes')
     let permission = false
     const imageUserId = image.user.toString()
-    if (imageUserId === req.session.user_id)
+    if (imageUserId === req.session.userId)
         permission = true
     const imgUser = await User.findById(imageUserId)
-    const currentUser = await User.findById(req.session.user_id)
+    const currentUser = await User.findById(req.session.userId)
     res.render('images/fullpost', {
         image,
         permission,
@@ -43,7 +43,7 @@ const uploadNewPost = async (req, res) => {
 }
 
 const editPostForm = async (req, res) => {
-    const {user_id: user} = req.session
+    const {userId: user} = req.session
     const image = await Image.findById(req.params.id)
     const imgUser = image.user.toString()
     if (user === imgUser)

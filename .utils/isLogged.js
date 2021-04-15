@@ -2,8 +2,8 @@
 const isLogged = (req, res, next) => {
     if (!req.session)
         return res.redirect('/')
-    const {user_id} = req.session
-    if (user_id)
+    const {userId} = req.session
+    if (userId)
         return next() // allow user to see instagram
     else
         return res.redirect('/') // if not logged in, redirect to login

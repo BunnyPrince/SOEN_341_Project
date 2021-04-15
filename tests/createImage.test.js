@@ -18,7 +18,7 @@ let mockUser = {
 // mock request
 const request = {
     session: {
-        user_id: '60438f9c0b84589e11a1cbc1'
+        userId: '60438f9c0b84589e11a1cbc1'
     },
     params: '',
     body: {

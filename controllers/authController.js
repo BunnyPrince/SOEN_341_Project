@@ -4,7 +4,7 @@ const {showFeed, loginToAccount, createAccount, fetchLoginUser, destroySession} 
 const bcrypt = require('bcrypt')
 
 const loginFeed = async (req, res) => {
-    const sessionUserID = req.session.user_id
+    const sessionUserID = req.session.userId
     if (sessionUserID) {
         let {feedImages, currentUser} = await showFeed(req, User, Image)
         return res.render('feed', {
@@ -24,7 +24,7 @@ const verifyLogin = async (req, res) => {
     if (!sessionUser)
         req.flash(result, msg)
     else
-        req.session.user_id = sessionUser._id
+        req.session.userId = sessionUser._id
     res.redirect('/')
 }
 

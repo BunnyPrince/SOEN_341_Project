@@ -1,5 +1,5 @@
 const showFeed = async (req, User, Image) => {
-    let currentUser = await User.findById(req.session.user_id)
+    let currentUser = await User.findById(req.session.userId)
     let {follows} = currentUser
     let feedImages = await Image.find({user: {$in: follows}})
         .populate('user')
@@ -56,7 +56,7 @@ const createAccount = async (req, User, bcrypt) => {
 }
 
 const destroySession = (req) => {
-    req.session.user_id = null
+    req.session.userId = null
     if(typeof req.session.destroy === 'function')
         req.session.destroy() // completely any information stored in session
     console.log('User has logout.')
@@ -64,8 +64,8 @@ const destroySession = (req) => {
 }
 
 const fetchLoginUser = async (req, User) => {
-    const {user_id} = req.session
-    return User.findById(user_id)
+    const {userId} = req.session
+    return User.findById(userId)
 }
 
 module.exports = {
