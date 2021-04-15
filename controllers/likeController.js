@@ -8,7 +8,7 @@ const profileLikeImage = async (req, res) => {
 
 const profileUnlikeImage = async (req, res) => {
     const image = await unlike(req, Image)
-    console.log("unliked")
+    console.log('unliked')
 }
 
 module.exports = {
