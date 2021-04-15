@@ -12,11 +12,11 @@
                 <div class="post-container">
                     <!-- User profilePic unfollowOption---->
                     <div>
-                        <div class="line1 post-pfp poster">
+                        <div class="line post-pfp poster">
                             <img class="post-pfp" src="<%= image.user.pfp.url %>"
                                  width="40">
                         </div>
-                        <div class="line1 poster">
+                        <div class="line poster">
                             <a href="/<%= image.user.username %>" class="username text-decoration-none text-reset">
                                 <%= image.user.username %>
                                 <% image.user %>
@@ -79,12 +79,12 @@
 
                     </div>
                     <div class="comments">
-                        <div class="line1">
+                        <div class="line">
                             <a href="/<%= image.user.username %>" class="username text-decoration-none text-reset">
                                 <%= image.user.username %>
                             </a>
                         </div>
-                        <div class="line1">
+                        <div class="line">
                             <p class="description"><%= image.caption %></p></div>
                     </div>
                     <div class="more">
@@ -96,11 +96,11 @@
                         <% const {username, comment} = image.comments[image.comments.length - 2] %>
                         <div class="comments">
                             <!---posted comments section-------->
-                            <div class="line1">
+                            <div class="line">
                                 <a href="/<%= username %>"
                                    class="user-friends text-decoration-none text-reset"> <%= username %></a>
                             </div>
-                            <div class="line1">
+                            <div class="line">
                                 <p class="comments"> <%= comment %> </p>
                             </div><!---place it in a box---->
                         </div>
@@ -109,29 +109,15 @@
                         <% const {username, comment} = image.comments[image.comments.length - 1] %>
                         <div class="comments">
                             <!---posted comments section-------->
-                            <div class="line1">
+                            <div class="line">
                                 <a href="/<% username %>"
                                    class="user-friends  text-decoration-none text-reset"> <%= username %></a>
                             </div>
-                            <div class="line1">
+                            <div class="line">
                                 <p class="comments"> <%= comment %> </p>
                             </div><!---place it in a box---->
                         </div>
                     <% } %>
-                    <!--
-                    <div class="new-comment">
-
-                        <div class="input-comment line1">
-                            <input size="50" class="input-comment" placeholder="Add a comment..." name="comment"
-                                   required>
-                        </div>
-                        <div class="submit-btn line1">
-                            <button class="feed-btn btn btn-link btn-sm text-decoration-none" type="submit">Post
-                            </button>
-                        </div>
-
-                    </div>
-                    -->
                 </div>
             </div>
         <% }) %>
