@@ -4,9 +4,9 @@ function showPreviewOne(event){
         let preview = document.getElementById("file")
         preview.src = src
         preview.style.display = "block"
-          return true;
+          return true
       }
-      return false;
+      return false
     }
     function myImgRemoveFunctionOne() {
       document.getElementById("file").src = "https://i.ibb.co/ZVFsg37/default.png"
