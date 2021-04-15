@@ -50,11 +50,11 @@ describe('Testing `deleteImage`', () => {
 
     })
 
-    afterAll(async () => {
-        await Comment.deleteMany()
+    afterAll( async(done) => {
         await Image.deleteMany()
         await User.deleteMany()
         await mongoose.connection.close()
+        done()
 
     })
 
