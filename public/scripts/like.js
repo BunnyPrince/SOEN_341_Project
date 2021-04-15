@@ -1,6 +1,6 @@
 function setVisibilityLike(img) {
-    document.getElementById('like-button-' + img).style.display = 'none'
-    document.getElementById('unlike-button-' + img).style.display = 'inline-block'
+    document.getElementById(`like-button-${img}`).style.display = 'none'
+    document.getElementById(`unlike-button-${img}`).style.display = 'inline-block'
 }
 
 function editLike(img, type, mockDoc) {
@@ -73,30 +73,30 @@ function updateLike(img, inc, mockDoc) {
         doc = document
     }
     if (inc) {
-        let show = doc.getElementById('current-user-in-' + img)
+        let show = doc.getElementById(`current-user-in-${img}`)
         show.style.display = 'block'
         // showCurrentUserInList(img)
-        let i = parseInt(doc.getElementById('like-number-' + img).innerText)
-        doc.getElementById('like-number-' + img).innerText = (i + 1) + ''
+        let i = parseInt(doc.getElementById(`like-number-${img}`).innerText)
+        doc.getElementById(`like-number-${img}`).innerText = (i + 1) + ''
     } else {
-        let hide = doc.getElementById('current-user-in-' + img)
+        let hide = doc.getElementById(`current-user-in-${img}`)
         hide.style.display = 'none'
         // hideCurrentUserInList(img)
-        let i = parseInt(doc.getElementById('like-number-' + img).innerText)
-        doc.getElementById('like-number-' + img).innerText = (i - 1) + ''
+        let i = parseInt(doc.getElementById(`like-number-${img}`).innerText)
+        doc.getElementById(`like-number-${img}`).innerText = (i - 1) + ''
     }
 }
 
 function showCurrentUserInList(img) {
     //console.log('img id:', img)
-    let show = document.getElementById('current-user-in-' + img)
+    let show = document.getElementById(`current-user-in-${img}`)
     // console.log(show)
     show.style.display = 'block'
 }
 
 function hideCurrentUserInList(img) {
     //console.log('img id:', img)
-    let hide = document.getElementById('current-user-in-' + img)
+    let hide = document.getElementById(`current-user-in-${img}`)
     //console.log(hide)
     hide.style.display = 'none'
 }
