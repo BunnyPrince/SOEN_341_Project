@@ -10,7 +10,7 @@ const dom = new JSDOM(
         onclick="editFollow('60438f9c0b84589e11a1cbf2', 'follow', ' eyeshield2110')"> Follow
     </button>
     
-    </body>
+    </body>C
 `)
 
 const {window} = dom

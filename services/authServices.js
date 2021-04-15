@@ -57,7 +57,8 @@ const createAccount = async (req, User, bcrypt) => {
 
 const destroySession = (req) => {
     req.session.user_id = null
-    req.session.destroy() // completely any information stored in session
+    if(typeof req.session.destroy === 'function')
+        req.session.destroy() // completely any information stored in session
     console.log('User has logout.')
     return req.session
 }

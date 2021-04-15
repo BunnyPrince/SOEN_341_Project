@@ -28,11 +28,7 @@ const request = {
 
 console.log('create request:', request)
 test('destroySession: destroy session object from request when logout', () => {
-    /*
-    request.session.destroy()
-    expect(request).toEqual(true)
-    */
-    expect(true).toEqual(true)
+    expect(destroySession(request).user_id).toEqual(null)
 
 })
 
