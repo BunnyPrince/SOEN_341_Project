@@ -10,5 +10,5 @@ function showPreviewOne(event){
     }
     function myImgRemoveFunctionOne() {
       document.getElementById("file").src = "https://i.ibb.co/ZVFsg37/default.png"
-      return true;
+      return true
     }
