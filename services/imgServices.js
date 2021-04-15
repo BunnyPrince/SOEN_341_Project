@@ -2,7 +2,6 @@
 
 const createImage = async (req, User, Image) => {
     const {user_id} = req.session
-    // console.log('user_id', user_id)
     if (!user_id)
         return undefined
     const user = await User.findById(user_id)

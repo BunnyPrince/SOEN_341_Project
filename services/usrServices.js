@@ -17,7 +17,12 @@ const checkoutUser = async (req, User) => {
             break
         }
     }
-    return {user, isBeingFollowed, duplicateUser, overlay: false, usersList: []}
+    return {user,
+        isBeingFollowed,
+        duplicateUser,
+        overlay: false,
+        usersList: []
+    }
 }
 
 const follow = async (req, User) => {
@@ -43,11 +48,10 @@ const follow = async (req, User) => {
 const unfollow = async (req, User) => {
     const userToUnfollow = {...req.body}
     const sessionUserId = req.session.user_id
-    const sessionUser = await User.findByIdAndUpdate(sessionUserId, {$pull: {follows: userToUnfollow.userid}})
+    await User.findByIdAndUpdate(sessionUserId, {$pull: {follows: userToUnfollow.userid}})
     await User.findByIdAndUpdate(userToUnfollow.userid, {$pull: {followers: sessionUserId}})
     // console.log(sessionUser.username + ' has unfollowed ' + userToUnfollow.username)
     return userToUnfollow
-
 }
 
 const listOfUsers = async (req, User) => {

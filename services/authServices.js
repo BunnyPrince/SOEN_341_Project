@@ -64,7 +64,7 @@ const destroySession = (req) => {
 
 const fetchLoginUser = async (req, User) => {
     const {user_id} = req.session
-    return User.findById(user_id);
+    return User.findById(user_id)
 }
 
 module.exports = {
