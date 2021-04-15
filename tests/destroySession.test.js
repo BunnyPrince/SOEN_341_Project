@@ -35,7 +35,6 @@ test('destroySession: destroy session object from request when logout', () => {
     expect(true).toEqual(true)
 
 })
-console.log('destroy session:', request)
 
 
 

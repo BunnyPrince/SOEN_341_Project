@@ -58,7 +58,7 @@ describe('Testing `createAccount` (business logic of POST /register route)', () 
     })
 
     it('createAccount for user with taken username or email', async () => {
-        let { result, msg } = await createAccount(usernameTaken, User, bcrypt)
+        let {result, msg} = await createAccount(usernameTaken, User, bcrypt)
         expect(result).toEqual('taken')
         expect(msg).toEqual('This username/email have already been used.')
     })
@@ -74,7 +74,7 @@ describe('Testing `createAccount` (business logic of POST /register route)', () 
     })
 
     it('createAccount for valid new user', async () => {
-        let { result, msg} = await createAccount(validRequest, User, bcrypt)
+        let {result, msg} = await createAccount(validRequest, User, bcrypt)
         expect(result).toEqual('successRegister')
         expect(msg).toEqual('Registration successful')
     })

@@ -7,13 +7,7 @@ const asyncErr = require('../.utils/asyncErr')
 const Joi = require('joi') // schema validation
     // controllers
 const imgController = require('../controllers/imgController')
-    // .utils
-// const isLogged = require('../.utils/isLogged')
-// const whenLogged = require('../.utils/whenLogged')
-
-/* ============================== cloudinary, multer configuration ==========================*/
 const upload = multer({storage})
-/* ===================================================================================*/
 
 router.get('/', asyncErr(imgController.explore))
 
@@ -29,7 +23,6 @@ router.put('/:id', upload.array('image'), asyncErr(imgController.updatePost))
 
 router.delete('/:id', asyncErr(imgController.deletePost))
 
-// Comments
 router.post('/:id/comments', asyncErr(imgController.commentPost))
 
 router.delete('/:imageId/comments/:commentId', asyncErr(imgController.deleteCommentPost))

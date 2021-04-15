@@ -2,6 +2,7 @@ const User = require('../models/user')
 const Image = require('../models/image')
 const ExpressError = require('../.utils/ExpressError')
 // const Joi = require('joi') // schema validation
+
 const {checkoutUser, follow, unfollow, listOfUsers} = require('../services/usrServices')
 
 const userProfile = async (req, res, next) => {
