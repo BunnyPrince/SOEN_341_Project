@@ -9,7 +9,7 @@ const mockRequest = {
     },
     session: {
         // logged in user
-        user_id: '60438f9c0b84589e11a1cbc1'
+        userId: '60438f9c0b84589e11a1cbc1'
     }
 }
 const currentUser = {

@@ -16,7 +16,7 @@ const {logout} = authController
 
 /* ============================ Routes =============================*/
 
-router.get('/', asyncErr(authController.login_feed))
+router.get('/', asyncErr(authController.loginFeed))
 
 router.post('/login', asyncErr(authController.verifyLogin))
 

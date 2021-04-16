@@ -32,27 +32,11 @@ function editLike(img, type, mockDoc) {
     if (type === 'like') {
         doc.getElementById('like-button-' + img).style.display = 'none'
         doc.getElementById('unlike-button-' + img).style.display = 'inline-block'
-        /*
-        try {
-            updateLike(img, true)
-        } catch (e) {
-        } finally {
-            form.submit()
-        }
-        */
         updateLike(img, true, mockDoc)
         //form.submit()
     } else {
         doc.getElementById('unlike-button-' + img).style.display = 'none'
         doc.getElementById('like-button-' + img).style.display = 'inline-block'
-        /*
-        try {
-            updateLike(img, false)
-        } catch (e) {
-        } finally {
-            form.submit()
-        }
-        */
         updateLike(img, false, mockDoc)
         //form.submit()
     }

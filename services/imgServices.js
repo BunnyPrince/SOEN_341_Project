@@ -1,10 +1,10 @@
 // Functions that handles business logic inside the imgController
 
 const createImage = async (req, User, Image) => {
-    const {user_id} = req.session
-    if (!user_id)
+    const {userId} = req.session
+    if (!userId)
         return undefined
-    const user = await User.findById(user_id)
+    const user = await User.findById(userId)
     const caption = req.body.caption
     let newImg = req.files.map(f => ({
         url: f.path,
@@ -20,11 +20,11 @@ const createImage = async (req, User, Image) => {
 }
 
 const deleteImage = async (req, User, Image, cloudinary) => {
-    const {user_id} = req.session
+    const {userId} = req.session
     const {id} = req.params
     const {filename} = await Image.findById(id)
     // delete reference to the image
-    await User.findByIdAndUpdate(user_id, {$pull: {images: id}})
+    await User.findByIdAndUpdate(userId, {$pull: {images: id}})
     if (filename) {
         // delete image from cloud storage
         await cloudinary.uploader.destroy(filename)

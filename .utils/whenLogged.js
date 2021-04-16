@@ -2,8 +2,8 @@
 const whenLogged = (req, res, next) => {
     if (!req.session)
         return next()
-    const {user_id} = req.session
-    if (!user_id)
+    const {userId} = req.session
+    if (!userId)
         return next() // allow user to see registration and/or login forms
     else
         return res.redirect('/') // if logged in, redirect to FEED

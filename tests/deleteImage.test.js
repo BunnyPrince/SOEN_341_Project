@@ -7,7 +7,7 @@ const cloudinary = require('../cloudinary/cloudConfig')
 // mock request
 const request = {
     session: {
-        user_id: '60438f9c0b84589e11a1cbb6'
+        userId: '60438f9c0b84589e11a1cbb6'
     },
     params: {
         // image id to delete

@@ -7,7 +7,7 @@ const checkoutUser = async (req, User) => {
         return undefined
     }
     const {followers} = user
-    const {user_id: sessionUserId} = req.session
+    const {userId: sessionUserId} = req.session
     let duplicateUser = (sessionUserId === user._id.toString())
     let isBeingFollowed = false
     for (const follower of followers) {
@@ -26,7 +26,7 @@ const checkoutUser = async (req, User) => {
 
 const follow = async (req, User) => {
     const userToFollow = await User.findById(req.body.userid)
-    const sessionUser = await User.findById(req.session.user_id)
+    const sessionUser = await User.findById(req.session.userId)
     for (let u of userToFollow.followers) {
         if (u.username === sessionUser.username) {
             console.log('duplicate follow')
@@ -43,7 +43,7 @@ const follow = async (req, User) => {
 
 const unfollow = async (req, User) => {
     const userToUnfollow = {...req.body}
-    const sessionUserId = req.session.user_id
+    const sessionUserId = req.session.userId
     await User.findByIdAndUpdate(sessionUserId, {$pull: {follows: userToUnfollow.userid}})
     await User.findByIdAndUpdate(userToUnfollow.userid, {$pull: {followers: sessionUserId}})
     return userToUnfollow

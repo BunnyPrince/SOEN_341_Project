@@ -99,7 +99,7 @@ describe('Testing of data of the feed', () => {
         // mock request
         request = {
             session: {
-                user_id: myUser._id.toString()
+                userId: myUser._id.toString()
             }
         }
     })

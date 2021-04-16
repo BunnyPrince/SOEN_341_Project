@@ -3,8 +3,8 @@ const User = require('../models/user')
 const {showFeed, loginToAccount, createAccount, fetchLoginUser, destroySession} = require('../services/authServices')
 const bcrypt = require('bcrypt')
 
-const login_feed = async (req, res) => {
-    const sessionUserID = req.session.user_id
+const loginFeed = async (req, res) => {
+    const sessionUserID = req.session.userId
     if (sessionUserID) {
         let {feedImages, currentUser} = await showFeed(req, User, Image)
         return res.render('feed', {
@@ -24,7 +24,7 @@ const verifyLogin = async (req, res) => {
     if (!sessionUser)
         req.flash(result, msg)
     else
-        req.session.user_id = sessionUser._id
+        req.session.userId = sessionUser._id
     res.redirect('/')
 }
 
@@ -49,7 +49,7 @@ const logout = (req, res) => {
     res.redirect('/')
 }
 module.exports = {
-    login_feed,
+    loginFeed,
     verifyLogin,
     registerForm,
     verifyRegister,

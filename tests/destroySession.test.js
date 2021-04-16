@@ -2,14 +2,14 @@ const mongoose = require('mongoose')
 const {destroySession} = require('../services/authServices')
 
 class Session {
-    constructor(user_id){
-        this.user_id = user_id
+    constructor(userId){
+        this.userId = userId
     }
 }
 class Request {
 
-    constructor(user_id) {
-        this.session = new Session(user_id)
+    constructor(userId) {
+        this.session = new Session(userId)
     }
 
 }
@@ -19,7 +19,7 @@ const request = new Request('60438f9c0b84589e11a1cbc1')
 /*
 const request = {
     session: {
-        user_id: '60438f9c0b84589e11a1cbc1'
+        userId: '60438f9c0b84589e11a1cbc1'
     }
 }
 */
@@ -28,7 +28,7 @@ const request = {
 
 console.log('create request:', request)
 test('destroySession: destroy session object from request when logout', () => {
-    expect(destroySession(request).user_id).toEqual(null)
+    expect(destroySession(request).userId).toEqual(null)
 
 })
 
